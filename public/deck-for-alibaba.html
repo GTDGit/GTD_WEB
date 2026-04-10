@@ -3,844 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTD AI Solutions — Investor Deck 2026</title>
+<title>GTD Company Overview | Alibaba Cloud AI Catalyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0f1e; }
-
-:root {
-  --b900: #050c1f;
-  --b800: #0a1428;
-  --b700: #0d2147;
-  --b600: #0f3a8a;
-  --b500: #1a5fd4;
-  --b400: #2e7dff;
-  --b300: #6aaeff;
-  --b200: #aed4ff;
-  --b100: #deeeff;
-  --cyan: #00d4ff;
-  --cyan2: #00a8cc;
-  --white: #ffffff;
-  --g50: #f7faff;
-  --g100: #eef3fc;
-  --g200: #d8e4f5;
-  --g400: #8fa5c4;
-  --g600: #4a6080;
-  --g800: #1c2d42;
-  --red: #ff4d6a;
-  --green: #00d68f;
-  --amber: #ffb020;
-}
-
-/* ── DECK CONTAINER ── */
-.deck {
-  width: 100vw; height: 100vh;
-  position: relative;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* ── SLIDES ── */
-.slide {
-  position: absolute; inset: 0;
-  opacity: 0; pointer-events: none;
-  transition: opacity .5s ease, transform .5s ease;
-  transform: translateX(40px);
-  overflow: hidden;
-}
-.slide.active {
-  opacity: 1; pointer-events: all;
-  transform: translateX(0);
-}
-.slide.prev {
-  opacity: 0; transform: translateX(-40px);
-}
-
-/* ── NAVIGATION ── */
-.nav {
-  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
-  z-index: 1000;
-  display: flex; align-items: center; gap: 16px;
-  background: rgba(10,20,40,0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 100px;
-  padding: 10px 20px;
-}
-.nav-dots { display: flex; gap: 6px; align-items: center; }
-.dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  cursor: pointer; transition: all .3s;
-}
-.dot.active { background: var(--cyan); width: 20px; border-radius: 3px; }
-.nav-btn {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.06);
-  color: white; font-size: 0.85rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s;
-}
-.nav-btn:hover { background: rgba(255,255,255,0.12); }
-.slide-counter {
-  font-size: 0.72rem; font-weight: 600;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 1px;
-  min-width: 36px; text-align: center;
-}
-
-/* ── COMMON SLIDE SHELL ── */
-.slide-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--b900) 0%, var(--b800) 60%, #0d1f3c 100%);
-}
-.slide-bg.light {
-  background: linear-gradient(135deg, #f0f6ff 0%, #e8f2ff 100%);
-}
-.slide-bg.mid {
-  background: linear-gradient(135deg, #061224 0%, #0a1e3d 100%);
-}
-
-/* grid texture */
-.grid-tex {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
-.grid-tex.light {
-  background-image:
-    linear-gradient(rgba(15,58,138,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15,58,138,0.06) 1px, transparent 1px);
-}
-
-/* glow blobs */
-.glow {
-  position: absolute; border-radius: 50%;
-  filter: blur(80px); pointer-events: none;
-}
-
-.content {
-  position: relative; z-index: 10;
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  padding: 56px 72px 90px;
-}
-
-/* ── TYPOGRAPHY ── */
-.eyebrow {
-  font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 18px;
-}
-.eyebrow::before {
-  content: ''; width: 20px; height: 2px;
-  background: var(--cyan);
-}
-.eyebrow.dark { color: var(--b500); }
-.eyebrow.dark::before { background: var(--b500); }
-
-h1.display {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
-  font-weight: 800; line-height: 1.08;
-  letter-spacing: -1.5px;
-}
-h2.display {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(1.8rem, 3.2vw, 3rem);
-  font-weight: 800; line-height: 1.1;
-  letter-spacing: -1px;
-}
-.grad-text {
-  background: linear-gradient(90deg, var(--cyan) 0%, var(--b300) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.grad-text-warm {
-  background: linear-gradient(90deg, #fff 0%, var(--b200) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-
-/* ── TAGS / BADGES ── */
-.tag {
-  display: inline-flex; align-items: center;
-  background: rgba(0,212,255,0.1);
-  border: 1px solid rgba(0,212,255,0.25);
-  color: var(--cyan); font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.5px; padding: 4px 12px; border-radius: 100px;
-}
-.tag.solid {
-  background: var(--b500); border-color: var(--b500);
-  color: white;
-}
-.tag.dark-solid {
-  background: var(--b900); border: 1px solid rgba(255,255,255,0.12);
-  color: var(--b200);
-}
-
-/* ─────────────────────────────────────────────────
-   SLIDE 01 — COVER
-───────────────────────────────────────────────── */
-#s1 .slide-bg { background: linear-gradient(135deg, #030a18 0%, #061530 50%, #091e42 100%); }
-#s1 .g1 { width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,.12),transparent 70%);top:-200px;right:-100px; }
-#s1 .g2 { width:500px;height:500px;background:radial-gradient(circle,rgba(26,95,212,.18),transparent 70%);bottom:-100px;left:50px; }
-
-#s1 .content { justify-content: center; gap: 0; }
-.cover-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; height: 100%; }
-
-.cover-logo {
-  display: inline-flex; align-items: center; gap: 10px;
-  margin-bottom: 40px;
-}
-.logo-mark {
-  width: 48px; height: 48px;
-  background: linear-gradient(135deg, var(--b500), var(--cyan));
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.3rem; font-weight: 800; color: white;
-  letter-spacing: -1px;
-}
-.logo-text {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.2rem; font-weight: 800;
-  color: white; letter-spacing: -0.5px;
-}
-.logo-text span { color: var(--cyan); }
-
-.cover-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; }
-
-.cover-right { display: flex; flex-direction: column; gap: 20px; }
-.cover-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 18px; padding: 26px;
-  backdrop-filter: blur(8px);
-  transition: background .3s;
-}
-.cover-card:hover { background: rgba(255,255,255,.07); }
-.cover-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.cover-card-icon {
-  width: 40px; height: 40px; border-radius: 11px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, var(--b500), var(--cyan));
-}
-.cover-card h3 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1rem; font-weight: 700; color: white;
-}
-.cover-card p { font-size: 0.8rem; color: rgba(255,255,255,.5); line-height: 1.55; }
-
-.cover-meta {
-  margin-top: 8px;
-  font-size: 0.72rem; color: rgba(255,255,255,.3);
-  font-weight: 500; letter-spacing: 0.5px;
-}
-
-/* ─────────────────────────────────────────────────
-   SLIDE 02 — PROBLEM
-───────────────────────────────────────────────── */
-#s2 .g1 { width:600px;height:600px;background:radial-gradient(circle,rgba(255,77,106,.06),transparent 70%);top:-100px;right:-50px; }
-
-.prob-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; flex: 1; }
-.prob-card {
-  border-radius: 20px; padding: 32px 28px;
-  position: relative; overflow: hidden;
-  display: flex; flex-direction: column;
-  transition: transform .3s;
-}
-.prob-card:hover { transform: translateY(-6px); }
-.prob-card.c1 { background: rgba(255,77,106,.08); border: 1px solid rgba(255,77,106,.2); }
-.prob-card.c2 { background: rgba(255,176,32,.06); border: 1px solid rgba(255,176,32,.18); }
-.prob-card.c3 { background: rgba(0,214,143,.06); border: 1px solid rgba(0,214,143,.18); }
-
-.prob-number {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 4rem; font-weight: 800; line-height: 1;
-  margin-bottom: 16px; opacity: .15;
-}
-.c1 .prob-number { color: var(--red); opacity: 1; -webkit-text-stroke: 1px var(--red); -webkit-text-fill-color: transparent; }
-.c2 .prob-number { color: var(--amber); opacity: 1; -webkit-text-stroke: 1px var(--amber); -webkit-text-fill-color: transparent; }
-.c3 .prob-number { color: var(--green); opacity: 1; -webkit-text-stroke: 1px var(--green); -webkit-text-fill-color: transparent; }
-
-.prob-card h3 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.15rem; font-weight: 700; color: white;
-  margin-bottom: 12px; line-height: 1.2;
-}
-.prob-card p { font-size: 0.82rem; color: rgba(255,255,255,.55); line-height: 1.65; }
-.prob-stat {
-  margin-top: 20px; padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.3px;
-}
-.c1 .prob-stat { color: var(--red); }
-.c2 .prob-stat { color: var(--amber); }
-.c3 .prob-stat { color: var(--green); }
-
-/* ─────────────────────────────────────────────────
-   SLIDE 03 — SOLUTION (VISON OVERVIEW)
-───────────────────────────────────────────────── */
-.sol-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; flex: 1; align-items: start; margin-top: 36px; }
-.sol-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.sol-feat {
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px; padding: 18px 20px;
-  transition: background .25s, border-color .25s;
-}
-.sol-feat:hover { background: rgba(0,212,255,.06); border-color: rgba(0,212,255,.2); }
-.sol-feat-icon { font-size: 1.3rem; margin-bottom: 10px; }
-.sol-feat h4 { font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 4px; }
-.sol-feat p { font-size: 0.75rem; color: rgba(255,255,255,.45); line-height: 1.5; }
-
-.sol-right {}
-.vison-logo-block {
-  background: linear-gradient(135deg, var(--b700), var(--b600));
-  border-radius: 20px; padding: 32px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255,255,255,.1);
-}
-.vison-name {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 2.4rem; font-weight: 800;
-  color: white; letter-spacing: -1px;
-  margin-bottom: 4px;
-}
-.vison-name span { color: var(--cyan); }
-.vison-tagline { font-size: 0.8rem; color: rgba(255,255,255,.5); margin-bottom: 20px; }
-.vison-url {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.25);
-  border-radius: 8px; padding: 6px 14px;
-  font-size: 0.76rem; font-weight: 600; color: var(--cyan);
-}
-
-.biz-model { display: flex; flex-direction: column; gap: 10px; }
-.biz-row {
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 10px; padding: 12px 16px;
-}
-.biz-label { font-size: 0.78rem; color: rgba(255,255,255,.5); }
-.biz-val { font-size: 0.82rem; font-weight: 700; color: var(--b200); }
-
-/* ─────────────────────────────────────────────────
-   SLIDE 04 — HOW AI WORKS
-───────────────────────────────────────────────── */
-#s4 .slide-bg { background: linear-gradient(135deg, #030d1f 0%, #061830 100%); }
-
-.ai-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; flex: 1; margin-top: 36px; }
-
-.pipeline-wrap {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 20px; padding: 28px;
-}
-.pipe-title {
-  font-size: 0.68rem; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--cyan); margin-bottom: 22px;
-}
-.pipe-item {
-  display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; position: relative;
-}
-.pipe-item:not(:last-child)::after {
-  content: '';
-  position: absolute; left: 17px; top: 38px;
-  width: 2px; height: calc(100% - 10px);
-  background: linear-gradient(to bottom, rgba(0,212,255,.25), rgba(0,212,255,.05));
-}
-.pipe-ico {
-  width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
-  position: relative; z-index: 1;
-}
-.pipe-ico.active { background: linear-gradient(135deg, var(--b500), var(--cyan)); }
-.pipe-ico.neutral { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); }
-.pipe-body strong { display: block; font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 2px; }
-.pipe-body span { font-size: 0.73rem; color: rgba(255,255,255,.4); }
-
-.ai-metrics { display: flex; flex-direction: column; gap: 14px; }
-.metric-card {
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px; padding: 20px 24px;
-  display: flex; align-items: center; gap: 20px;
-}
-.metric-val {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.8rem; font-weight: 800; line-height: 1;
-  min-width: 80px;
-}
-.metric-val.cyan { color: var(--cyan); }
-.metric-val.blue { color: var(--b300); }
-.metric-val.green { color: var(--green); }
-.metric-label strong { display: block; font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 3px; }
-.metric-label span { font-size: 0.73rem; color: rgba(255,255,255,.4); }
-
-.model-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.mtag {
-  background: rgba(26,95,212,.15); border: 1px solid rgba(26,95,212,.3);
-  border-radius: 6px; font-size: 0.7rem; font-weight: 600; color: var(--b300);
-  padding: 4px 10px;
-}
-
-/* ─────────────────────────────────────────────────
-   SLIDE 05 — COMPLIANCE
-───────────────────────────────────────────────── */
-#s5 .slide-bg.light {}
-#s5 .g1 { width:500px;height:500px;background:radial-gradient(circle,rgba(15,58,138,.08),transparent 70%);top:-100px;right:0; }
-
-.comp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; margin-top: 36px; }
-.comp-card {
-  background: white; border-radius: 18px;
-  padding: 28px 26px;
-  border: 1px solid var(--g200);
-  box-shadow: 0 4px 24px rgba(15,58,138,.06);
-  transition: transform .3s, box-shadow .3s;
-  position: relative; overflow: hidden;
-}
-.comp-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,58,138,.1); }
-.comp-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--b500), var(--cyan));
-}
-.comp-flag {
-  font-size: 1.8rem; margin-bottom: 14px;
-}
-.comp-card h3 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.05rem; font-weight: 700; color: var(--b800); margin-bottom: 6px;
-}
-.comp-badge {
-  display: inline-block; background: var(--b600);
-  color: white; font-size: 0.68rem; font-weight: 700;
-  padding: 3px 10px; border-radius: 5px; margin-bottom: 12px;
-  letter-spacing: 0.5px;
-}
-.comp-card p { font-size: 0.79rem; color: var(--g600); line-height: 1.6; }
-
-/* ─────────────────────────────────────────────────
-   SLIDE 06 — SONA / PPOB.ID AI AGENT
-───────────────────────────────────────────────── */
-#s6 .g1 { width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.1),transparent 70%);bottom:-150px;right:-100px; }
-
-.sona-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; flex: 1; align-items: center; margin-top: 36px; }
-
-.chat-window {
-  background: #1a2540; border-radius: 22px;
-  overflow: hidden; border: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 30px 80px rgba(0,0,0,.4);
-}
-.chat-bar {
-  background: linear-gradient(90deg, var(--b700), var(--b600));
-  padding: 16px 22px; display: flex; align-items: center; gap: 12px;
-}
-.chat-av {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--b400), var(--cyan));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-}
-.chat-bar-info strong { display: block; color: white; font-size: 0.85rem; font-weight: 700; }
-.chat-bar-info span { font-size: 0.7rem; color: rgba(255,255,255,.6); }
-.online-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; display: inline-block; margin-right: 4px; }
-
-.chat-msgs { padding: 18px 18px 12px; display: flex; flex-direction: column; gap: 10px; }
-.bubble {
-  max-width: 85%; padding: 11px 15px;
-  font-size: 0.78rem; line-height: 1.55;
-  border-radius: 16px;
-}
-.bubble.user {
-  background: var(--b500); color: white;
-  border-bottom-right-radius: 4px; align-self: flex-end;
-}
-.bubble.bot {
-  background: rgba(255,255,255,.07); color: rgba(255,255,255,.85);
-  border-bottom-left-radius: 4px; align-self: flex-start;
-  border: 1px solid rgba(255,255,255,.08);
-}
-.bubble.bot strong { color: var(--cyan); }
-.chat-input {
-  margin: 8px 18px 16px;
-  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 10px; padding: 10px 14px;
-  font-size: 0.75rem; color: rgba(255,255,255,.3);
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.sona-feats { display: flex; flex-direction: column; gap: 16px; }
-.sona-feat {
-  display: flex; gap: 14px;
-  padding: 18px 20px;
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 14px;
-  transition: background .25s;
-}
-.sona-feat:hover { background: rgba(0,212,255,.05); border-color: rgba(0,212,255,.15); }
-.sona-ico {
-  width: 42px; height: 42px; flex-shrink: 0; border-radius: 11px;
-  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-  background: rgba(26,95,212,.15); border: 1px solid rgba(26,95,212,.2);
-}
-.sona-feat h4 { font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 4px; }
-.sona-feat p { font-size: 0.74rem; color: rgba(255,255,255,.45); line-height: 1.5; }
-
-.sona-brand {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
-}
-.sona-mark {
-  width: 44px; height: 44px; border-radius: 13px;
-  background: linear-gradient(135deg, var(--b500), var(--cyan));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-}
-.sona-wordmark {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.3rem; font-weight: 800; color: white;
-}
-.sona-wordmark small {
-  display: block; font-size: 0.65rem; font-weight: 500;
-  color: rgba(255,255,255,.4); letter-spacing: 1px; text-transform: uppercase; margin-top: -2px;
-}
-
-/* ─────────────────────────────────────────────────
-   SLIDE 07 — TRACTION
-───────────────────────────────────────────────── */
-#s7 .slide-bg { background: linear-gradient(135deg, #020810 0%, #040f20 100%); }
-#s7 .g1 { width:700px;height:700px;background:radial-gradient(circle,rgba(26,95,212,.12),transparent 70%);top:-200px;left:-100px; }
-
-.traction-top { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 36px; }
-.trac-stat {
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 16px; padding: 26px 22px; text-align: center;
-  transition: background .3s;
-}
-.trac-stat:hover { background: rgba(26,95,212,.1); border-color: rgba(26,95,212,.25); }
-.trac-num {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 2.4rem; font-weight: 800; line-height: 1;
-  color: var(--cyan); margin-bottom: 6px;
-}
-.trac-label { font-size: 0.74rem; color: rgba(255,255,255,.45); line-height: 1.4; }
-
-.traction-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; flex: 1; }
-.trac-panel {
-  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 16px; padding: 24px 26px;
-}
-.trac-panel h4 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px;
-}
-.trac-panel h4::before { content: ''; width: 12px; height: 2px; background: var(--cyan); }
-.pipeline-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.05);
-  font-size: 0.78rem;
-}
-.pipeline-item:last-child { border-bottom: none; }
-.pipeline-item .name { color: rgba(255,255,255,.7); }
-.pipeline-item .status {
-  font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 5px;
-}
-.status.live { background: rgba(0,214,143,.15); color: var(--green); }
-.status.active { background: rgba(0,212,255,.12); color: var(--cyan); }
-.status.pipeline { background: rgba(255,176,32,.1); color: var(--amber); }
-.status.prospect { background: rgba(255,255,255,.07); color: rgba(255,255,255,.4); }
-
-/* ─────────────────────────────────────────────────
-   SLIDE 08 — GPU / CLOUD NEEDS
-───────────────────────────────────────────────── */
-#s8 .g1 { width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%);top:-100px;right:-50px; }
-
-.cloud-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; flex:1; margin-top: 36px; align-items: start; }
-
-.ali-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: rgba(255,100,0,.08); border: 1px solid rgba(255,100,0,.2);
-  border-radius: 12px; padding: 12px 18px; margin-bottom: 24px;
-}
-.ali-badge span { font-size: 0.78rem; font-weight: 700; color: #ff8533; }
-
-.need-list { display: flex; flex-direction: column; gap: 14px; }
-.need-item {
-  display: flex; gap: 14px;
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 14px; padding: 18px 20px;
-}
-.need-ico {
-  width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-  background: linear-gradient(135deg, var(--b600), var(--b500));
-}
-.need-item h4 { font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 4px; }
-.need-item p { font-size: 0.74rem; color: rgba(255,255,255,.45); line-height: 1.5; }
-
-.credit-table { width: 100%; }
-.credit-row {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.07);
-}
-.credit-row:last-child { border-bottom: none; }
-.credit-cat { font-size: 0.8rem; font-weight: 600; color: white; margin-bottom: 3px; }
-.credit-desc { font-size: 0.72rem; color: rgba(255,255,255,.4); }
-.credit-amt {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.1rem; font-weight: 800; color: var(--cyan);
-  white-space: nowrap; padding-left: 20px;
-}
-
-.benefit-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.chip {
-  background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2);
-  color: var(--cyan); font-size: 0.7rem; font-weight: 600;
-  padding: 5px 12px; border-radius: 7px;
-}
-
-/* ─────────────────────────────────────────────────
-   SLIDE 09 — TEAM
-───────────────────────────────────────────────── */
-#s9 .slide-bg.light {}
-#s9 .g1 { width:500px;height:500px;background:radial-gradient(circle,rgba(15,58,138,.06),transparent 70%);bottom:0;right:0; }
-
-.team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; flex:1; margin-top: 40px; }
-.team-card {
-  background: white; border-radius: 20px;
-  padding: 36px 28px; text-align: center;
-  border: 1px solid var(--g200);
-  box-shadow: 0 4px 24px rgba(15,58,138,.06);
-  transition: transform .3s, box-shadow .3s;
-}
-.team-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(15,58,138,.1); }
-.team-av {
-  width: 76px; height: 76px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--b600), var(--cyan));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.5rem; font-weight: 800; color: white;
-  margin: 0 auto 20px; border: 3px solid white;
-  box-shadow: 0 4px 20px rgba(15,58,138,.2);
-}
-.team-card h3 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.05rem; font-weight: 800; color: var(--b800); margin-bottom: 4px;
-}
-.team-role { font-size: 0.75rem; font-weight: 700; color: var(--b500); margin-bottom: 14px; letter-spacing: 0.3px; }
-.team-desc { font-size: 0.78rem; color: var(--g600); line-height: 1.65; margin-bottom: 18px; }
-.team-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-.ttag {
-  background: var(--g100); border: 1px solid var(--g200);
-  color: var(--g600); font-size: 0.67rem; font-weight: 600;
-  padding: 3px 9px; border-radius: 5px;
-}
-
-/* ─────────────────────────────────────────────────
-   SLIDE 10 — ASK / CTA
-───────────────────────────────────────────────── */
-#s10 .slide-bg { background: linear-gradient(135deg, #020c1e 0%, #061a3a 60%, #091e42 100%); }
-#s10 .g1 { width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,.12),transparent 70%);top:-100px;right:-100px; }
-#s10 .g2 { width:400px;height:400px;background:radial-gradient(circle,rgba(26,95,212,.15),transparent 70%);bottom:-50px;left:-50px; }
-
-.ask-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; flex:1; align-items: start; margin-top: 40px; }
-
-.ask-cards { display: flex; flex-direction: column; gap: 16px; }
-.ask-card {
-  display: flex; gap: 16px;
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px; padding: 22px 24px;
-  transition: background .25s;
-}
-.ask-card:hover { background: rgba(0,212,255,.06); border-color: rgba(0,212,255,.18); }
-.ask-ico {
-  width: 48px; height: 48px; flex-shrink: 0; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-  background: linear-gradient(135deg, var(--b600), var(--b500));
-}
-.ask-card h4 { font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 4px; }
-.ask-card p { font-size: 0.76rem; color: rgba(255,255,255,.45); line-height: 1.55; }
-
-.ask-summary {
-  background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.2);
-  border-radius: 20px; padding: 28px;
-}
-.ask-total-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
-.ask-total {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 2.4rem; font-weight: 800; color: white; margin-bottom: 4px;
-}
-.ask-total-sub { font-size: 0.74rem; color: rgba(255,255,255,.4); margin-bottom: 24px; }
-
-.ask-line {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.07);
-  font-size: 0.77rem;
-}
-.ask-line:last-of-type { border-bottom: none; }
-.ask-line .label { color: rgba(255,255,255,.5); }
-.ask-line .val { font-weight: 700; color: var(--b200); }
-
-.contact-block {
-  margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);
-}
-.contact-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.contact-row span { font-size: 0.78rem; color: rgba(255,255,255,.55); }
-.contact-row a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; font-weight: 500; }
-
-/* keyboard hint */
-.kb-hint {
-  position: fixed; bottom: 90px; right: 40px;
-  font-size: 0.68rem; color: rgba(255,255,255,.2);
-  display: flex; align-items: center; gap: 6px;
-  z-index: 999;
-}
-.kb { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 4px; padding: 2px 7px; font-size: 0.65rem; }
-
-/* progress bar */
-.progress {
-  position: fixed; top: 0; left: 0; height: 2px;
-  background: linear-gradient(90deg, var(--b500), var(--cyan));
-  transition: width .4s ease; z-index: 999;
-}
+:root{--bg:#f3f8ff;--shell:#ffffff;--shell2:#f7fbff;--line:#d8e6fb;--line2:#bdd4f8;--ink:#0f172a;--ink2:#1d2d4d;--muted:#60708d;--muted2:#8090ac;--blue:#2563eb;--blue2:#1d4ed8;--sky:#38bdf8;--blueSoft:#e8f1ff;--shadow:0 24px 60px rgba(37,99,235,.10);--shadow2:0 14px 30px rgba(15,23,42,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at top left,rgba(56,189,248,.12),transparent 28%),radial-gradient(circle at top right,rgba(37,99,235,.12),transparent 32%),var(--bg);font-family:"Manrope",sans-serif;color:var(--ink)}
+img{display:block;max-width:100%}a{color:inherit}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;overflow:auto;opacity:0;pointer-events:none;transform:translateX(30px);transition:opacity .45s ease,transform .45s ease}
+.slide.active{opacity:1;pointer-events:auto;transform:none}
+.shell{min-height:100vh;padding:24px 24px 116px;background:radial-gradient(circle at top left,rgba(37,99,235,.06),transparent 24%),radial-gradient(circle at bottom right,rgba(56,189,248,.08),transparent 26%),linear-gradient(180deg,#fff 0%,#f7fbff 100%)}
+.shell.tint{background:radial-gradient(circle at top right,rgba(37,99,235,.10),transparent 30%),radial-gradient(circle at bottom left,rgba(56,189,248,.08),transparent 28%),linear-gradient(180deg,#f9fbff 0%,#eef5ff 100%)}
+.frame{position:relative;max-width:1360px;min-height:calc(100vh - 48px);margin:0 auto;background:rgba(255,255,255,.86);border:1px solid rgba(216,230,251,.92);border-radius:32px;box-shadow:var(--shadow);overflow:hidden}
+.frame:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(37,99,235,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.045) 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 92%)}
+.content{position:relative;z-index:1;min-height:calc(100vh - 48px);padding:56px 64px 72px;display:flex;flex-direction:column}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:16px;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2)}
+.eyebrow:before{content:"";width:22px;height:2px;border-radius:99px;background:linear-gradient(90deg,var(--blue2),var(--sky))}
+.title{font-family:"Sora",sans-serif;font-size:clamp(2.1rem,3.8vw,4.4rem);line-height:1.05;letter-spacing:-.055em;color:var(--ink)}
+.title.small{font-size:clamp(1.75rem,2.9vw,3rem)}
+.accent{color:var(--blue2)}
+.lead{margin-top:18px;max-width:760px;font-size:1rem;line-height:1.74;color:var(--muted)}
+.grid2,.grid3,.stack,.metrics,.flow,.contact{display:grid;gap:16px}
+.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid3,.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+.stack{grid-template-columns:1fr}
+.chips,.logos{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.card{border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.94);padding:22px;box-shadow:var(--shadow2)}
+.card.soft{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(247,250,255,.96))}
+.card.blue{background:linear-gradient(160deg,#e9f2ff 0%,#f7fbff 52%,#fff 100%);border-color:var(--line2)}
+.card.ghost{background:rgba(255,255,255,.72);box-shadow:none}
+.brand,.productHead,.contactHead{display:flex;align-items:center;gap:16px}
+.logo{width:76px;height:76px;padding:10px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(232,241,255,.92));border:1px solid var(--line);box-shadow:var(--shadow2)}
+.productLogo{width:108px;height:68px;padding:12px 14px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.98);object-fit:contain;box-shadow:var(--shadow2)}
+.logoSmall{width:84px;height:52px;padding:8px 10px;border-radius:16px;border:1px solid var(--line);background:#fff;object-fit:contain}
+.mini{display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:46px;padding:0 14px;border-radius:14px;background:linear-gradient(135deg,rgba(37,99,235,.16),rgba(56,189,248,.16));color:var(--blue2);font-size:.78rem;font-weight:800;letter-spacing:.08em}
+.copy h3,.card h3{font-family:"Sora",sans-serif;font-size:1.12rem;line-height:1.25;letter-spacing:-.03em}
+.copy p,.card p{margin-top:8px;font-size:.9rem;line-height:1.64;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.9);font-size:.78rem;font-weight:700;color:var(--ink2)}
+.chip.primary{background:linear-gradient(135deg,rgba(37,99,235,.10),rgba(56,189,248,.10));border-color:rgba(37,99,235,.18);color:var(--blue2)}
+.metric strong,.big{display:block;font-family:"Sora",sans-serif;font-size:1.35rem;line-height:1;letter-spacing:-.04em;color:var(--blue2)}
+.metric span,.item span,.table .row div,.contact .row span,.note,.flow span{font-size:.85rem;line-height:1.58;color:var(--muted)}
+.item h4,.flow strong{font-family:"Sora",sans-serif;font-size:.97rem;line-height:1.3;letter-spacing:-.03em}
+.list{display:grid;gap:12px;margin-top:16px}
+.bullet{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:.9rem;line-height:1.6;color:var(--muted)}
+.dot{width:10px;height:10px;margin-top:7px;border-radius:999px;background:linear-gradient(135deg,var(--blue),var(--sky));box-shadow:0 0 0 6px rgba(37,99,235,.08)}
+.badge,.pill{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.badge{background:var(--blueSoft);color:var(--blue2)}
+.pill{background:rgba(37,99,235,.10);color:var(--blue2)}
+.pill.green{background:rgba(14,116,144,.10);color:#0f766e}
+.callout{margin-top:18px;padding:18px 20px;border-radius:20px;border:1px solid rgba(37,99,235,.16);background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(56,189,248,.08));font-size:.88rem;line-height:1.65;color:var(--ink2)}
+.flow .step{display:grid;grid-template-columns:58px 1fr;gap:16px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.95)}
+.index{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(37,99,235,.14),rgba(56,189,248,.16));font-family:"Sora",sans-serif;color:var(--blue2)}
+.arch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
+.arch .node{position:relative;padding:18px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(241,247,255,.94));box-shadow:var(--shadow2)}
+.arch .node:after{content:"";position:absolute;top:50%;right:-8px;width:16px;height:2px;background:linear-gradient(90deg,var(--blue),rgba(37,99,235,0))}
+.arch .node:last-child:after{display:none}
+.arch strong{display:block;font-family:"Sora",sans-serif;font-size:.9rem}.arch span{display:block;margin-top:8px;font-size:.82rem;line-height:1.55;color:var(--muted)}
+.table{display:block;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.94);box-shadow:var(--shadow2);overflow:hidden}
+.table .row{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:18px;padding:18px 20px;border-bottom:1px solid rgba(216,230,251,.95)}
+.table .row:last-child{border-bottom:none}
+.table .row.header{background:#f7fbff;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2)}
+.table .row div strong{color:var(--ink)}
+.contact{margin-top:8px}.contact .row{display:grid;grid-template-columns:88px 1fr;gap:12px;font-size:.9rem}.contact .row strong{color:var(--ink)}
+.nav{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px solid rgba(216,230,251,.92);border-radius:999px;background:rgba(255,255,255,.9);box-shadow:0 18px 40px rgba(15,23,42,.12);backdrop-filter:blur(16px)}
+.navBtn{min-width:74px;height:40px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:linear-gradient(180deg,#fff,#f5f9ff);color:var(--ink2);font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.dots{display:flex;align-items:center;gap:8px}.navDot{width:8px;height:8px;border-radius:999px;background:rgba(95,111,140,.28);transition:width .25s ease,background .25s ease;cursor:pointer}.navDot.active{width:28px;background:linear-gradient(90deg,var(--blue2),var(--sky))}
+.counter{min-width:58px;text-align:center;font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--muted2)}
+.progress{position:fixed;top:0;left:0;height:4px;width:0;z-index:40;background:linear-gradient(90deg,var(--blue2),var(--sky));box-shadow:0 8px 24px rgba(37,99,235,.28);transition:width .35s ease}
+.hint{position:fixed;right:24px;bottom:90px;z-index:25;display:flex;align-items:center;gap:8px;color:var(--muted2);font-size:.74rem;font-weight:700}.key{padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.86);box-shadow:var(--shadow2)}
+@media (max-width:1220px){.content{padding:48px 42px 68px}.grid2,.grid3,.metrics{grid-template-columns:1fr 1fr}.arch{grid-template-columns:1fr 1fr}.arch .node:after{display:none}}
+@media (max-width:980px){html,body{overflow:auto}.deck{height:auto;min-height:100vh}.slide{position:relative;opacity:1;pointer-events:auto;transform:none;display:none}.slide.active{display:block}.shell{padding:18px 18px 120px}.frame,.content{min-height:auto}.content{padding:38px 24px 54px}.grid2,.grid3,.metrics,.arch{grid-template-columns:1fr}.table .row{grid-template-columns:1fr;gap:10px}.nav{width:calc(100vw - 26px);justify-content:space-between}.dots,.hint{display:none}}
+@media (max-width:640px){.content{padding:34px 20px 48px}.title{font-size:clamp(2rem,10vw,3rem)}.title.small{font-size:clamp(1.6rem,8vw,2.3rem)}.brand,.productHead,.contactHead{flex-direction:column;align-items:flex-start}.contact .row{grid-template-columns:1fr}.navBtn{min-width:64px;padding:0 12px}.counter{min-width:46px}}
 </style>
 </head>
 <body>
-
 <div class="progress" id="progress"></div>
-<div class="kb-hint"><span class="kb">←</span><span class="kb">→</span> to navigate</div>
-
+<div class="hint"><span class="key">Left</span><span class="key">Right</span><span>keyboard navigation</span></div>
 <div class="deck" id="deck">
-
-<!-- ════════════ SLIDE 01 · COVER ════════════ -->
 <div class="slide active" id="s1">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1"></div>
-  <div class="glow g2"></div>
-  <div class="content">
-    <div class="cover-layout">
-      <div>
-        <div class="cover-logo">
-          <div class="logo-mark">G</div>
-          <div class="logo-text">Gerbang Transaksi Digital<span>.</span></div>
-        </div>
-        <div class="eyebrow" style="color:var(--cyan)">AI Solutions Deck · 2026</div>
-        <h1 class="display" style="color:white;margin-bottom:20px">
-          Building Indonesia's<br><em class="grad-text">AI Identity &amp;</em><br><span style="color:rgba(255,255,255,.6)">Transaction Layer</span>
-        </h1>
-        <p style="font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:420px;margin-bottom:28px">
-          PT Gerbang Transaksi Digital develops enterprise-grade AI products for identity verification and conversational commerce — serving fintechs, banks, and 10,000+ UMKM resellers across Southeast Asia.
-        </p>
-        <div class="cover-tag-row">
-          <span class="tag">eKYC PaaS</span>
-          <span class="tag">Conversational AI</span>
-          <span class="tag">Fintech Infrastructure</span>
-        </div>
-        <div class="cover-meta" style="margin-top:28px">gtd.co.id · Jakarta, Indonesia · Est. December 2025</div>
-      </div>
-      <div class="cover-right">
-        <div class="cover-card">
-          <div class="cover-card-top">
-            <div class="cover-card-icon">🔬</div>
-            <h3>Vison</h3>
+  <div class="shell tint">
+    <div class="frame">
+      <div class="content">
+        <div class="grid2" style="align-items:center;flex:1;">
+          <div>
+            <div class="eyebrow">Company Overview | Alibaba Cloud AI Catalyst Application</div>
+            <div class="brand" style="margin-bottom:22px;">
+              <img class="logo" src="logo_gtd.png" alt="PT Gerbang Transaksi Digital logo">
+              <div class="copy">
+                <h3>PT Gerbang Transaksi Digital</h3>
+                <p>Indonesia-based product company building applied AI infrastructure for regulated onboarding and conversational transaction workflows.</p>
+              </div>
+            </div>
+            <h1 class="title">AI infrastructure for <span class="accent">identity verification</span> and <span class="accent">conversational commerce</span> in Indonesia.</h1>
+            <p class="lead">
+              This deck summarizes how GTD is developing Vison and Sona, two applied AI products designed for Indonesian onboarding and transaction use cases, and where Alibaba Cloud can materially accelerate the next stage of readiness.
+            </p>
+            <div class="chips" style="margin-top:24px;grid-auto-columns:max-content;">
+              <span class="chip primary">Focus: fintech onboarding and UMKM transaction automation</span>
+              <span class="chip">Jakarta, Indonesia</span>
+              <span class="chip">Formal partner application deck</span>
+            </div>
+            <div class="metrics" style="margin-top:28px;">
+              <div class="card metric">
+                <strong>2 products</strong>
+                <span>Vison for identity verification and Sona on top of PPOB.ID for conversational transaction execution.</span>
+              </div>
+              <div class="card metric">
+                <strong>1 shared base</strong>
+                <span>Both products rely on GTD's common APIs, workflow controls, and operational infrastructure.</span>
+              </div>
+              <div class="card metric">
+                <strong>1 cloud goal</strong>
+                <span>Stabilize model development, regional deployment planning, and LLM-assisted orchestration on Alibaba Cloud.</span>
+              </div>
+            </div>
           </div>
-          <p>B2B eKYC &amp; face biometrics PaaS — liveness detection, deepfake analysis, OCR, and AML screening for Indonesian financial institutions.</p>
-          <div style="margin-top:12px"><span class="tag" style="font-size:.66rem">vison.id</span></div>
-        </div>
-        <div class="cover-card">
-          <div class="cover-card-top">
-            <div class="cover-card-icon">💬</div>
-            <h3>Sona by PPOB.ID</h3>
+          <div class="stack">
+            <div class="card blue">
+              <div class="productHead">
+                <img class="productLogo" src="logo_vison.png" alt="Vison logo">
+                <div class="copy">
+                  <h3>Vison</h3>
+                  <p>AI-assisted eKYC and biometric verification workflows for regulated onboarding and risk review.</p>
+                </div>
+              </div>
+              <div class="chips" style="margin-top:14px;grid-auto-columns:max-content;">
+                <span class="chip">Liveness</span>
+                <span class="chip">Face match</span>
+                <span class="chip">Document OCR</span>
+                <span class="chip">Audit outputs</span>
+              </div>
+            </div>
+            <div class="card blue">
+              <div class="productHead">
+                <img class="productLogo" src="logo_ppob.png" alt="PPOB.ID logo">
+                <div class="copy">
+                  <h3>Sona on PPOB.ID</h3>
+                  <p>Bahasa Indonesia transaction assistance layered on top of PPOB.ID workflows for reseller and commerce use cases.</p>
+                </div>
+              </div>
+              <div class="chips" style="margin-top:14px;grid-auto-columns:max-content;">
+                <span class="chip">Bahasa Indonesia</span>
+                <span class="chip">Tool calling</span>
+                <span class="chip">Confirmation flow</span>
+                <span class="chip">Catalog execution</span>
+              </div>
+            </div>
+            <div class="card soft">
+              <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+                <div class="mini">ALI</div>
+                <div class="copy" style="margin:0;">
+                  <h3>What this application is asking for</h3>
+                  <p>A practical cloud partnership focused on compute, model access, and regional deployment design.</p>
+                </div>
+              </div>
+              <div class="list">
+                <div class="bullet"><span class="dot"></span><span>GPU compute for Vison model training, evaluation, and repeatable iteration.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Model Studio access to evaluate Qwen for guarded Bahasa Indonesia intent handling in Sona.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Regional infrastructure planning for production inference, storage, and controlled audit paths.</span></div>
+              </div>
+            </div>
           </div>
-          <p>AI-powered WhatsApp transaction agent enabling UMKM micro-resellers to complete digital payments through natural Bahasa Indonesia conversation.</p>
-          <div style="margin-top:12px"><span class="tag" style="font-size:.66rem">ppob.id</span></div>
-        </div>
-        <div class="cover-card" style="background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.15)">
-          <div class="cover-card-top">
-            <div class="cover-card-icon" style="background:linear-gradient(135deg,#ff6a00,#ff8533)">☁️</div>
-            <h3>Alibaba Cloud AI Catalyst</h3>
-          </div>
-          <p>Applying for GPU compute credits and Model Studio tokens to accelerate AI model training and inference infrastructure for SEA-scale deployment.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════════ SLIDE 02 · PROBLEM ════════════ -->
 <div class="slide" id="s2">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:rgba(255,100,100,.8)">The Problem</div>
-    <h2 class="display" style="color:white">Three Unsolved Problems<br><span class="grad-text">Holding Indonesia's Fintech Back</span></h2>
-    <div class="prob-grid">
-      <div class="prob-card c1">
-        <div class="prob-number">01</div>
-        <h3>KYC Fraud &amp; Deepfake Attacks</h3>
-        <p>Synthetic face generation and deepfake video technology now bypass conventional photo-based KYC with over 90% success rate. Indonesian OJK-regulated fintechs face mounting compliance risk with no standardized AI-based defense layer available as a managed service.</p>
-        <div class="prob-stat">⚠ 340% increase in AI-generated identity fraud cases in SEA, 2023–2025</div>
-      </div>
-      <div class="prob-card c2">
-        <div class="prob-number">02</div>
-        <h3>No Unified eKYC Infrastructure</h3>
-        <p>Every fintech startup in Indonesia rebuilds identity verification from scratch — spending 12–18 months and $200K+ on systems that are non-compliant, poorly maintained, and unable to meet NIST SP 800-63B or iBeta PAD requirements demanded by enterprise procurement.</p>
-        <div class="prob-stat">⚡ Average time-to-compliance: 14 months without a PaaS solution</div>
-      </div>
-      <div class="prob-card c3">
-        <div class="prob-number">03</div>
-        <h3>UMKM Excluded from Automation</h3>
-        <p>Indonesia's 64 million micro and small businesses transact via WhatsApp manually — no AI-native commerce layer exists that understands Bahasa Indonesia, integrates with payment rails, and operates within the everyday flow of resellers' work.</p>
-        <div class="prob-stat">🎯 Addressable: 10M+ UMKM resellers in digital product distribution</div>
+  <div class="shell">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 02 | Company Snapshot</div>
+        <h2 class="title small">A shared company foundation with <span class="accent">two AI product tracks</span>.</h2>
+        <p class="lead">
+          GTD is building product infrastructure around two adjacent needs in Indonesia: trusted digital onboarding for regulated businesses, and natural-language transaction execution for everyday reseller commerce.
+        </p>
+        <div class="grid2" style="margin-top:28px;flex:1;">
+          <div class="card blue">
+            <div class="badge">Parent Company Narrative</div>
+            <div class="list" style="margin-top:18px;">
+              <div class="bullet"><span class="dot"></span><span>GTD acts as the parent operating company and shared technical base behind Vison and Sona.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Both products benefit from the same product engineering discipline: API-first design, operational controls, and local market context.</span></div>
+              <div class="bullet"><span class="dot"></span><span>The immediate objective is focused product hardening for real onboarding and transaction workflows, not broad experimentation.</span></div>
+            </div>
+            <div class="callout">
+              GTD's differentiation is practical domain focus: local onboarding requirements on one side, and Indonesia-native commerce behavior on the other.
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card">
+              <div class="logos" style="margin-bottom:16px;">
+                <img class="logoSmall" src="logo_gtd.png" alt="GTD logo">
+                <img class="logoSmall" src="logo_vison.png" alt="Vison logo">
+                <img class="logoSmall" src="logo_ppob.png" alt="PPOB.ID logo">
+              </div>
+              <h3>Where GTD is focused</h3>
+              <p>Fintechs, digital platforms, and reseller-led transaction channels that require local workflows, controlled automation, and clear operating guardrails.</p>
+            </div>
+            <div class="grid2">
+              <div class="card item">
+                <h4>Why now</h4>
+                <span>Indonesian onboarding expectations are rising while commerce behavior remains chat-first, creating room for applied AI products with local context.</span>
+              </div>
+              <div class="card item">
+                <h4>What already exists</h4>
+                <span>Shared APIs, product prototypes, hosted verification flows, and transaction workflow logic are already shaping the GTD stack.</span>
+              </div>
+              <div class="card item">
+                <h4>What Alibaba can unlock</h4>
+                <span>More stable model iteration, better LLM evaluation for Bahasa Indonesia orchestration, and a more durable infrastructure plan.</span>
+              </div>
+              <div class="card item">
+                <h4>What success looks like</h4>
+                <span>Pilot-ready product infrastructure that is clearer to deploy, easier to monitor, and better aligned with enterprise expectations.</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- ════════════ SLIDE 03 · SOLUTION ════════════ -->
 <div class="slide" id="s3">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,.1),transparent 70%);top:-100px;left:-50px"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:var(--cyan)">Solution — Product 01</div>
-    <h2 class="display" style="color:white">Vison <span class="grad-text">eKYC PaaS</span></h2>
-    <div class="sol-layout">
-      <div>
-        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:28px;max-width:480px">
-          Vison is a developer-first identity verification platform that gives Indonesian fintechs and banks enterprise-grade biometric AI via a single REST API — eliminating the need to build, train, or maintain AI models in-house.
+  <div class="shell tint">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 03 | Market Problem</div>
+        <h2 class="title small">Three practical gaps GTD is addressing in the Indonesian market.</h2>
+        <p class="lead">
+          The opportunity is not abstract. These are workflow-level problems that repeatedly appear in regulated onboarding and distributor-style transaction channels.
         </p>
-        <div class="sol-feat-grid">
-          <div class="sol-feat"><div class="sol-feat-icon">👁️</div><h4>Passive Liveness</h4><p>Single-frame PAD, no user action required — sub-500ms</p></div>
-          <div class="sol-feat"><div class="sol-feat-icon">🤖</div><h4>Deepfake Detection</h4><p>Fine-tuned CNN on FaceForensics++ &amp; CASIA-SURF CeFA</p></div>
-          <div class="sol-feat"><div class="sol-feat-icon">🪪</div><h4>ID Card OCR</h4><p>National ID, Tax ID &amp; Driver's License — Moiré/ELA spoofing protection</p></div>
-          <div class="sol-feat"><div class="sol-feat-icon">🔍</div><h4>1:N Face Search</h4><p>Biometric enrollment &amp; matching across customer database</p></div>
-          <div class="sol-feat"><div class="sol-feat-icon">✅</div><h4>NIK Validation</h4><p>Real-time National ID number checksum &amp; dukcapil integration</p></div>
-          <div class="sol-feat"><div class="sol-feat-icon">🚨</div><h4>AML Watchlist</h4><p>Global sanctions &amp; PEP screening, updated daily</p></div>
+        <div class="grid3" style="margin-top:30px;">
+          <div class="card item">
+            <div class="mini">KYC</div>
+            <h4 style="margin-top:14px;">Onboarding trust is harder to maintain</h4>
+            <span>Photo-only checks are increasingly insufficient. Buyers want stronger liveness controls, document validation, and audit-friendly verification artifacts.</span>
+          </div>
+          <div class="card item">
+            <div class="mini">API</div>
+            <h4 style="margin-top:14px;">eKYC workflows are still fragmented</h4>
+            <span>Many teams still combine manual review, point vendors, and custom logic. That makes implementation slower, harder to maintain, and harder to explain during procurement.</span>
+          </div>
+          <div class="card item">
+            <div class="mini">NLP</div>
+            <h4 style="margin-top:14px;">Reseller commerce remains chat-first</h4>
+            <span>Transaction activity already happens inside messaging apps, but safe automation needs better natural-language understanding, confirmation logic, and tool execution discipline.</span>
+          </div>
         </div>
-      </div>
-      <div class="sol-right">
-        <div class="vison-logo-block">
-          <div class="vison-name">Vi<span>son</span></div>
-          <div class="vison-tagline">Identity Verification Platform · vison.id</div>
-          <div class="vison-url">🔗 admin.vison.id · verify.vison.id</div>
-        </div>
-        <div style="margin-bottom:14px">
-          <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--b300);margin-bottom:12px">Business Model</div>
-          <div class="biz-model">
-            <div class="biz-row"><span class="biz-label">Delivery</span><span class="biz-val">REST API + JS Embed SDK</span></div>
-            <div class="biz-row"><span class="biz-label">Hosted Flow</span><span class="biz-val">verify.vison.id (white-label)</span></div>
-            <div class="biz-row"><span class="biz-label">Pricing</span><span class="biz-val">Per-verification SaaS</span></div>
-            <div class="biz-row"><span class="biz-label">Data Residency</span><span class="biz-val">AWS ap-southeast-3 Jakarta</span></div>
-            <div class="biz-row"><span class="biz-label">Target Clients</span><span class="biz-val">Fintechs, P2P lenders, Banks</span></div>
+        <div class="grid3" style="margin-top:20px;">
+          <div class="card ghost">
+            <h3>Why this matters for Vison</h3>
+            <p>Regulated onboarding teams need one clearer path for capture, verification, review, and storage rather than stitching together multiple moving pieces.</p>
+          </div>
+          <div class="card ghost">
+            <h3>Why this matters for Sona</h3>
+            <p>Reseller workflows need language-aware automation that can help complete real tasks without losing confirmation discipline or operational visibility.</p>
+          </div>
+          <div class="card ghost">
+            <h3>Why this matters for Alibaba Cloud</h3>
+            <p>Both product tracks translate into real workloads: training, inference, orchestration, regional deployment, and controlled data handling.</p>
           </div>
         </div>
       </div>
@@ -848,380 +273,226 @@ h2.display {
   </div>
 </div>
 
-<!-- ════════════ SLIDE 04 · HOW AI WORKS ════════════ -->
 <div class="slide" id="s4">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow" style="width:600px;height:600px;background:radial-gradient(circle,rgba(26,95,212,.1),transparent 70%);bottom:-100px;right:-100px;position:absolute"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:var(--cyan)">Under The Hood</div>
-    <h2 class="display" style="color:white">How Vison's <span class="grad-text">AI Pipeline Works</span></h2>
-    <div class="ai-layout">
-      <div>
-        <div class="pipeline-wrap">
-          <div class="pipe-title">Verification Pipeline — 6 Stages</div>
-          <div class="pipe-item">
-            <div class="pipe-ico active">📸</div>
-            <div class="pipe-body"><strong>Capture Layer</strong><span>JS SDK or hosted verify.vison.id — challenge-response integrity, replay prevention</span></div>
+  <div class="shell">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 04 | Product 01</div>
+        <h2 class="title small">Vison is GTD's <span class="accent">identity verification workflow</span> for regulated onboarding.</h2>
+        <div class="grid2" style="margin-top:28px;flex:1;">
+          <div class="card blue">
+            <div class="productHead">
+              <img class="productLogo" src="logo_vison.png" alt="Vison logo">
+              <div class="copy">
+                <h3>Vison overview</h3>
+                <p>Vison is being designed as a practical eKYC layer for Indonesian businesses that need to capture, validate, compare, and store onboarding evidence in a structured way.</p>
+              </div>
+            </div>
+            <div class="list">
+              <div class="bullet"><span class="dot"></span><span>Developer-friendly delivery through APIs, SDK surfaces, and a hosted verification flow.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Designed around real onboarding steps rather than standalone point-model demos.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Useful for fintech onboarding, reseller verification, and other identity-sensitive customer journeys.</span></div>
+            </div>
+            <div class="callout">
+              The Alibaba fit for Vison is strongest in repeatable model training, GPU-backed evaluation, and production inference planning for image-heavy workloads.
+            </div>
           </div>
-          <div class="pipe-item">
-            <div class="pipe-ico active">⚡</div>
-            <div class="pipe-body"><strong>Liveness Detection</strong><span>Passive (single frame) + active challenge — ISO/IEC 30107-3 PAD targeting iBeta Level 1/2</span></div>
+          <div class="stack">
+            <div class="grid2">
+              <div class="card item">
+                <h4>Capture and liveness</h4>
+                <span>Selfie capture, passive liveness logic, and challenge-ready flows that help move beyond static photo checks.</span>
+              </div>
+              <div class="card item">
+                <h4>Document understanding</h4>
+                <span>ID OCR, field extraction, and document-level validation logic aimed at reducing low-quality manual checks.</span>
+              </div>
+              <div class="card item">
+                <h4>Face comparison</h4>
+                <span>Selfie-to-document comparison and identity matching steps intended for structured verification outcomes.</span>
+              </div>
+              <div class="card item">
+                <h4>Audit-ready outputs</h4>
+                <span>Verdicts, artifacts, and logging paths that make verification easier to review internally and explain externally.</span>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Deployment model</h3>
+              <p>Vison is being shaped as a flexible delivery model: direct API integration for product teams, a JS embed surface for faster implementation, and a hosted flow for lighter deployment paths.</p>
+              <div class="chips" style="margin-top:16px;grid-auto-columns:max-content;">
+                <span class="chip">REST API</span>
+                <span class="chip">JS SDK</span>
+                <span class="chip">Hosted verification flow</span>
+                <span class="chip">Controlled artifact storage</span>
+              </div>
+            </div>
           </div>
-          <div class="pipe-item">
-            <div class="pipe-ico active">🔬</div>
-            <div class="pipe-body"><strong>Deepfake Classifier</strong><span>Fine-tuned ResNet on FaceForensics++, FairFace, CASIA-SURF — GPU inference on Vast.ai → migrating to Alibaba Cloud</span></div>
-          </div>
-          <div class="pipe-item">
-            <div class="pipe-ico active">🪪</div>
-            <div class="pipe-body"><strong>ID OCR + Anti-Spoofing</strong><span>Moiré pattern detection, ELA analysis, NIK checksum, font geometry validation</span></div>
-          </div>
-          <div class="pipe-item">
-            <div class="pipe-ico active">👤</div>
-            <div class="pipe-body"><strong>Face Compare</strong><span>Selfie vs. ID card biometric match — 1:1 and 1:N enrolled database search</span></div>
-          </div>
-          <div class="pipe-item">
-            <div class="pipe-ico neutral">📄</div>
-            <div class="pipe-body"><strong>Signed Audit Artifact</strong><span>Tamper-proof JSON verdict + media stored in AWS ap-southeast-3 Jakarta</span></div>
-          </div>
-        </div>
-        <div class="model-tags" style="margin-top:16px">
-          <span class="mtag">FaceForensics++</span>
-          <span class="mtag">CASIA-SURF CeFA</span>
-          <span class="mtag">FairFace</span>
-          <span class="mtag">RTX 3090 Fine-Tuning</span>
-          <span class="mtag">Go/Gin Inference API</span>
-        </div>
-      </div>
-      <div class="ai-metrics">
-        <div class="metric-card">
-          <div class="metric-val cyan">&lt;500ms</div>
-          <div class="metric-label"><strong>End-to-End Latency</strong><span>Full verification pipeline including OCR and face compare</span></div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-val blue">6</div>
-          <div class="metric-label"><strong>Custom AI Models</strong><span>Liveness, deepfake, OCR (×3 ID types), age/gender classification</span></div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-val green">L1+L2</div>
-          <div class="metric-label"><strong>iBeta PAD Target</strong><span>Presentation Attack Detection — ISO/IEC 30107-3 compliance roadmap</span></div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-val" style="color:var(--amber)">JKT</div>
-          <div class="metric-label"><strong>Data Residency</strong><span>All biometric data stored exclusively in AWS ap-southeast-3 Jakarta per UU PDP</span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════════ SLIDE 05 · COMPLIANCE ════════════ -->
 <div class="slide" id="s5">
-  <div class="slide-bg light"></div>
-  <div class="grid-tex light"></div>
-  <div class="glow g1"></div>
-  <div class="content">
-    <div class="eyebrow dark">Regulatory &amp; Standards Compliance</div>
-    <h2 class="display" style="color:var(--b900)">Built to Meet <span style="background:linear-gradient(90deg,var(--b600),var(--b400));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Every Standard</span><br>That Matters</h2>
-    <div class="comp-layout">
-      <div class="comp-card">
-        <div class="comp-flag">🏛️</div>
-        <div class="comp-badge">INTERNATIONAL</div>
-        <h3>NIST SP 800-63B</h3>
-        <p>Digital Identity Guidelines for identity proofing and authentication assurance levels. The primary international benchmark referenced by global financial institutions and enterprise fintech procurement teams evaluating biometric KYC vendors.</p>
+  <div class="shell tint">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 05 | Product 02</div>
+        <h2 class="title small">Sona adds a <span class="accent">Bahasa Indonesia transaction layer</span> on top of PPOB.ID workflows.</h2>
+        <div class="grid2" style="margin-top:28px;flex:1;">
+          <div class="card blue">
+            <div class="productHead">
+              <img class="productLogo" src="logo_ppob.png" alt="PPOB.ID logo">
+              <div class="copy">
+                <h3>Sona on PPOB.ID</h3>
+                <p>Sona is GTD's conversational layer for transaction assistance, designed to help users complete routine commerce flows using natural Bahasa Indonesia rather than rigid commands.</p>
+              </div>
+            </div>
+            <div class="flow" style="margin-top:18px;">
+              <div class="step">
+                <div class="index">01</div>
+                <div><strong>User request arrives in natural language</strong><span>A reseller or end user describes a transaction in the phrasing they naturally use inside chat.</span></div>
+              </div>
+              <div class="step">
+                <div class="index">02</div>
+                <div><strong>Sona classifies intent and selects tools</strong><span>The system maps the request to the right transaction workflow, business rules, and confirmation requirements.</span></div>
+              </div>
+              <div class="step">
+                <div class="index">03</div>
+                <div><strong>Execution happens through controlled confirmation</strong><span>Tool calls, confirmations, and receipts stay grounded in operational rules rather than free-form chatbot behavior.</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="grid2">
+              <div class="card item">
+                <h4>Language-aware intent handling</h4>
+                <span>Designed around Indonesian transaction phrasing, short forms, and practical reseller communication patterns.</span>
+              </div>
+              <div class="card item">
+                <h4>Tool calling over GTD workflows</h4>
+                <span>Requests can be routed into the existing operational stack rather than treated as isolated conversational output.</span>
+              </div>
+              <div class="card item">
+                <h4>Confirmation discipline</h4>
+                <span>Transaction assistance is paired with explicit confirmation and session control instead of uncontrolled autonomous execution.</span>
+              </div>
+              <div class="card item">
+                <h4>Catalog coverage</h4>
+                <span>The product direction includes common bill, balance, top-up, and reseller catalog actions already familiar to PPOB workflows.</span>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Why Alibaba matters here</h3>
+              <p>The highest-value Alibaba contribution for Sona is model evaluation and orchestration support through Model Studio, especially for guarded Bahasa Indonesia intent handling and conversation management.</p>
+              <div class="chips" style="margin-top:16px;grid-auto-columns:max-content;">
+                <span class="chip">Bahasa Indonesia NLU</span>
+                <span class="chip">Model Studio / Qwen</span>
+                <span class="chip">Session state</span>
+                <span class="chip">Safe transaction flow</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="comp-card">
-        <div class="comp-flag">🧪</div>
-        <div class="comp-badge">CERTIFICATION</div>
-        <h3>iBeta PAD Level 1 &amp; 2</h3>
-        <p>Presentation Attack Detection certification per ISO/IEC 30107-3. iBeta Level 2 is the highest independent liveness certification available, required by Tier-1 fintech enterprise procurement in Southeast Asia and demanded by international banking partners.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-flag">🇮🇩</div>
-        <div class="comp-badge">INDONESIA — OJK</div>
-        <h3>POJK eKYC Regulation</h3>
-        <p>OJK's electronic Know Your Customer regulation governing biometric-based identity verification for all licensed financial service providers in Indonesia — the primary domestic compliance requirement for Vison's B2B client base.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-flag">🔒</div>
-        <div class="comp-badge">INDONESIA — DATA</div>
-        <h3>UU PDP No. 27/2022</h3>
-        <p>Indonesia's Personal Data Protection Law — biometric data, selfies, and OCR outputs are stored exclusively within AWS ap-southeast-3 Jakarta region, ensuring full territorial data sovereignty compliance for enterprise clients.</p>
-      </div>
-    </div>
-    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
-      <span class="tag solid" style="font-size:.68rem">Perpres 83/2021</span>
-      <span class="tag solid" style="font-size:.68rem">PP 71/2019</span>
-      <span class="tag solid" style="font-size:.68rem">PSE / TDPSE Registered</span>
-      <span class="tag solid" style="font-size:.68rem">BSSN Risk Assessment Completed</span>
     </div>
   </div>
 </div>
-
-<!-- ════════════ SLIDE 06 · SONA / PPOB.ID ════════════ -->
 <div class="slide" id="s6">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:var(--cyan)">Solution — Product 02</div>
-    <h2 class="display" style="color:white">Sona <span class="grad-text">by PPOB.ID</span></h2>
-    <div class="sona-layout">
-      <div>
-        <div class="sona-brand">
-          <div class="sona-mark">✨</div>
-          <div class="sona-wordmark">Sona<small>AI Transaction Agent · PPOB.ID</small></div>
-        </div>
-        <div class="chat-window">
-          <div class="chat-bar">
-            <div class="chat-av">✨</div>
-            <div class="chat-bar-info">
-              <strong>Sona — PPOB.ID Assistant</strong>
-              <span><span class="online-dot"></span>Online · AI Agent · PPOB.ID</span>
-            </div>
-          </div>
-          <div class="chat-msgs">
-            <div class="bubble user">Halo Sona, mau isi pulsa 50rb ke 08123456789 dong</div>
-            <div class="bubble bot">
-              Halo Kak! 👋 Saya cekkan dulu ya...<br><br>
-              <strong>Telkomsel 50.000</strong> → 08123456789<br>
-              Harga: <strong>Rp 51.500</strong> · Saldo: <strong>Rp 250.000</strong><br><br>
-              Ketik <strong>OKE</strong> untuk konfirmasi ✅
-            </div>
-            <div class="bubble user">OKE</div>
-            <div class="bubble bot">
-              ✅ <strong>Berhasil!</strong> Pulsa 50.000 dikirim ke 08123456789<br>
-              Ref: <strong>TRX-20260410-4821</strong><br>
-              Saldo sisa: <strong>Rp 198.500</strong>
-            </div>
-          </div>
-          <div class="chat-input">Type a message… <span>↑</span></div>
-        </div>
-      </div>
-      <div class="sona-feats">
-        <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:4px">
-          Sona is the AI brain of PPOB.ID — a WhatsApp-native transaction agent that understands Bahasa Indonesia naturally and orchestrates real payment operations through GTD's Gerbang API gateway.
+  <div class="shell">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 06 | Technical Readiness</div>
+        <h2 class="title small">The GTD stack is being organized around <span class="accent">clear workloads, guarded orchestration, and regional deployment readiness</span>.</h2>
+        <p class="lead">
+          Rather than presenting AI as a single black box, GTD is separating user channels, model services, workflow logic, and audit storage into clearer operating layers.
         </p>
-        <div class="sona-feat">
-          <div class="sona-ico">🧠</div>
-          <div><h4>Bahasa Indonesia NLU</h4><p>Intent recognition trained on Indonesian UMKM conversation patterns — understands slang, abbreviations, and regional variations without structured commands</p></div>
+        <div class="arch">
+          <div class="node"><strong>Input channels</strong><span>Selfie capture, hosted verification flows, web embeds, and chat-based transaction requests.</span></div>
+          <div class="node"><strong>AI services</strong><span>Vision models for liveness and document understanding, plus LLM-assisted intent handling for Sona.</span></div>
+          <div class="node"><strong>Workflow control</strong><span>API orchestration, business rules, confirmations, and access control around real product actions.</span></div>
+          <div class="node"><strong>Storage and audit</strong><span>Artifacts, logs, and review paths that support internal traceability and enterprise conversations.</span></div>
         </div>
-        <div class="sona-feat">
-          <div class="sona-ico">⚙️</div>
-          <div><h4>AI Tool Calling over Gerbang API</h4><p>Sona executes real transactions — balance inquiry, top-up, bill payment, receipt generation — via structured tool calls into GTD's payment gateway infrastructure</p></div>
+        <div class="grid2" style="margin-top:24px;">
+          <div class="card blue">
+            <h3>Vison workload profile</h3>
+            <div class="list">
+              <div class="bullet"><span class="dot"></span><span>Image-heavy inference for capture validation, OCR, and face-related checks.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Iterative model development that benefits from stable GPU-backed training and evaluation.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Artifact retention and review-ready outputs for enterprise-facing onboarding workflows.</span></div>
+            </div>
+          </div>
+          <div class="card blue">
+            <h3>Sona workload profile</h3>
+            <div class="list">
+              <div class="bullet"><span class="dot"></span><span>Intent classification and conversation routing tuned for transaction-oriented Bahasa Indonesia usage.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Tool calling into existing product logic instead of unconstrained conversational generation.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Session-aware controls, confirmations, and response logging for operational safety.</span></div>
+            </div>
+          </div>
         </div>
-        <div class="sona-feat">
-          <div class="sona-ico">🔐</div>
-          <div><h4>Secure Session &amp; OTP Management</h4><p>Redis-backed conversation context window with FCM push OTP and WhatsApp 2FA confirmation before every transaction execution</p></div>
-        </div>
-        <div class="sona-feat">
-          <div class="sona-ico">🌏</div>
-          <div><h4>Multi-Product Transaction Coverage</h4><p>Mobile top-ups, utility bills, QRIS payments, data packages, gaming credits — entire PPOB.ID catalog accessible conversationally</p></div>
+        <div class="grid3" style="margin-top:20px;">
+          <div class="card item">
+            <h4>Current base</h4>
+            <span>APIs, hosted flows, transaction logic, and product-specific experiments already give GTD a practical foundation to build from.</span>
+          </div>
+          <div class="card item">
+            <h4>Immediate infrastructure need</h4>
+            <span>More repeatable training workflows, clearer inference deployment patterns, and safer evaluation loops for new AI components.</span>
+          </div>
+          <div class="card item">
+            <h4>Alibaba contribution</h4>
+            <span>GPU resources, Model Studio access, and regional cloud services can help GTD move from promising product logic to more durable operating infrastructure.</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════════ SLIDE 07 · TRACTION ════════════ -->
 <div class="slide" id="s7">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:var(--cyan)">Traction &amp; Pipeline</div>
-    <h2 class="display" style="color:white">Early Momentum <span class="grad-text">Across Both Products</span></h2>
-    <div class="traction-top">
-      <div class="trac-stat"><div class="trac-num">10K+</div><div class="trac-label">Active UMKM Resellers on PPOB.ID</div></div>
-      <div class="trac-stat"><div class="trac-num">4</div><div class="trac-label">Banking &amp; Fintech Compliance Docs Submitted</div></div>
-      <div class="trac-stat"><div class="trac-num">Dec'25</div><div class="trac-label">Company Operational Since</div></div>
-      <div class="trac-stat"><div class="trac-num">Q3'26</div><div class="trac-label">SEA Expansion Target</div></div>
-    </div>
-    <div class="traction-bottom">
-      <div class="trac-panel">
-        <h4>Vison — Banking &amp; Fintech Pipeline</h4>
-        <div class="pipeline-item"><span class="name">Bank Nobu — QRIS Merchant Aggregator</span><span class="status active">PKS Submitted</span></div>
-        <div class="pipeline-item"><span class="name">BRI — SNAP BI Integration</span><span class="status active">Due Diligence Done</span></div>
-        <div class="pipeline-item"><span class="name">Indosat IOH — Digital Partnerships</span><span class="status pipeline">Business Plan Submitted</span></div>
-        <div class="pipeline-item"><span class="name">Vison eKYC — Fintech Prospects</span><span class="status pipeline">Soft Launch May 2026</span></div>
-        <div class="pipeline-item"><span class="name">SEA Market Expansion</span><span class="status prospect">Q3 2026 Target</span></div>
-      </div>
-      <div class="trac-panel">
-        <h4>PPOB.ID — Product Status</h4>
-        <div class="pipeline-item"><span class="name">PPOB.ID B2B Platform</span><span class="status live">Live</span></div>
-        <div class="pipeline-item"><span class="name">Digiflazz Multi-Supplier</span><span class="status live">Live</span></div>
-        <div class="pipeline-item"><span class="name">PSE / TDPSE Registration</span><span class="status live">Registered</span></div>
-        <div class="pipeline-item"><span class="name">D-U-N-S Number</span><span class="status live">Registered</span></div>
-        <div class="pipeline-item"><span class="name">Sona AI Agent (WABA)</span><span class="status pipeline">In Development</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ SLIDE 08 · GPU / CLOUD NEEDS ════════════ -->
-<div class="slide" id="s8">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:var(--cyan)">Why Alibaba Cloud</div>
-    <h2 class="display" style="color:white">Our AI Infrastructure <span class="grad-text">Requirements</span></h2>
-    <div class="cloud-layout">
-      <div>
-        <div class="ali-badge">
-          <span style="font-size:1.2rem">☁️</span>
-          <span>Alibaba Cloud AI Catalyst Program — Applicant</span>
-        </div>
-        <div class="need-list">
-          <div class="need-item">
-            <div class="need-ico">🎮</div>
-            <div><h4>GPU Compute for Model Training</h4><p>Fine-tuning deepfake classifier, passive liveness model, and OCR engines requires sustained GPU access. Current Vast.ai setup is costly and operationally unstable — migrating to Alibaba Cloud GPU instances for production training pipeline.</p></div>
-          </div>
-          <div class="need-item">
-            <div class="need-ico">🤖</div>
-            <div><h4>Qwen LLM via Model Studio</h4><p>Sona's Bahasa Indonesia NLU layer will leverage Qwen — Alibaba's multilingual LLM with strong SEA language performance — via Model Studio API for intent classification and conversation management at scale.</p></div>
-          </div>
-          <div class="need-item">
-            <div class="need-ico">🗺️</div>
-            <div><h4>SEA Data Center Proximity</h4><p>Alibaba Cloud's Indonesia and Singapore regions provide the data residency compliance required by UU PDP and the low-latency inference access needed for sub-500ms biometric verification responses for Indonesian enterprise clients.</p></div>
-          </div>
-        </div>
-        <div class="benefit-chips">
-          <span class="chip">GPU Training Instances</span>
-          <span class="chip">Model Studio Tokens</span>
-          <span class="chip">Indonesia Region</span>
-          <span class="chip">PAI Platform</span>
-          <span class="chip">Object Storage (OSS)</span>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--b300);margin-bottom:20px">Estimated Credit Utilization</div>
-        <div class="credit-table">
-          <div class="credit-row">
-            <div><div class="credit-cat">GPU Compute (ECS / PAI)</div><div class="credit-desc">Model fine-tuning — deepfake, liveness, OCR</div></div>
-            <div class="credit-amt">~$60K</div>
-          </div>
-          <div class="credit-row">
-            <div><div class="credit-cat">Model Studio Tokens</div><div class="credit-desc">Qwen LLM for Sona NLU — 2B tokens allocation</div></div>
-            <div class="credit-amt">2B tkn</div>
-          </div>
-          <div class="credit-row">
-            <div><div class="credit-cat">Inference Serving</div><div class="credit-desc">Vison eKYC API — production traffic scaling</div></div>
-            <div class="credit-amt">~$35K</div>
-          </div>
-          <div class="credit-row">
-            <div><div class="credit-cat">Storage &amp; Data Transfer</div><div class="credit-desc">OSS for KYC artifact storage + CDN</div></div>
-            <div class="credit-amt">~$25K</div>
-          </div>
-          <div class="credit-row" style="border-top:1px solid rgba(0,212,255,.2);padding-top:16px;margin-top:4px">
-            <div><div class="credit-cat" style="color:var(--cyan)">Total Program Ask</div><div class="credit-desc">Cloud credits + Model Studio</div></div>
-            <div class="credit-amt" style="font-size:1.4rem;color:var(--cyan)">$120K</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ SLIDE 09 · TEAM ════════════ -->
-<div class="slide" id="s9">
-  <div class="slide-bg light"></div>
-  <div class="grid-tex light"></div>
-  <div class="glow g1"></div>
-  <div class="content">
-    <div class="eyebrow dark">The Team</div>
-    <h2 class="display" style="color:var(--b900)">Founders Who <span style="background:linear-gradient(90deg,var(--b600),var(--b400));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Build &amp; Ship</span></h2>
-    <p style="font-size:.88rem;color:var(--g600);line-height:1.7;max-width:520px;margin-top:10px;margin-bottom:0">A tight technical founding team with deep expertise across AI/ML engineering, fintech infrastructure, and Indonesian regulatory compliance.</p>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-av">RB</div>
-        <h3>Riko Budi Saputra</h3>
-        <div class="team-role">Direktur Utama · CEO &amp; Co-Founder</div>
-        <p class="team-desc">Leads product strategy, AI/ML engineering, backend architecture, and banking partnership management. Personally handles compliance documentation, model fine-tuning pipelines, and infrastructure engineering.</p>
-        <div class="team-tags">
-          <span class="ttag">Go / Gin</span>
-          <span class="ttag">Next.js</span>
-          <span class="ttag">AWS</span>
-          <span class="ttag">ML Fine-Tuning</span>
-          <span class="ttag">POJK Compliance</span>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-av" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">IK</div>
-        <h3>Indri Khafka Nafisa</h3>
-        <div class="team-role">Direktur · COO &amp; Co-Founder</div>
-        <p class="team-desc">Oversees day-to-day operations, business development strategy, and strategic partnership management across GTD's product portfolio. Manages institutional relationships and enterprise sales pipeline.</p>
-        <div class="team-tags">
-          <span class="ttag">Operations</span>
-          <span class="ttag">BD Strategy</span>
-          <span class="ttag">Partnerships</span>
-          <span class="ttag">Enterprise Sales</span>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-av" style="background:linear-gradient(135deg,#0d9488,#14b8a6)">VF</div>
-        <h3>Vicko Fadhil Zaidan</h3>
-        <div class="team-role">Chief Technology Officer · Co-Founder</div>
-        <p class="team-desc">Leads core platform architecture, Gerbang API gateway design, and infrastructure scaling strategy across all GTD products. Responsible for system reliability, DevOps pipelines, and technical roadmap execution.</p>
-        <div class="team-tags">
-          <span class="ttag">System Architecture</span>
-          <span class="ttag">API Gateway</span>
-          <span class="ttag">DevOps</span>
-          <span class="ttag">Docker</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ SLIDE 10 · ASK ════════════ -->
-<div class="slide" id="s10">
-  <div class="slide-bg"></div>
-  <div class="grid-tex"></div>
-  <div class="glow g1"></div>
-  <div class="glow g2"></div>
-  <div class="content">
-    <div class="eyebrow" style="color:var(--cyan)">The Ask</div>
-    <h2 class="display" style="color:white">Join Us in Building <span class="grad-text">Southeast Asia's AI Identity Layer</span></h2>
-    <div class="ask-layout">
-      <div class="ask-cards">
-        <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:8px">
-          We are applying to the Alibaba Cloud AI Catalyst Program to accelerate Vison's model training infrastructure and power Sona's conversational AI at scale across Southeast Asia.
+  <div class="shell tint">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 07 | Compliance and Trust</div>
+        <h2 class="title small">Compliance is treated as an <span class="accent">operating requirement</span>, not a marketing layer.</h2>
+        <p class="lead">
+          GTD is positioning Vison around the expectations of Indonesian regulated onboarding, while keeping the product language careful about current posture versus future certification goals.
         </p>
-        <div class="ask-card">
-          <div class="ask-ico">🎮</div>
-          <div><h4>GPU Compute Credits — Model Training</h4><p>Migrate Vison's deepfake, liveness, and OCR fine-tuning pipelines from unstable on-demand GPU rentals to Alibaba Cloud PAI — enabling reproducible, scalable training with Indonesian data compliance requirements.</p></div>
-        </div>
-        <div class="ask-card">
-          <div class="ask-ico">🤖</div>
-          <div><h4>Model Studio — Qwen LLM Tokens</h4><p>Power Sona's Bahasa Indonesia NLU engine with Qwen via Model Studio — 2 billion tokens to build, test, and scale conversational transaction understanding for 10,000+ UMKM resellers.</p></div>
-        </div>
-        <div class="ask-card">
-          <div class="ask-ico">⚡</div>
-          <div><h4>Inference Infrastructure — Production Scale</h4><p>Deploy Vison's biometric verification API on Alibaba Cloud's Indonesia-region compute with the data residency guarantees required by POJK eKYC and UU PDP No. 27/2022 for enterprise fintech clients.</p></div>
-        </div>
-        <div class="ask-card">
-          <div class="ask-ico">🌏</div>
-          <div><h4>Go-To-Market Support — SEA Expansion</h4><p>Leverage Alibaba Cloud's partner network and regional presence in Indonesia to accelerate Vison's enterprise sales pipeline and reach fintech clients across Malaysia, Singapore, and Thailand by Q3 2026.</p></div>
-        </div>
-      </div>
-      <div>
-        <div class="ask-summary">
-          <div class="ask-total-label">Total Program Request</div>
-          <div class="ask-total">$120,000</div>
-          <div class="ask-total-sub">Cloud Credits + 2B Model Studio Tokens</div>
-          <div class="ask-line"><span class="label">GPU / Training Compute</span><span class="val">~$60,000</span></div>
-          <div class="ask-line"><span class="label">Inference Serving</span><span class="val">~$35,000</span></div>
-          <div class="ask-line"><span class="label">Storage + CDN (OSS)</span><span class="val">~$25,000</span></div>
-          <div class="ask-line"><span class="label">Model Studio Tokens</span><span class="val">2,000,000,000</span></div>
-          <div class="ask-line"><span class="label">Benefiting Products</span><span class="val">Vison + Sona</span></div>
-          <div class="ask-line"><span class="label">Expansion Timeline</span><span class="val">Q3 2026 (SEA)</span></div>
-          <div class="contact-block">
-            <div style="font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--b300);margin-bottom:12px">Get In Touch</div>
-            <div class="contact-row"><span>📧</span><a href="mailto:riko@gtd.co.id">riko@gtd.co.id</a></div>
-            <div class="contact-row"><span>🌐</span><a href="https://gtd.co.id" target="_blank">gtd.co.id</a></div>
-            <div class="contact-row"><span>🔬</span><a href="https://vison.id" target="_blank">vison.id</a></div>
-            <div class="contact-row"><span>📱</span><span>+62 851-6566-7472</span></div>
+        <div class="grid2" style="margin-top:28px;">
+          <div class="grid2">
+            <div class="card item">
+              <h4>Indonesian regulatory context</h4>
+              <span>Vison is being designed with Indonesian electronic KYC expectations and local operational documentation needs in mind.</span>
+            </div>
+            <div class="card item">
+              <h4>Data handling posture</h4>
+              <span>Biometric and identity-related data handling is framed around territorial awareness, controlled storage, and reviewable access paths.</span>
+            </div>
+            <div class="card item">
+              <h4>Enterprise trust requirements</h4>
+              <span>Enterprise buyers typically expect traceability, policy clarity, and explainable workflow controls in addition to raw model performance.</span>
+            </div>
+            <div class="card item">
+              <h4>Standards alignment roadmap</h4>
+              <span>GTD uses references such as NIST SP 800-63B and PAD-oriented benchmarks as design inputs and roadmap targets rather than overstated proof points.</span>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card">
+              <div class="badge">Current posture</div>
+              <div class="list" style="margin-top:16px;">
+                <div class="bullet"><span class="dot"></span><span>Structured verification artifacts and workflow-level review outputs are part of the product direction.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Regional data handling decisions are treated as core deployment considerations, not afterthoughts.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Buyer-facing trust materials are being shaped alongside product architecture.</span></div>
+              </div>
+            </div>
+            <div class="card soft">
+              <div class="badge">Important note</div>
+              <p style="margin-top:16px;">
+                This deck intentionally distinguishes between current operating design, in-progress readiness work, and future certification or enterprise milestones. Claims are presented conservatively to match current maturity.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1229,73 +500,239 @@ h2.display {
   </div>
 </div>
 
-</div><!-- end deck -->
-
-<!-- NAV -->
-<div class="nav">
-  <button class="nav-btn" id="prev">←</button>
-  <div class="nav-dots" id="dots"></div>
-  <div class="slide-counter" id="counter">1 / 10</div>
-  <button class="nav-btn" id="next">→</button>
+<div class="slide" id="s8">
+  <div class="shell">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 08 | Current Readiness</div>
+        <h2 class="title small">The company is early, but the product direction is <span class="accent">concrete and operationally grounded</span>.</h2>
+        <p class="lead">
+          GTD is not presenting mature scale claims here. Instead, this section shows the current operating posture, product readiness, and where partner support can help shorten the path to production-quality deployment.
+        </p>
+        <div class="grid2" style="margin-top:28px;flex:1;">
+          <div class="stack">
+            <div class="card item">
+              <div class="pill green">Company</div>
+              <h4 style="margin-top:14px;">Operating since December 2025</h4>
+              <span>GTD is an early-stage company, but it is already organizing product, technical, and documentation work around defined market use cases.</span>
+            </div>
+            <div class="card item">
+              <div class="pill">Product status</div>
+              <h4 style="margin-top:14px;">Two active product tracks</h4>
+              <span>Vison is being prepared for pilot-style onboarding use cases, while Sona is being shaped on top of transaction workflows already familiar to the team.</span>
+            </div>
+            <div class="card item">
+              <div class="pill">Commercial posture</div>
+              <h4 style="margin-top:14px;">Generalized enterprise conversations</h4>
+              <span>GTD has been preparing materials for discussions with financial institutions, digital platforms, and ecosystem partners without disclosing sensitive names in this deck.</span>
+            </div>
+          </div>
+          <div class="table">
+            <div class="row header">
+              <div>Area</div>
+              <div>Current status</div>
+              <div>Next focus</div>
+            </div>
+            <div class="row">
+              <div><strong>Shared GTD foundation</strong></div>
+              <div>API and workflow logic are already shaping the common operating layer behind both products.</div>
+              <div>Strengthen observability, infrastructure discipline, and deployment repeatability.</div>
+            </div>
+            <div class="row">
+              <div><strong>Vison</strong></div>
+              <div>Identity verification modules and hosted flow thinking are being prepared for enterprise-facing use cases.</div>
+              <div>Harden training, evaluation, and inference paths to support pilot readiness.</div>
+            </div>
+            <div class="row">
+              <div><strong>Sona</strong></div>
+              <div>Conversational transaction logic is being structured around safe tool usage and confirmation-first behavior.</div>
+              <div>Evaluate LLM support, refine intent flows, and formalize guarded execution behavior.</div>
+            </div>
+            <div class="row">
+              <div><strong>Go-to-market</strong></div>
+              <div>Outbound materials and readiness narratives are being organized for enterprise and ecosystem discussions.</div>
+              <div>Convert early interest into clearer pilot scopes and technical validation work.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide" id="s9">
+  <div class="shell tint">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 09 | Why Alibaba Cloud</div>
+        <h2 class="title small">Alibaba Cloud is a strong fit because GTD's needs are <span class="accent">specific, workload-driven, and regional</span>.</h2>
+        <div class="grid2" style="margin-top:28px;flex:1;">
+          <div class="stack">
+            <div class="grid2">
+              <div class="card item">
+                <h4>GPU-backed model iteration</h4>
+                <span>Vison benefits from a more stable environment for training, evaluation, and repeatable experimentation across vision workloads.</span>
+              </div>
+              <div class="card item">
+                <h4>Model Studio for Sona</h4>
+                <span>Sona needs a disciplined way to evaluate multilingual models such as Qwen for intent handling and transaction-oriented conversation control.</span>
+              </div>
+              <div class="card item">
+                <h4>Regional deployment design</h4>
+                <span>Indonesia and nearby regional footprints matter for latency, data handling decisions, and enterprise comfort.</span>
+              </div>
+              <div class="card item">
+                <h4>Storage and audit support</h4>
+                <span>Image artifacts, workflow evidence, and operational logs need durable storage paths that fit enterprise-facing product narratives.</span>
+              </div>
+            </div>
+            <div class="callout">
+              GTD is applying for enablement that maps directly to product work already underway, not exploratory cloud usage without a deployment path.
+            </div>
+          </div>
+          <div class="stack">
+            <div class="table">
+              <div class="row header">
+                <div>Workload</div>
+                <div>Primary product</div>
+                <div>Alibaba fit</div>
+              </div>
+              <div class="row">
+                <div><strong>Vision model training</strong></div>
+                <div>Vison</div>
+                <div>GPU compute, training pipelines, and repeatable model development environments.</div>
+              </div>
+              <div class="row">
+                <div><strong>Intent evaluation</strong></div>
+                <div>Sona</div>
+                <div>Model Studio and Qwen evaluation for guarded Bahasa Indonesia orchestration.</div>
+              </div>
+              <div class="row">
+                <div><strong>Inference deployment</strong></div>
+                <div>Both</div>
+                <div>Regional compute planning for product APIs, orchestration services, and low-friction scaling.</div>
+              </div>
+              <div class="row">
+                <div><strong>Artifact storage</strong></div>
+                <div>Primarily Vison</div>
+                <div>Object storage and access-control patterns for audit-ready verification evidence.</div>
+              </div>
+            </div>
+            <div class="grid2">
+              <div class="card item">
+                <h4>Phase 1</h4>
+                <span>Stabilize training and evaluation loops for Vison while preparing structured benchmarks.</span>
+              </div>
+              <div class="card item">
+                <h4>Phase 2</h4>
+                <span>Evaluate Qwen and Model Studio for Sona's conversation control and intent classification workflows.</span>
+              </div>
+              <div class="card item">
+                <h4>Phase 3</h4>
+                <span>Translate both products into a clearer regional deployment and operational readiness story.</span>
+              </div>
+              <div class="card item">
+                <h4>Phase 4</h4>
+                <span>Use the improved infrastructure base to support pilots, enterprise discussions, and more durable operations.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<div class="slide" id="s10">
+  <div class="shell">
+    <div class="frame">
+      <div class="content">
+        <div class="eyebrow">Slide 10 | Request and Next Step</div>
+        <h2 class="title small">GTD is seeking a practical cloud partnership to move from <span class="accent">promising product logic</span> to <span class="accent">production-ready infrastructure</span>.</h2>
+        <div class="grid2" style="margin-top:30px;flex:1;">
+          <div class="stack">
+            <div class="card blue">
+              <div class="badge">Indicative request</div>
+              <h3 style="margin-top:16px;">Cloud enablement for Vison and Sona</h3>
+              <p>GTD is applying for an indicative package of cloud credits and model access that can support Vison training workloads, Sona model evaluation, and regional deployment preparation.</p>
+              <div class="grid2" style="margin-top:18px;">
+                <div class="card metric">
+                  <strong>USD 120K</strong>
+                  <span>Indicative cloud-credit request across training, inference, storage, and deployment readiness.</span>
+                </div>
+                <div class="card metric">
+                  <strong>Model Studio</strong>
+                  <span>Evaluation access for Qwen-based Bahasa Indonesia orchestration inside Sona.</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid2">
+              <div class="card item">
+                <h4>Training infrastructure</h4>
+                <span>Support Vison model development with a more repeatable GPU-backed workflow.</span>
+              </div>
+              <div class="card item">
+                <h4>LLM evaluation</h4>
+                <span>Test Qwen and Model Studio against narrow, transaction-specific language tasks in Sona.</span>
+              </div>
+              <div class="card item">
+                <h4>Regional deployment planning</h4>
+                <span>Map both products to a clearer production architecture with latency and data handling in mind.</span>
+              </div>
+              <div class="card item">
+                <h4>Technical partnership</h4>
+                <span>Work with the Alibaba team on service selection, workload sizing, and architecture guidance.</span>
+              </div>
+            </div>
+          </div>
+          <div class="card soft">
+            <div class="contactHead">
+              <img class="logo" src="logo_gtd.png" alt="GTD logo">
+              <div class="copy">
+                <h3>PT Gerbang Transaksi Digital</h3>
+                <p>Thank you for reviewing this application. GTD would welcome the chance to discuss workload design, product direction, and deployment planning with the Alibaba Cloud team.</p>
+              </div>
+            </div>
+            <div class="list">
+              <div class="bullet"><span class="dot"></span><span><strong>Expected outcome:</strong> a stronger technical base for Vison pilot readiness and disciplined model evaluation for Sona.</span></div>
+              <div class="bullet"><span class="dot"></span><span><strong>Primary use of support:</strong> model training, LLM evaluation, inference readiness, and artifact storage planning.</span></div>
+              <div class="bullet"><span class="dot"></span><span><strong>Next step:</strong> align on workload assumptions, target services, and the most practical activation sequence.</span></div>
+            </div>
+            <div class="contact">
+              <div class="row"><strong>Contact</strong><span>Riko Budi Saputra</span></div>
+              <div class="row"><strong>Email</strong><span><a href="mailto:riko@gtd.co.id">riko@gtd.co.id</a></span></div>
+              <div class="row"><strong>Website</strong><span><a href="https://gtd.co.id" target="_blank" rel="noopener noreferrer">gtd.co.id</a></span></div>
+              <div class="row"><strong>Products</strong><span><a href="https://vison.id" target="_blank" rel="noopener noreferrer">vison.id</a> and <a href="https://ppob.id" target="_blank" rel="noopener noreferrer">ppob.id</a></span></div>
+              <div class="row"><strong>Phone</strong><span>+62 851-6566-7472</span></div>
+            </div>
+            <p class="note">This document is written as a concise partner application deck. It intentionally avoids disclosing sensitive partner names or overstating certifications beyond current product maturity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav">
+  <button class="navBtn" id="prev">Prev</button>
+  <div class="dots" id="dots"></div>
+  <div class="counter" id="counter">1 / 10</div>
+  <button class="navBtn" id="next">Next</button>
+</div>
 <script>
-const slides = document.querySelectorAll('.slide');
-const dotsContainer = document.getElementById('dots');
-const counter = document.getElementById('counter');
-const progress = document.getElementById('progress');
-let current = 0;
-let prev = -1;
-
-// Build dots
-slides.forEach((_,i) => {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i===0?' active':'');
-  d.onclick = () => goTo(i);
-  dotsContainer.appendChild(d);
-});
-
-function goTo(n) {
-  if(n < 0 || n >= slides.length || n === current) return;
-  slides[current].classList.remove('active');
-  slides[current].classList.add('prev');
-  setTimeout(() => slides[n-1>=0?n-1:0]?.classList.remove('prev'), 500);
-  current = n;
-  slides[current].classList.add('active');
-  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
-  counter.textContent = `${current+1} / ${slides.length}`;
-  progress.style.width = `${((current+1)/slides.length)*100}%`;
-}
-
-document.getElementById('next').onclick = () => {
-  const next = (current+1) % slides.length;
-  slides[current].classList.remove('active');
-  slides[current].classList.add('prev');
-  current = next;
-  slides[current].classList.add('active');
-  slides[current].classList.remove('prev');
-  setTimeout(() => document.querySelectorAll('.slide.prev').forEach(s=>s.classList.remove('prev')), 500);
-  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
-  counter.textContent = `${current+1} / ${slides.length}`;
-  progress.style.width = `${((current+1)/slides.length)*100}%`;
-};
-
-document.getElementById('prev').onclick = () => {
-  const p = (current-1+slides.length) % slides.length;
-  slides[current].classList.remove('active');
-  current = p;
-  slides[current].classList.add('active');
-  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
-  counter.textContent = `${current+1} / ${slides.length}`;
-  progress.style.width = `${((current+1)/slides.length)*100}%`;
-};
-
-document.addEventListener('keydown', e => {
-  if(e.key==='ArrowRight'||e.key===' ') document.getElementById('next').click();
-  if(e.key==='ArrowLeft') document.getElementById('prev').click();
-});
-
-progress.style.width = `${(1/slides.length)*100}%`;
+const slides=Array.from(document.querySelectorAll(".slide"));
+const dotsContainer=document.getElementById("dots");
+const counter=document.getElementById("counter");
+const progress=document.getElementById("progress");
+const prevButton=document.getElementById("prev");
+const nextButton=document.getElementById("next");
+let current=0;
+function updateUI(){slides.forEach((slide,index)=>{slide.classList.toggle("active",index===current);if(index===current){slide.scrollTop=0;}});document.querySelectorAll(".navDot").forEach((dot,index)=>{dot.classList.toggle("active",index===current);});counter.textContent=`${current+1} / ${slides.length}`;progress.style.width=`${((current+1)/slides.length)*100}%`;}
+function goTo(index){if(index<0||index>=slides.length||index===current){return;}current=index;updateUI();}
+slides.forEach((_,index)=>{const dot=document.createElement("button");dot.type="button";dot.className=index===0?"navDot active":"navDot";dot.setAttribute("aria-label",`Go to slide ${index+1}`);dot.addEventListener("click",()=>goTo(index));dotsContainer.appendChild(dot);});
+prevButton.addEventListener("click",()=>{current=(current-1+slides.length)%slides.length;updateUI();});
+nextButton.addEventListener("click",()=>{current=(current+1)%slides.length;updateUI();});
+document.addEventListener("keydown",(event)=>{if(event.key==="ArrowRight"||event.key===" "){event.preventDefault();nextButton.click();}if(event.key==="ArrowLeft"){event.preventDefault();prevButton.click();}});
+updateUI();
 </script>
 </body>
 </html>
