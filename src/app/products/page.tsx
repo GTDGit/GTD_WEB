@@ -77,6 +77,28 @@ const productDetails = [
             { value: "QRIS", label: "Fitur Unggulan" },
         ],
     },
+    {
+        name: "Vison",
+        tagline: "Platform e-KYC Indonesia",
+        status: "Dalam Pengembangan",
+        logo: "/logo_vison.png",
+        url: "https://vison.id",
+        description:
+            "Platform SaaS B2B untuk layanan e-KYC di Indonesia. Membantu Startup untuk melakukan verifikasi identitas konsumen secara digital.",
+        gradient: "from-blue-600 to-indigo-600",
+        target: "Startup",
+        features: [
+            {
+                title: "e-KYC Instan",
+                desc: "Verifikasi identitas konsumen secara digital",
+            },
+        ],
+        highlights: [
+            { value: "B2B", label: "Model Bisnis" },
+            { value: "Startup", label: "Target Mitra" },
+            { value: "e-KYC", label: "Fitur Unggulan" },
+        ],
+    },
 ];
 
 export default function ProdukPage() {

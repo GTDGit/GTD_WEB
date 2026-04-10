@@ -40,6 +40,24 @@ const products = [
         gradient: "from-blue-600 to-indigo-600",
         bgGradient: "from-blue-600/10 to-indigo-600/10",
     },
+    {
+        name: "Vison",
+        tagline: "Platform e-KYC Indonesia",
+        status: "Dalam Pengembangan",
+        description:
+            "Platform SaaS B2B untuk layanan e-KYC di Indonesia. Membantu Startup untuk melakukan verifikasi identitas konsumen secara digital.",
+        logo: "/logo_vison.png",
+        url: "https://vison.id",
+        features: [
+            "e-KYC Instan",
+            "Liveness Detection",
+            "OCR",
+            "ID Verification",
+        ],
+        target: "Startup & Perusahaan Digital",
+        gradient: "from-blue-600 to-indigo-600",
+        bgGradient: "from-blue-600/10 to-indigo-600/10",
+    },
 ];
 
 export default function ProductsSection() {
