@@ -3,951 +3,1299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTD AI Solutions — PT Gerbang Transaksi Digital</title>
+<title>GTD AI Solutions — Investor Deck 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --blue-900: #0a1628;
-    --blue-800: #0d2147;
-    --blue-700: #0f3460;
-    --blue-600: #1a4fa0;
-    --blue-500: #1e6fd9;
-    --blue-400: #3d8ef0;
-    --blue-300: #7ab8ff;
-    --blue-100: #deeeff;
-    --blue-50: #f0f7ff;
-    --accent: #00c2ff;
-    --accent2: #0052d4;
-    --white: #ffffff;
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e2e8f0;
-    --gray-400: #94a3b8;
-    --gray-600: #475569;
-    --gray-800: #1e293b;
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0f1e; }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --b900: #050c1f;
+  --b800: #0a1428;
+  --b700: #0d2147;
+  --b600: #0f3a8a;
+  --b500: #1a5fd4;
+  --b400: #2e7dff;
+  --b300: #6aaeff;
+  --b200: #aed4ff;
+  --b100: #deeeff;
+  --cyan: #00d4ff;
+  --cyan2: #00a8cc;
+  --white: #ffffff;
+  --g50: #f7faff;
+  --g100: #eef3fc;
+  --g200: #d8e4f5;
+  --g400: #8fa5c4;
+  --g600: #4a6080;
+  --g800: #1c2d42;
+  --red: #ff4d6a;
+  --green: #00d68f;
+  --amber: #ffb020;
+}
 
-  html { scroll-behavior: smooth; }
+/* ── DECK CONTAINER ── */
+.deck {
+  width: 100vw; height: 100vh;
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--gray-800);
-    overflow-x: hidden;
-  }
+/* ── SLIDES ── */
+.slide {
+  position: absolute; inset: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity .5s ease, transform .5s ease;
+  transform: translateX(40px);
+  overflow: hidden;
+}
+.slide.active {
+  opacity: 1; pointer-events: all;
+  transform: translateX(0);
+}
+.slide.prev {
+  opacity: 0; transform: translateX(-40px);
+}
 
-  /* ─── NAV ─────────────────────────────────────────────── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.3rem;
-    color: var(--blue-700);
-    letter-spacing: -0.5px;
-  }
-  .nav-logo span { color: var(--blue-500); }
-  nav a {
-    font-size: 0.875rem; font-weight: 500;
-    color: var(--gray-600); text-decoration: none;
-    margin-left: 32px; transition: color .2s;
-  }
-  nav a:hover { color: var(--blue-500); }
-  .nav-cta {
-    background: var(--blue-600) !important;
-    color: white !important;
-    padding: 8px 20px;
-    border-radius: 8px;
-    margin-left: 32px;
-    transition: background .2s !important;
-  }
-  .nav-cta:hover { background: var(--blue-500) !important; }
+/* ── NAVIGATION ── */
+.nav {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+  z-index: 1000;
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(10,20,40,0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  padding: 10px 20px;
+}
+.nav-dots { display: flex; gap: 6px; align-items: center; }
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  cursor: pointer; transition: all .3s;
+}
+.dot.active { background: var(--cyan); width: 20px; border-radius: 3px; }
+.nav-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: white; font-size: 0.85rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.12); }
+.slide-counter {
+  font-size: 0.72rem; font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  min-width: 36px; text-align: center;
+}
 
-  /* ─── HERO ────────────────────────────────────────────── */
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 50%, #1a3a8f 100%);
-    position: relative;
-    display: flex; align-items: center;
-    padding: 120px 48px 80px;
-    overflow: hidden;
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,194,255,0.18) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    pointer-events: none;
-  }
-  .hero-glow2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(30,111,217,0.25) 0%, transparent 70%);
-    bottom: 50px; left: 100px;
-    pointer-events: none;
-  }
-  .hero-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
-    position: relative; z-index: 2;
-    width: 100%;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,194,255,0.12);
-    border: 1px solid rgba(0,194,255,0.3);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 0.78rem; font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.5px;
-    margin-bottom: 24px;
-    opacity: 0; animation: fadeUp .6s .1s forwards;
-  }
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+/* ── COMMON SLIDE SHELL ── */
+.slide-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--b900) 0%, var(--b800) 60%, #0d1f3c 100%);
+}
+.slide-bg.light {
+  background: linear-gradient(135deg, #f0f6ff 0%, #e8f2ff 100%);
+}
+.slide-bg.mid {
+  background: linear-gradient(135deg, #061224 0%, #0a1e3d 100%);
+}
 
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.4rem, 4vw, 3.8rem);
-    font-weight: 800;
-    line-height: 1.1;
-    color: white;
-    letter-spacing: -1px;
-    margin-bottom: 24px;
-    opacity: 0; animation: fadeUp .6s .2s forwards;
-  }
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(90deg, var(--accent), #7ab8ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-desc {
-    font-size: 1.05rem; line-height: 1.75;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 40px;
-    opacity: 0; animation: fadeUp .6s .3s forwards;
-  }
-  .hero-btns {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp .6s .4s forwards;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--blue-500), var(--accent));
-    color: white; font-weight: 600; font-size: 0.95rem;
-    padding: 14px 32px; border-radius: 10px;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: transform .2s, box-shadow .2s;
-    box-shadow: 0 8px 30px rgba(0,194,255,0.3);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,194,255,0.4); }
-  .btn-ghost {
-    background: transparent;
-    color: white; font-weight: 500; font-size: 0.95rem;
-    padding: 14px 32px; border-radius: 10px;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.25);
-    transition: background .2s, border-color .2s;
-  }
-  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+/* grid texture */
+.grid-tex {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.grid-tex.light {
+  background-image:
+    linear-gradient(rgba(15,58,138,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,58,138,0.06) 1px, transparent 1px);
+}
 
-  /* hero right — floating cards */
-  .hero-cards {
-    display: flex; flex-direction: column; gap: 20px;
-    opacity: 0; animation: fadeUp .6s .5s forwards;
-  }
-  .hcard {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 16px;
-    padding: 24px 28px;
-    backdrop-filter: blur(10px);
-    transition: transform .3s, background .3s;
-  }
-  .hcard:hover { transform: translateX(6px); background: rgba(255,255,255,0.1); }
-  .hcard-icon {
-    width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--blue-500), var(--accent));
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; margin-bottom: 14px;
-  }
-  .hcard h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 1.05rem;
-    color: white; margin-bottom: 6px;
-  }
-  .hcard p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+/* glow blobs */
+.glow {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none;
+}
 
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(24px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
+.content {
+  position: relative; z-index: 10;
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  padding: 56px 72px 90px;
+}
 
-  /* ─── STATS BAR ───────────────────────────────────────── */
-  .stats {
-    background: var(--blue-600);
-    padding: 32px 48px;
-  }
-  .stats-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 24px; text-align: center;
-  }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem; font-weight: 800;
-    color: white; line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.65); font-weight: 400; }
+/* ── TYPOGRAPHY ── */
+.eyebrow {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+}
+.eyebrow::before {
+  content: ''; width: 20px; height: 2px;
+  background: var(--cyan);
+}
+.eyebrow.dark { color: var(--b500); }
+.eyebrow.dark::before { background: var(--b500); }
 
-  /* ─── SECTION BASE ────────────────────────────────────── */
-  section { padding: 96px 48px; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-tag {
-    font-size: 0.75rem; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--blue-500); margin-bottom: 14px;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 800; line-height: 1.15;
-    letter-spacing: -0.5px;
-    color: var(--blue-900); margin-bottom: 18px;
-  }
-  .section-sub {
-    font-size: 1rem; line-height: 1.7;
-    color: var(--gray-600); max-width: 580px;
-    margin-bottom: 60px;
-  }
+h1.display {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  font-weight: 800; line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+h2.display {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -1px;
+}
+.grad-text {
+  background: linear-gradient(90deg, var(--cyan) 0%, var(--b300) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.grad-text-warm {
+  background: linear-gradient(90deg, #fff 0%, var(--b200) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
 
-  /* ─── PROBLEM ─────────────────────────────────────────── */
-  .problem { background: var(--gray-50); }
-  .problem-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .prob-card {
-    background: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 16px;
-    padding: 32px;
-    position: relative; overflow: hidden;
-    transition: box-shadow .3s, transform .3s;
-  }
-  .prob-card:hover { box-shadow: 0 20px 60px rgba(15,52,96,0.1); transform: translateY(-4px); }
-  .prob-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--blue-500), var(--accent));
-  }
-  .prob-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 3rem; font-weight: 800;
-    color: var(--blue-100); line-height: 1;
-    margin-bottom: 16px;
-  }
-  .prob-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--blue-900); margin-bottom: 10px; }
-  .prob-card p { font-size: 0.88rem; line-height: 1.65; color: var(--gray-600); }
+/* ── TAGS / BADGES ── */
+.tag {
+  display: inline-flex; align-items: center;
+  background: rgba(0,212,255,0.1);
+  border: 1px solid rgba(0,212,255,0.25);
+  color: var(--cyan); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.5px; padding: 4px 12px; border-radius: 100px;
+}
+.tag.solid {
+  background: var(--b500); border-color: var(--b500);
+  color: white;
+}
+.tag.dark-solid {
+  background: var(--b900); border: 1px solid rgba(255,255,255,0.12);
+  color: var(--b200);
+}
 
-  /* ─── VISON ───────────────────────────────────────────── */
-  .vison { background: white; }
-  .vison-layout {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-  }
-  .vison-features {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .feat {
-    background: var(--blue-50);
-    border: 1px solid var(--blue-100);
-    border-radius: 12px;
-    padding: 20px;
-    transition: background .2s, border-color .2s;
-  }
-  .feat:hover { background: white; border-color: var(--blue-300); }
-  .feat-icon { font-size: 1.4rem; margin-bottom: 10px; }
-  .feat h4 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--blue-800); margin-bottom: 4px; }
-  .feat p { font-size: 0.8rem; color: var(--gray-600); line-height: 1.5; }
+/* ─────────────────────────────────────────────────
+   SLIDE 01 — COVER
+───────────────────────────────────────────────── */
+#s1 .slide-bg { background: linear-gradient(135deg, #030a18 0%, #061530 50%, #091e42 100%); }
+#s1 .g1 { width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,.12),transparent 70%);top:-200px;right:-100px; }
+#s1 .g2 { width:500px;height:500px;background:radial-gradient(circle,rgba(26,95,212,.18),transparent 70%);bottom:-100px;left:50px; }
 
-  .compliance-badges {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px;
-  }
-  .badge {
-    background: var(--blue-900);
-    color: white; font-size: 0.75rem; font-weight: 600;
-    padding: 6px 14px; border-radius: 6px;
-    letter-spacing: 0.3px;
-  }
-  .badge.accent { background: linear-gradient(135deg, var(--blue-500), var(--accent)); }
+#s1 .content { justify-content: center; gap: 0; }
+.cover-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; height: 100%; }
 
-  /* pipeline visual */
-  .pipeline {
-    background: var(--blue-900);
-    border-radius: 20px;
-    padding: 32px;
-    margin-top: 8px;
-  }
-  .pipeline-title {
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 24px;
-  }
-  .pipe-step {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 14px;
-  }
-  .pipe-step:last-child { margin-bottom: 0; }
-  .pipe-dot {
-    width: 36px; height: 36px; flex-shrink: 0;
-    background: rgba(0,194,255,0.15);
-    border: 1px solid rgba(0,194,255,0.3);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-  }
-  .pipe-text strong {
-    display: block; font-size: 0.85rem; font-weight: 600;
-    color: white; margin-bottom: 2px;
-  }
-  .pipe-text span { font-size: 0.77rem; color: rgba(255,255,255,0.5); }
-  .pipe-arrow {
-    width: 2px; height: 14px;
-    background: rgba(0,194,255,0.2);
-    margin: 0 0 0 17px;
-  }
+.cover-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 40px;
+}
+.logo-mark {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--b500), var(--cyan));
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.3rem; font-weight: 800; color: white;
+  letter-spacing: -1px;
+}
+.logo-text {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.2rem; font-weight: 800;
+  color: white; letter-spacing: -0.5px;
+}
+.logo-text span { color: var(--cyan); }
 
-  /* ─── PPOB ────────────────────────────────────────────── */
-  .ppob { background: var(--gray-50); }
-  .ppob-layout {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-  }
-  /* chat mockup */
-  .chat-mock {
-    background: white;
-    border-radius: 24px;
-    border: 1px solid var(--gray-200);
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(15,52,96,0.1);
-  }
-  .chat-header {
-    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
-    padding: 18px 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .chat-av {
-    width: 40px; height: 40px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-  }
-  .chat-info strong { display: block; color: white; font-size: 0.9rem; font-weight: 600; }
-  .chat-info span { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
-  .chat-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
-  .msg {
-    max-width: 85%;
-    padding: 12px 16px;
-    border-radius: 16px;
-    font-size: 0.85rem; line-height: 1.5;
-  }
-  .msg.user {
-    background: var(--blue-600); color: white;
-    border-bottom-right-radius: 4px;
-    align-self: flex-end;
-  }
-  .msg.bot {
-    background: var(--gray-100); color: var(--gray-800);
-    border-bottom-left-radius: 4px;
-    align-self: flex-start;
-  }
-  .msg.bot strong { color: var(--blue-700); }
+.cover-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; }
 
-  .ppob-features { display: flex; flex-direction: column; gap: 20px; }
-  .ppob-feat {
-    display: flex; gap: 16px;
-    padding: 22px;
-    background: white; border-radius: 14px;
-    border: 1px solid var(--gray-200);
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .ppob-feat:hover { border-color: var(--blue-300); box-shadow: 0 8px 30px rgba(30,111,217,0.08); }
-  .ppob-feat-icon {
-    width: 48px; height: 48px; flex-shrink: 0;
-    background: var(--blue-50);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-  }
-  .ppob-feat h4 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--blue-900); margin-bottom: 4px; }
-  .ppob-feat p { font-size: 0.82rem; color: var(--gray-600); line-height: 1.5; }
+.cover-right { display: flex; flex-direction: column; gap: 20px; }
+.cover-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px; padding: 26px;
+  backdrop-filter: blur(8px);
+  transition: background .3s;
+}
+.cover-card:hover { background: rgba(255,255,255,.07); }
+.cover-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.cover-card-icon {
+  width: 40px; height: 40px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, var(--b500), var(--cyan));
+}
+.cover-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1rem; font-weight: 700; color: white;
+}
+.cover-card p { font-size: 0.8rem; color: rgba(255,255,255,.5); line-height: 1.55; }
 
-  /* ─── TECH ────────────────────────────────────────────── */
-  .tech { background: var(--blue-900); }
-  .tech .section-title { color: white; }
-  .tech .section-tag { color: var(--accent); }
-  .tech .section-sub { color: rgba(255,255,255,0.6); }
-  .tech-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .tech-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 28px 24px;
-    text-align: center;
-    transition: background .3s, transform .3s;
-  }
-  .tech-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
-  .tech-card-icon { font-size: 2rem; margin-bottom: 14px; }
-  .tech-card h4 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 8px; }
-  .tech-card p { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
-  .tech-tag {
-    display: inline-block;
-    background: rgba(0,194,255,0.12);
-    border: 1px solid rgba(0,194,255,0.25);
-    border-radius: 4px;
-    font-size: 0.72rem; color: var(--accent);
-    padding: 3px 8px; margin-top: 10px;
-  }
+.cover-meta {
+  margin-top: 8px;
+  font-size: 0.72rem; color: rgba(255,255,255,.3);
+  font-weight: 500; letter-spacing: 0.5px;
+}
 
-  /* ─── COMPLIANCE ──────────────────────────────────────── */
-  .compliance { background: var(--gray-50); }
-  .compliance-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .comp-card {
-    background: white; border-radius: 16px;
-    border: 1px solid var(--gray-200);
-    padding: 32px;
-    transition: box-shadow .3s, transform .3s;
-  }
-  .comp-card:hover { box-shadow: 0 20px 50px rgba(15,52,96,0.08); transform: translateY(-4px); }
-  .comp-icon {
-    width: 52px; height: 52px;
-    background: linear-gradient(135deg, var(--blue-600), var(--accent));
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; margin-bottom: 20px;
-  }
-  .comp-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-900); margin-bottom: 8px; }
-  .comp-card p { font-size: 0.84rem; color: var(--gray-600); line-height: 1.6; }
+/* ─────────────────────────────────────────────────
+   SLIDE 02 — PROBLEM
+───────────────────────────────────────────────── */
+#s2 .g1 { width:600px;height:600px;background:radial-gradient(circle,rgba(255,77,106,.06),transparent 70%);top:-100px;right:-50px; }
 
-  /* ─── TEAM ────────────────────────────────────────────── */
-  .team { background: white; }
-  .team-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-  .team-card {
-    text-align: center;
-    padding: 40px 32px;
-    border-radius: 20px;
-    border: 1px solid var(--gray-200);
-    transition: box-shadow .3s, transform .3s;
-  }
-  .team-card:hover { box-shadow: 0 20px 60px rgba(15,52,96,0.1); transform: translateY(-4px); }
-  .team-avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue-600), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800;
-    color: white; margin: 0 auto 20px;
-  }
-  .team-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--blue-900); margin-bottom: 4px; }
-  .team-role { font-size: 0.82rem; color: var(--blue-500); font-weight: 500; margin-bottom: 12px; }
-  .team-desc { font-size: 0.83rem; color: var(--gray-600); line-height: 1.6; }
+.prob-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; flex: 1; }
+.prob-card {
+  border-radius: 20px; padding: 32px 28px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .3s;
+}
+.prob-card:hover { transform: translateY(-6px); }
+.prob-card.c1 { background: rgba(255,77,106,.08); border: 1px solid rgba(255,77,106,.2); }
+.prob-card.c2 { background: rgba(255,176,32,.06); border: 1px solid rgba(255,176,32,.18); }
+.prob-card.c3 { background: rgba(0,214,143,.06); border: 1px solid rgba(0,214,143,.18); }
 
-  /* ─── ASK / CTA ───────────────────────────────────────── */
-  .ask {
-    background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-600) 100%);
-    padding: 96px 48px;
-    position: relative; overflow: hidden;
-  }
-  .ask-glow {
-    position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0,194,255,0.12) 0%, transparent 70%);
-    top: -200px; right: -100px;
-    pointer-events: none;
-  }
-  .ask-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
-  .ask h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 800; color: white;
-    letter-spacing: -0.5px; margin-bottom: 20px;
-  }
-  .ask p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 620px; margin: 0 auto 48px; }
-  .ask-cards {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px; margin-bottom: 48px;
-  }
-  .ask-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 16px; padding: 28px 20px;
-    text-align: center;
-  }
-  .ask-amount {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem; font-weight: 800;
-    color: var(--accent); margin-bottom: 6px;
-  }
-  .ask-for { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+.prob-number {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 4rem; font-weight: 800; line-height: 1;
+  margin-bottom: 16px; opacity: .15;
+}
+.c1 .prob-number { color: var(--red); opacity: 1; -webkit-text-stroke: 1px var(--red); -webkit-text-fill-color: transparent; }
+.c2 .prob-number { color: var(--amber); opacity: 1; -webkit-text-stroke: 1px var(--amber); -webkit-text-fill-color: transparent; }
+.c3 .prob-number { color: var(--green); opacity: 1; -webkit-text-stroke: 1px var(--green); -webkit-text-fill-color: transparent; }
 
-  /* ─── FOOTER ──────────────────────────────────────────── */
-  footer {
-    background: var(--blue-900);
-    padding: 40px 48px;
-    text-align: center;
-  }
-  footer .logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 8px; }
-  footer .logo span { color: var(--accent); }
-  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+.prob-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.15rem; font-weight: 700; color: white;
+  margin-bottom: 12px; line-height: 1.2;
+}
+.prob-card p { font-size: 0.82rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+.prob-stat {
+  margin-top: 20px; padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.c1 .prob-stat { color: var(--red); }
+.c2 .prob-stat { color: var(--amber); }
+.c3 .prob-stat { color: var(--green); }
 
-  /* ─── DIVIDER ─────────────────────────────────────────── */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue-200), transparent);
-    margin: 0;
-  }
+/* ─────────────────────────────────────────────────
+   SLIDE 03 — SOLUTION (VISON OVERVIEW)
+───────────────────────────────────────────────── */
+.sol-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; flex: 1; align-items: start; margin-top: 36px; }
+.sol-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.sol-feat {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px; padding: 18px 20px;
+  transition: background .25s, border-color .25s;
+}
+.sol-feat:hover { background: rgba(0,212,255,.06); border-color: rgba(0,212,255,.2); }
+.sol-feat-icon { font-size: 1.3rem; margin-bottom: 10px; }
+.sol-feat h4 { font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 4px; }
+.sol-feat p { font-size: 0.75rem; color: rgba(255,255,255,.45); line-height: 1.5; }
 
-  /* ─── RESPONSIVE ──────────────────────────────────────── */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    nav a:not(.nav-cta) { display: none; }
-    section { padding: 64px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-inner, .vison-layout, .ppob-layout { grid-template-columns: 1fr; gap: 40px; }
-    .hero-cards { display: none; }
-    .stats-inner, .tech-grid, .compliance-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
-    .problem-grid { grid-template-columns: 1fr; }
-    .ask-cards { grid-template-columns: 1fr; }
-    .vison-features { grid-template-columns: 1fr; }
-  }
+.sol-right {}
+.vison-logo-block {
+  background: linear-gradient(135deg, var(--b700), var(--b600));
+  border-radius: 20px; padding: 32px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.vison-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.4rem; font-weight: 800;
+  color: white; letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+.vison-name span { color: var(--cyan); }
+.vison-tagline { font-size: 0.8rem; color: rgba(255,255,255,.5); margin-bottom: 20px; }
+.vison-url {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.25);
+  border-radius: 8px; padding: 6px 14px;
+  font-size: 0.76rem; font-weight: 600; color: var(--cyan);
+}
+
+.biz-model { display: flex; flex-direction: column; gap: 10px; }
+.biz-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 10px; padding: 12px 16px;
+}
+.biz-label { font-size: 0.78rem; color: rgba(255,255,255,.5); }
+.biz-val { font-size: 0.82rem; font-weight: 700; color: var(--b200); }
+
+/* ─────────────────────────────────────────────────
+   SLIDE 04 — HOW AI WORKS
+───────────────────────────────────────────────── */
+#s4 .slide-bg { background: linear-gradient(135deg, #030d1f 0%, #061830 100%); }
+
+.ai-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; flex: 1; margin-top: 36px; }
+
+.pipeline-wrap {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 20px; padding: 28px;
+}
+.pipe-title {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 22px;
+}
+.pipe-item {
+  display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; position: relative;
+}
+.pipe-item:not(:last-child)::after {
+  content: '';
+  position: absolute; left: 17px; top: 38px;
+  width: 2px; height: calc(100% - 10px);
+  background: linear-gradient(to bottom, rgba(0,212,255,.25), rgba(0,212,255,.05));
+}
+.pipe-ico {
+  width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+  position: relative; z-index: 1;
+}
+.pipe-ico.active { background: linear-gradient(135deg, var(--b500), var(--cyan)); }
+.pipe-ico.neutral { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); }
+.pipe-body strong { display: block; font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 2px; }
+.pipe-body span { font-size: 0.73rem; color: rgba(255,255,255,.4); }
+
+.ai-metrics { display: flex; flex-direction: column; gap: 14px; }
+.metric-card {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px; padding: 20px 24px;
+  display: flex; align-items: center; gap: 20px;
+}
+.metric-val {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.8rem; font-weight: 800; line-height: 1;
+  min-width: 80px;
+}
+.metric-val.cyan { color: var(--cyan); }
+.metric-val.blue { color: var(--b300); }
+.metric-val.green { color: var(--green); }
+.metric-label strong { display: block; font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 3px; }
+.metric-label span { font-size: 0.73rem; color: rgba(255,255,255,.4); }
+
+.model-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.mtag {
+  background: rgba(26,95,212,.15); border: 1px solid rgba(26,95,212,.3);
+  border-radius: 6px; font-size: 0.7rem; font-weight: 600; color: var(--b300);
+  padding: 4px 10px;
+}
+
+/* ─────────────────────────────────────────────────
+   SLIDE 05 — COMPLIANCE
+───────────────────────────────────────────────── */
+#s5 .slide-bg.light {}
+#s5 .g1 { width:500px;height:500px;background:radial-gradient(circle,rgba(15,58,138,.08),transparent 70%);top:-100px;right:0; }
+
+.comp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; margin-top: 36px; }
+.comp-card {
+  background: white; border-radius: 18px;
+  padding: 28px 26px;
+  border: 1px solid var(--g200);
+  box-shadow: 0 4px 24px rgba(15,58,138,.06);
+  transition: transform .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+.comp-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,58,138,.1); }
+.comp-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--b500), var(--cyan));
+}
+.comp-flag {
+  font-size: 1.8rem; margin-bottom: 14px;
+}
+.comp-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem; font-weight: 700; color: var(--b800); margin-bottom: 6px;
+}
+.comp-badge {
+  display: inline-block; background: var(--b600);
+  color: white; font-size: 0.68rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 5px; margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.comp-card p { font-size: 0.79rem; color: var(--g600); line-height: 1.6; }
+
+/* ─────────────────────────────────────────────────
+   SLIDE 06 — SONA / PPOB.ID AI AGENT
+───────────────────────────────────────────────── */
+#s6 .g1 { width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.1),transparent 70%);bottom:-150px;right:-100px; }
+
+.sona-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; flex: 1; align-items: center; margin-top: 36px; }
+
+.chat-window {
+  background: #1a2540; border-radius: 22px;
+  overflow: hidden; border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+}
+.chat-bar {
+  background: linear-gradient(90deg, var(--b700), var(--b600));
+  padding: 16px 22px; display: flex; align-items: center; gap: 12px;
+}
+.chat-av {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--b400), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.chat-bar-info strong { display: block; color: white; font-size: 0.85rem; font-weight: 700; }
+.chat-bar-info span { font-size: 0.7rem; color: rgba(255,255,255,.6); }
+.online-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+.chat-msgs { padding: 18px 18px 12px; display: flex; flex-direction: column; gap: 10px; }
+.bubble {
+  max-width: 85%; padding: 11px 15px;
+  font-size: 0.78rem; line-height: 1.55;
+  border-radius: 16px;
+}
+.bubble.user {
+  background: var(--b500); color: white;
+  border-bottom-right-radius: 4px; align-self: flex-end;
+}
+.bubble.bot {
+  background: rgba(255,255,255,.07); color: rgba(255,255,255,.85);
+  border-bottom-left-radius: 4px; align-self: flex-start;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.bubble.bot strong { color: var(--cyan); }
+.chat-input {
+  margin: 8px 18px 16px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 0.75rem; color: rgba(255,255,255,.3);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.sona-feats { display: flex; flex-direction: column; gap: 16px; }
+.sona-feat {
+  display: flex; gap: 14px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px;
+  transition: background .25s;
+}
+.sona-feat:hover { background: rgba(0,212,255,.05); border-color: rgba(0,212,255,.15); }
+.sona-ico {
+  width: 42px; height: 42px; flex-shrink: 0; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  background: rgba(26,95,212,.15); border: 1px solid rgba(26,95,212,.2);
+}
+.sona-feat h4 { font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 4px; }
+.sona-feat p { font-size: 0.74rem; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+.sona-brand {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+}
+.sona-mark {
+  width: 44px; height: 44px; border-radius: 13px;
+  background: linear-gradient(135deg, var(--b500), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.sona-wordmark {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.3rem; font-weight: 800; color: white;
+}
+.sona-wordmark small {
+  display: block; font-size: 0.65rem; font-weight: 500;
+  color: rgba(255,255,255,.4); letter-spacing: 1px; text-transform: uppercase; margin-top: -2px;
+}
+
+/* ─────────────────────────────────────────────────
+   SLIDE 07 — TRACTION
+───────────────────────────────────────────────── */
+#s7 .slide-bg { background: linear-gradient(135deg, #020810 0%, #040f20 100%); }
+#s7 .g1 { width:700px;height:700px;background:radial-gradient(circle,rgba(26,95,212,.12),transparent 70%);top:-200px;left:-100px; }
+
+.traction-top { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 36px; }
+.trac-stat {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px; padding: 26px 22px; text-align: center;
+  transition: background .3s;
+}
+.trac-stat:hover { background: rgba(26,95,212,.1); border-color: rgba(26,95,212,.25); }
+.trac-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.4rem; font-weight: 800; line-height: 1;
+  color: var(--cyan); margin-bottom: 6px;
+}
+.trac-label { font-size: 0.74rem; color: rgba(255,255,255,.45); line-height: 1.4; }
+
+.traction-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; flex: 1; }
+.trac-panel {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px; padding: 24px 26px;
+}
+.trac-panel h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.trac-panel h4::before { content: ''; width: 12px; height: 2px; background: var(--cyan); }
+.pipeline-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.05);
+  font-size: 0.78rem;
+}
+.pipeline-item:last-child { border-bottom: none; }
+.pipeline-item .name { color: rgba(255,255,255,.7); }
+.pipeline-item .status {
+  font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 5px;
+}
+.status.live { background: rgba(0,214,143,.15); color: var(--green); }
+.status.active { background: rgba(0,212,255,.12); color: var(--cyan); }
+.status.pipeline { background: rgba(255,176,32,.1); color: var(--amber); }
+.status.prospect { background: rgba(255,255,255,.07); color: rgba(255,255,255,.4); }
+
+/* ─────────────────────────────────────────────────
+   SLIDE 08 — GPU / CLOUD NEEDS
+───────────────────────────────────────────────── */
+#s8 .g1 { width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%);top:-100px;right:-50px; }
+
+.cloud-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; flex:1; margin-top: 36px; align-items: start; }
+
+.ali-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,100,0,.08); border: 1px solid rgba(255,100,0,.2);
+  border-radius: 12px; padding: 12px 18px; margin-bottom: 24px;
+}
+.ali-badge span { font-size: 0.78rem; font-weight: 700; color: #ff8533; }
+
+.need-list { display: flex; flex-direction: column; gap: 14px; }
+.need-item {
+  display: flex; gap: 14px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px; padding: 18px 20px;
+}
+.need-ico {
+  width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  background: linear-gradient(135deg, var(--b600), var(--b500));
+}
+.need-item h4 { font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 4px; }
+.need-item p { font-size: 0.74rem; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+.credit-table { width: 100%; }
+.credit-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.credit-row:last-child { border-bottom: none; }
+.credit-cat { font-size: 0.8rem; font-weight: 600; color: white; margin-bottom: 3px; }
+.credit-desc { font-size: 0.72rem; color: rgba(255,255,255,.4); }
+.credit-amt {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.1rem; font-weight: 800; color: var(--cyan);
+  white-space: nowrap; padding-left: 20px;
+}
+
+.benefit-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.chip {
+  background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2);
+  color: var(--cyan); font-size: 0.7rem; font-weight: 600;
+  padding: 5px 12px; border-radius: 7px;
+}
+
+/* ─────────────────────────────────────────────────
+   SLIDE 09 — TEAM
+───────────────────────────────────────────────── */
+#s9 .slide-bg.light {}
+#s9 .g1 { width:500px;height:500px;background:radial-gradient(circle,rgba(15,58,138,.06),transparent 70%);bottom:0;right:0; }
+
+.team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; flex:1; margin-top: 40px; }
+.team-card {
+  background: white; border-radius: 20px;
+  padding: 36px 28px; text-align: center;
+  border: 1px solid var(--g200);
+  box-shadow: 0 4px 24px rgba(15,58,138,.06);
+  transition: transform .3s, box-shadow .3s;
+}
+.team-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(15,58,138,.1); }
+.team-av {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--b600), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.5rem; font-weight: 800; color: white;
+  margin: 0 auto 20px; border: 3px solid white;
+  box-shadow: 0 4px 20px rgba(15,58,138,.2);
+}
+.team-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem; font-weight: 800; color: var(--b800); margin-bottom: 4px;
+}
+.team-role { font-size: 0.75rem; font-weight: 700; color: var(--b500); margin-bottom: 14px; letter-spacing: 0.3px; }
+.team-desc { font-size: 0.78rem; color: var(--g600); line-height: 1.65; margin-bottom: 18px; }
+.team-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.ttag {
+  background: var(--g100); border: 1px solid var(--g200);
+  color: var(--g600); font-size: 0.67rem; font-weight: 600;
+  padding: 3px 9px; border-radius: 5px;
+}
+
+/* ─────────────────────────────────────────────────
+   SLIDE 10 — ASK / CTA
+───────────────────────────────────────────────── */
+#s10 .slide-bg { background: linear-gradient(135deg, #020c1e 0%, #061a3a 60%, #091e42 100%); }
+#s10 .g1 { width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,.12),transparent 70%);top:-100px;right:-100px; }
+#s10 .g2 { width:400px;height:400px;background:radial-gradient(circle,rgba(26,95,212,.15),transparent 70%);bottom:-50px;left:-50px; }
+
+.ask-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; flex:1; align-items: start; margin-top: 40px; }
+
+.ask-cards { display: flex; flex-direction: column; gap: 16px; }
+.ask-card {
+  display: flex; gap: 16px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; padding: 22px 24px;
+  transition: background .25s;
+}
+.ask-card:hover { background: rgba(0,212,255,.06); border-color: rgba(0,212,255,.18); }
+.ask-ico {
+  width: 48px; height: 48px; flex-shrink: 0; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--b600), var(--b500));
+}
+.ask-card h4 { font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 4px; }
+.ask-card p { font-size: 0.76rem; color: rgba(255,255,255,.45); line-height: 1.55; }
+
+.ask-summary {
+  background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.2);
+  border-radius: 20px; padding: 28px;
+}
+.ask-total-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
+.ask-total {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.4rem; font-weight: 800; color: white; margin-bottom: 4px;
+}
+.ask-total-sub { font-size: 0.74rem; color: rgba(255,255,255,.4); margin-bottom: 24px; }
+
+.ask-line {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+  font-size: 0.77rem;
+}
+.ask-line:last-of-type { border-bottom: none; }
+.ask-line .label { color: rgba(255,255,255,.5); }
+.ask-line .val { font-weight: 700; color: var(--b200); }
+
+.contact-block {
+  margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);
+}
+.contact-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.contact-row span { font-size: 0.78rem; color: rgba(255,255,255,.55); }
+.contact-row a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; font-weight: 500; }
+
+/* keyboard hint */
+.kb-hint {
+  position: fixed; bottom: 90px; right: 40px;
+  font-size: 0.68rem; color: rgba(255,255,255,.2);
+  display: flex; align-items: center; gap: 6px;
+  z-index: 999;
+}
+.kb { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 4px; padding: 2px 7px; font-size: 0.65rem; }
+
+/* progress bar */
+.progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--b500), var(--cyan));
+  transition: width .4s ease; z-index: 999;
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">GTD<span>.</span>AI</div>
-  <div>
-    <a href="#vison">Vison eKYC</a>
-    <a href="#ppob">PPOB.ID Agent</a>
-    <a href="#team">Team</a>
-    <a href="mailto:riko@gtd.co.id" class="nav-cta">Contact Us</a>
-  </div>
-</nav>
+<div class="progress" id="progress"></div>
+<div class="kb-hint"><span class="kb">←</span><span class="kb">→</span> to navigate</div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge">AI-Powered Fintech · Jakarta, Indonesia</div>
-      <h1>Building the <em>AI Infrastructure</em> for Indonesia's Digital Finance</h1>
-      <p class="hero-desc">PT Gerbang Transaksi Digital develops AI-driven identity verification and conversational transaction platforms — serving fintechs, banks, and 10,000+ UMKM resellers across Southeast Asia.</p>
-      <div class="hero-btns">
-        <a href="#vison" class="btn-primary">Explore Our Products</a>
-        <a href="mailto:riko@gtd.co.id" class="btn-ghost">Get in Touch</a>
-      </div>
-    </div>
-    <div class="hero-cards">
-      <div class="hcard">
-        <div class="hcard-icon">🔬</div>
-        <h3>Vison eKYC Platform</h3>
-        <p>B2B face biometrics & identity verification PaaS with deepfake detection and liveness analysis.</p>
-      </div>
-      <div class="hcard">
-        <div class="hcard-icon">💬</div>
-        <h3>PPOB.ID AI Agent</h3>
-        <p>WhatsApp-native conversational agent for digital transactions — mobile top-ups, bills, and more.</p>
-      </div>
-      <div class="hcard">
-        <div class="hcard-icon">🌏</div>
-        <h3>Southeast Asia Expansion</h3>
-        <p>Targeting 6 SEA markets by Q3 2026 with localized compliance and multi-language support.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="deck" id="deck">
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stats-inner">
-    <div>
-      <div class="stat-num">10K+</div>
-      <div class="stat-label">UMKM Resellers on PPOB.ID</div>
-    </div>
-    <div>
-      <div class="stat-num">6</div>
-      <div class="stat-label">AI Models in Production</div>
-    </div>
-    <div>
-      <div class="stat-num">4</div>
-      <div class="stat-label">Compliance Frameworks</div>
-    </div>
-    <div>
-      <div class="stat-num">2026</div>
-      <div class="stat-label">SEA Expansion Target</div>
+<!-- ════════════ SLIDE 01 · COVER ════════════ -->
+<div class="slide active" id="s1">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="content">
+    <div class="cover-layout">
+      <div>
+        <div class="cover-logo">
+          <div class="logo-mark">G</div>
+          <div class="logo-text">Gerbang Transaksi Digital<span>.</span></div>
+        </div>
+        <div class="eyebrow" style="color:var(--cyan)">AI Solutions Deck · 2026</div>
+        <h1 class="display" style="color:white;margin-bottom:20px">
+          Building Indonesia's<br><em class="grad-text">AI Identity &amp;</em><br><span style="color:rgba(255,255,255,.6)">Transaction Layer</span>
+        </h1>
+        <p style="font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:420px;margin-bottom:28px">
+          PT Gerbang Transaksi Digital develops enterprise-grade AI products for identity verification and conversational commerce — serving fintechs, banks, and 10,000+ UMKM resellers across Southeast Asia.
+        </p>
+        <div class="cover-tag-row">
+          <span class="tag">eKYC PaaS</span>
+          <span class="tag">Conversational AI</span>
+          <span class="tag">Fintech Infrastructure</span>
+        </div>
+        <div class="cover-meta" style="margin-top:28px">gtd.co.id · Jakarta, Indonesia · Est. December 2025</div>
+      </div>
+      <div class="cover-right">
+        <div class="cover-card">
+          <div class="cover-card-top">
+            <div class="cover-card-icon">🔬</div>
+            <h3>Vison</h3>
+          </div>
+          <p>B2B eKYC &amp; face biometrics PaaS — liveness detection, deepfake analysis, OCR, and AML screening for Indonesian financial institutions.</p>
+          <div style="margin-top:12px"><span class="tag" style="font-size:.66rem">vison.id</span></div>
+        </div>
+        <div class="cover-card">
+          <div class="cover-card-top">
+            <div class="cover-card-icon">💬</div>
+            <h3>Sona by PPOB.ID</h3>
+          </div>
+          <p>AI-powered WhatsApp transaction agent enabling UMKM micro-resellers to complete digital payments through natural Bahasa Indonesia conversation.</p>
+          <div style="margin-top:12px"><span class="tag" style="font-size:.66rem">ppob.id</span></div>
+        </div>
+        <div class="cover-card" style="background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.15)">
+          <div class="cover-card-top">
+            <div class="cover-card-icon" style="background:linear-gradient(135deg,#ff6a00,#ff8533)">☁️</div>
+            <h3>Alibaba Cloud AI Catalyst</h3>
+          </div>
+          <p>Applying for GPU compute credits and Model Studio tokens to accelerate AI model training and inference infrastructure for SEA-scale deployment.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- PROBLEM -->
-<section class="problem">
-  <div class="section-inner">
-    <div class="section-tag">The Problem</div>
-    <h2 class="section-title">Identity Fraud & Financial Exclusion<br>Cost Indonesia Billions Annually</h2>
-    <p class="section-sub">Legacy KYC processes are slow, expensive, and easily bypassed. Meanwhile, millions of UMKM micro-businesses lack access to seamless digital financial tools.</p>
-    <div class="problem-grid">
-      <div class="prob-card">
-        <div class="prob-num">01</div>
-        <h3>KYC Fraud on the Rise</h3>
-        <p>Deepfake technology and synthetic identity attacks bypass traditional photo-based verification, exposing fintechs and banks to massive compliance risk under POJK eKYC regulation.</p>
+<!-- ════════════ SLIDE 02 · PROBLEM ════════════ -->
+<div class="slide" id="s2">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:rgba(255,100,100,.8)">The Problem</div>
+    <h2 class="display" style="color:white">Three Unsolved Problems<br><span class="grad-text">Holding Indonesia's Fintech Back</span></h2>
+    <div class="prob-grid">
+      <div class="prob-card c1">
+        <div class="prob-number">01</div>
+        <h3>KYC Fraud &amp; Deepfake Attacks</h3>
+        <p>Synthetic face generation and deepfake video technology now bypass conventional photo-based KYC with over 90% success rate. Indonesian OJK-regulated fintechs face mounting compliance risk with no standardized AI-based defense layer available as a managed service.</p>
+        <div class="prob-stat">⚠ 340% increase in AI-generated identity fraud cases in SEA, 2023–2025</div>
       </div>
-      <div class="prob-card">
-        <div class="prob-num">02</div>
-        <h3>Fragmented Identity Infrastructure</h3>
-        <p>No unified B2B eKYC PaaS exists for Indonesian SME fintechs. Each company builds their own — expensive, non-compliant, and difficult to scale across Southeast Asia.</p>
+      <div class="prob-card c2">
+        <div class="prob-number">02</div>
+        <h3>No Unified eKYC Infrastructure</h3>
+        <p>Every fintech startup in Indonesia rebuilds identity verification from scratch — spending 12–18 months and $200K+ on systems that are non-compliant, poorly maintained, and unable to meet NIST SP 800-63B or iBeta PAD requirements demanded by enterprise procurement.</p>
+        <div class="prob-stat">⚡ Average time-to-compliance: 14 months without a PaaS solution</div>
       </div>
-      <div class="prob-card">
-        <div class="prob-num">03</div>
-        <h3>UMKM Left Behind</h3>
-        <p>10 million+ Indonesian micro-resellers transact via WhatsApp manually. No AI-powered transaction automation exists that understands Bahasa Indonesia naturally and integrates with payment rails.</p>
+      <div class="prob-card c3">
+        <div class="prob-number">03</div>
+        <h3>UMKM Excluded from Automation</h3>
+        <p>Indonesia's 64 million micro and small businesses transact via WhatsApp manually — no AI-native commerce layer exists that understands Bahasa Indonesia, integrates with payment rails, and operates within the everyday flow of resellers' work.</p>
+        <div class="prob-stat">🎯 Addressable: 10M+ UMKM resellers in digital product distribution</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- VISON -->
-<section class="vison" id="vison">
-  <div class="section-inner">
-    <div class="vison-layout">
+<!-- ════════════ SLIDE 03 · SOLUTION ════════════ -->
+<div class="slide" id="s3">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,.1),transparent 70%);top:-100px;left:-50px"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:var(--cyan)">Solution — Product 01</div>
+    <h2 class="display" style="color:white">Vison <span class="grad-text">eKYC PaaS</span></h2>
+    <div class="sol-layout">
       <div>
-        <div class="section-tag">Product 01 — Vison</div>
-        <h2 class="section-title">eKYC & Face Biometrics PaaS for Southeast Asia</h2>
-        <p class="section-sub">Vison is a B2B identity verification platform delivering enterprise-grade AI capabilities via simple API — built for Indonesian fintechs, banks, and digital lenders.</p>
-        <div class="vison-features">
-          <div class="feat"><div class="feat-icon">👁️</div><h4>Passive Liveness</h4><p>Single-frame analysis, no user action required</p></div>
-          <div class="feat"><div class="feat-icon">🤖</div><h4>Deepfake Detection</h4><p>Custom fine-tuned classifier on FaceForensics++</p></div>
-          <div class="feat"><div class="feat-icon">🪪</div><h4>ID Card OCR</h4><p>National ID, Tax ID & Driver's License extraction</p></div>
-          <div class="feat"><div class="feat-icon">🔍</div><h4>Face Search</h4><p>1:N biometric matching across enrolled database</p></div>
-          <div class="feat"><div class="feat-icon">✅</div><h4>NIK Validation</h4><p>Real-time National ID checksum verification</p></div>
-          <div class="feat"><div class="feat-icon">🚨</div><h4>AML Screening</h4><p>Watchlist matching against global sanctions lists</p></div>
-        </div>
-        <div class="compliance-badges">
-          <span class="badge accent">NIST SP 800-63B</span>
-          <span class="badge accent">iBeta PAD Level 1/2</span>
-          <span class="badge">POJK eKYC</span>
-          <span class="badge">UU PDP No. 27/2022</span>
-          <span class="badge">Perpres 83/2021</span>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:28px;max-width:480px">
+          Vison is a developer-first identity verification platform that gives Indonesian fintechs and banks enterprise-grade biometric AI via a single REST API — eliminating the need to build, train, or maintain AI models in-house.
+        </p>
+        <div class="sol-feat-grid">
+          <div class="sol-feat"><div class="sol-feat-icon">👁️</div><h4>Passive Liveness</h4><p>Single-frame PAD, no user action required — sub-500ms</p></div>
+          <div class="sol-feat"><div class="sol-feat-icon">🤖</div><h4>Deepfake Detection</h4><p>Fine-tuned CNN on FaceForensics++ &amp; CASIA-SURF CeFA</p></div>
+          <div class="sol-feat"><div class="sol-feat-icon">🪪</div><h4>ID Card OCR</h4><p>National ID, Tax ID &amp; Driver's License — Moiré/ELA spoofing protection</p></div>
+          <div class="sol-feat"><div class="sol-feat-icon">🔍</div><h4>1:N Face Search</h4><p>Biometric enrollment &amp; matching across customer database</p></div>
+          <div class="sol-feat"><div class="sol-feat-icon">✅</div><h4>NIK Validation</h4><p>Real-time National ID number checksum &amp; dukcapil integration</p></div>
+          <div class="sol-feat"><div class="sol-feat-icon">🚨</div><h4>AML Watchlist</h4><p>Global sanctions &amp; PEP screening, updated daily</p></div>
         </div>
       </div>
-      <div>
-        <div class="pipeline">
-          <div class="pipeline-title">Verification Pipeline</div>
-          <div class="pipe-step">
-            <div class="pipe-dot">📸</div>
-            <div class="pipe-text"><strong>Capture</strong><span>JS SDK or hosted flow on verify.vison.id</span></div>
-          </div>
-          <div class="pipe-arrow"></div>
-          <div class="pipe-step">
-            <div class="pipe-dot">⚡</div>
-            <div class="pipe-text"><strong>Liveness Check</strong><span>Passive + active challenge-response</span></div>
-          </div>
-          <div class="pipe-arrow"></div>
-          <div class="pipe-step">
-            <div class="pipe-dot">🔬</div>
-            <div class="pipe-text"><strong>Deepfake Analysis</strong><span>Fine-tuned CNN on synthetic face datasets</span></div>
-          </div>
-          <div class="pipe-arrow"></div>
-          <div class="pipe-step">
-            <div class="pipe-dot">🪪</div>
-            <div class="pipe-text"><strong>ID OCR + NIK Validation</strong><span>KTP/NPWP/SIM with Moiré/ELA anti-spoofing</span></div>
-          </div>
-          <div class="pipe-arrow"></div>
-          <div class="pipe-step">
-            <div class="pipe-dot">👤</div>
-            <div class="pipe-text"><strong>Face Compare</strong><span>Selfie vs ID card biometric match</span></div>
-          </div>
-          <div class="pipe-arrow"></div>
-          <div class="pipe-step">
-            <div class="pipe-dot">✅</div>
-            <div class="pipe-text"><strong>Result + Audit Log</strong><span>JSON verdict + signed artifact stored in AWS Jakarta</span></div>
+      <div class="sol-right">
+        <div class="vison-logo-block">
+          <div class="vison-name">Vi<span>son</span></div>
+          <div class="vison-tagline">Identity Verification Platform · vison.id</div>
+          <div class="vison-url">🔗 admin.vison.id · verify.vison.id</div>
+        </div>
+        <div style="margin-bottom:14px">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--b300);margin-bottom:12px">Business Model</div>
+          <div class="biz-model">
+            <div class="biz-row"><span class="biz-label">Delivery</span><span class="biz-val">REST API + JS Embed SDK</span></div>
+            <div class="biz-row"><span class="biz-label">Hosted Flow</span><span class="biz-val">verify.vison.id (white-label)</span></div>
+            <div class="biz-row"><span class="biz-label">Pricing</span><span class="biz-val">Per-verification SaaS</span></div>
+            <div class="biz-row"><span class="biz-label">Data Residency</span><span class="biz-val">AWS ap-southeast-3 Jakarta</span></div>
+            <div class="biz-row"><span class="biz-label">Target Clients</span><span class="biz-val">Fintechs, P2P lenders, Banks</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PPOB -->
-<section class="ppob" id="ppob">
-  <div class="section-inner">
-    <div class="ppob-layout">
+<!-- ════════════ SLIDE 04 · HOW AI WORKS ════════════ -->
+<div class="slide" id="s4">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow" style="width:600px;height:600px;background:radial-gradient(circle,rgba(26,95,212,.1),transparent 70%);bottom:-100px;right:-100px;position:absolute"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:var(--cyan)">Under The Hood</div>
+    <h2 class="display" style="color:white">How Vison's <span class="grad-text">AI Pipeline Works</span></h2>
+    <div class="ai-layout">
       <div>
-        <div class="section-tag">Product 02 — PPOB.ID AI Agent</div>
-        <h2 class="section-title">WhatsApp AI Agent for Digital Transactions</h2>
-        <p class="section-sub">An AI-powered conversational agent on Meta WABA that enables 10,000+ UMKM micro-resellers to complete digital transactions — mobile top-ups, utility bills, and digital products — through natural language chat in Bahasa Indonesia.</p>
-        <div class="ppob-features">
-          <div class="ppob-feat">
-            <div class="ppob-feat-icon">🧠</div>
-            <div>
-              <h4>Natural Language Intent Recognition</h4>
-              <p>AI understands Bahasa Indonesia commands, slang, and abbreviations — no rigid commands needed.</p>
-            </div>
+        <div class="pipeline-wrap">
+          <div class="pipe-title">Verification Pipeline — 6 Stages</div>
+          <div class="pipe-item">
+            <div class="pipe-ico active">📸</div>
+            <div class="pipe-body"><strong>Capture Layer</strong><span>JS SDK or hosted verify.vison.id — challenge-response integrity, replay prevention</span></div>
           </div>
-          <div class="ppob-feat">
-            <div class="ppob-feat-icon">⚙️</div>
-            <div>
-              <h4>Tool Calling over Payment Gateway</h4>
-              <p>AI orchestrates real transactions via Gerbang API — balance checks, top-ups, bill payments, receipts.</p>
-            </div>
+          <div class="pipe-item">
+            <div class="pipe-ico active">⚡</div>
+            <div class="pipe-body"><strong>Liveness Detection</strong><span>Passive (single frame) + active challenge — ISO/IEC 30107-3 PAD targeting iBeta Level 1/2</span></div>
           </div>
-          <div class="ppob-feat">
-            <div class="ppob-feat-icon">🔐</div>
-            <div>
-              <h4>Secure OTP & Session Management</h4>
-              <p>Redis-backed conversation context with FCM push OTP and WhatsApp 2FA confirmation flow.</p>
-            </div>
+          <div class="pipe-item">
+            <div class="pipe-ico active">🔬</div>
+            <div class="pipe-body"><strong>Deepfake Classifier</strong><span>Fine-tuned ResNet on FaceForensics++, FairFace, CASIA-SURF — GPU inference on Vast.ai → migrating to Alibaba Cloud</span></div>
           </div>
-          <div class="ppob-feat">
-            <div class="ppob-feat-icon">📊</div>
-            <div>
-              <h4>Real-time Transaction Analytics</h4>
-              <p>Admin dashboard with live agent session monitoring, transaction logs, and reseller performance metrics.</p>
-            </div>
+          <div class="pipe-item">
+            <div class="pipe-ico active">🪪</div>
+            <div class="pipe-body"><strong>ID OCR + Anti-Spoofing</strong><span>Moiré pattern detection, ELA analysis, NIK checksum, font geometry validation</span></div>
+          </div>
+          <div class="pipe-item">
+            <div class="pipe-ico active">👤</div>
+            <div class="pipe-body"><strong>Face Compare</strong><span>Selfie vs. ID card biometric match — 1:1 and 1:N enrolled database search</span></div>
+          </div>
+          <div class="pipe-item">
+            <div class="pipe-ico neutral">📄</div>
+            <div class="pipe-body"><strong>Signed Audit Artifact</strong><span>Tamper-proof JSON verdict + media stored in AWS ap-southeast-3 Jakarta</span></div>
           </div>
         </div>
+        <div class="model-tags" style="margin-top:16px">
+          <span class="mtag">FaceForensics++</span>
+          <span class="mtag">CASIA-SURF CeFA</span>
+          <span class="mtag">FairFace</span>
+          <span class="mtag">RTX 3090 Fine-Tuning</span>
+          <span class="mtag">Go/Gin Inference API</span>
+        </div>
       </div>
+      <div class="ai-metrics">
+        <div class="metric-card">
+          <div class="metric-val cyan">&lt;500ms</div>
+          <div class="metric-label"><strong>End-to-End Latency</strong><span>Full verification pipeline including OCR and face compare</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val blue">6</div>
+          <div class="metric-label"><strong>Custom AI Models</strong><span>Liveness, deepfake, OCR (×3 ID types), age/gender classification</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val green">L1+L2</div>
+          <div class="metric-label"><strong>iBeta PAD Target</strong><span>Presentation Attack Detection — ISO/IEC 30107-3 compliance roadmap</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" style="color:var(--amber)">JKT</div>
+          <div class="metric-label"><strong>Data Residency</strong><span>All biometric data stored exclusively in AWS ap-southeast-3 Jakarta per UU PDP</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ SLIDE 05 · COMPLIANCE ════════════ -->
+<div class="slide" id="s5">
+  <div class="slide-bg light"></div>
+  <div class="grid-tex light"></div>
+  <div class="glow g1"></div>
+  <div class="content">
+    <div class="eyebrow dark">Regulatory &amp; Standards Compliance</div>
+    <h2 class="display" style="color:var(--b900)">Built to Meet <span style="background:linear-gradient(90deg,var(--b600),var(--b400));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Every Standard</span><br>That Matters</h2>
+    <div class="comp-layout">
+      <div class="comp-card">
+        <div class="comp-flag">🏛️</div>
+        <div class="comp-badge">INTERNATIONAL</div>
+        <h3>NIST SP 800-63B</h3>
+        <p>Digital Identity Guidelines for identity proofing and authentication assurance levels. The primary international benchmark referenced by global financial institutions and enterprise fintech procurement teams evaluating biometric KYC vendors.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-flag">🧪</div>
+        <div class="comp-badge">CERTIFICATION</div>
+        <h3>iBeta PAD Level 1 &amp; 2</h3>
+        <p>Presentation Attack Detection certification per ISO/IEC 30107-3. iBeta Level 2 is the highest independent liveness certification available, required by Tier-1 fintech enterprise procurement in Southeast Asia and demanded by international banking partners.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-flag">🇮🇩</div>
+        <div class="comp-badge">INDONESIA — OJK</div>
+        <h3>POJK eKYC Regulation</h3>
+        <p>OJK's electronic Know Your Customer regulation governing biometric-based identity verification for all licensed financial service providers in Indonesia — the primary domestic compliance requirement for Vison's B2B client base.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-flag">🔒</div>
+        <div class="comp-badge">INDONESIA — DATA</div>
+        <h3>UU PDP No. 27/2022</h3>
+        <p>Indonesia's Personal Data Protection Law — biometric data, selfies, and OCR outputs are stored exclusively within AWS ap-southeast-3 Jakarta region, ensuring full territorial data sovereignty compliance for enterprise clients.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+      <span class="tag solid" style="font-size:.68rem">Perpres 83/2021</span>
+      <span class="tag solid" style="font-size:.68rem">PP 71/2019</span>
+      <span class="tag solid" style="font-size:.68rem">PSE / TDPSE Registered</span>
+      <span class="tag solid" style="font-size:.68rem">BSSN Risk Assessment Completed</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ SLIDE 06 · SONA / PPOB.ID ════════════ -->
+<div class="slide" id="s6">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:var(--cyan)">Solution — Product 02</div>
+    <h2 class="display" style="color:white">Sona <span class="grad-text">by PPOB.ID</span></h2>
+    <div class="sona-layout">
       <div>
-        <div class="chat-mock">
-          <div class="chat-header">
-            <div class="chat-av">🤖</div>
-            <div class="chat-info">
-              <strong>PPOB.ID Assistant</strong>
-              <span>● Online — AI Agent</span>
+        <div class="sona-brand">
+          <div class="sona-mark">✨</div>
+          <div class="sona-wordmark">Sona<small>AI Transaction Agent · PPOB.ID</small></div>
+        </div>
+        <div class="chat-window">
+          <div class="chat-bar">
+            <div class="chat-av">✨</div>
+            <div class="chat-bar-info">
+              <strong>Sona — PPOB.ID Assistant</strong>
+              <span><span class="online-dot"></span>Online · AI Agent · PPOB.ID</span>
             </div>
           </div>
-          <div class="chat-body">
-            <div class="msg user">Halo, mau isi pulsa 50rb ke 08123456789</div>
-            <div class="msg bot">
-              Halo Kak! 👋 Saya cek dulu ya...<br><br>
+          <div class="chat-msgs">
+            <div class="bubble user">Halo Sona, mau isi pulsa 50rb ke 08123456789 dong</div>
+            <div class="bubble bot">
+              Halo Kak! 👋 Saya cekkan dulu ya...<br><br>
               <strong>Telkomsel 50.000</strong> → 08123456789<br>
-              Harga: <strong>Rp 51.500</strong><br>
-              Saldo kamu: <strong>Rp 250.000</strong><br><br>
+              Harga: <strong>Rp 51.500</strong> · Saldo: <strong>Rp 250.000</strong><br><br>
               Ketik <strong>OKE</strong> untuk konfirmasi ✅
             </div>
-            <div class="msg user">OKE</div>
-            <div class="msg bot">
-              ✅ <strong>Transaksi Berhasil!</strong><br><br>
-              Pulsa 50.000 → 08123456789<br>
-              Ref: TRX-20260410-4821<br>
+            <div class="bubble user">OKE</div>
+            <div class="bubble bot">
+              ✅ <strong>Berhasil!</strong> Pulsa 50.000 dikirim ke 08123456789<br>
+              Ref: <strong>TRX-20260410-4821</strong><br>
               Saldo sisa: <strong>Rp 198.500</strong>
             </div>
           </div>
+          <div class="chat-input">Type a message… <span>↑</span></div>
+        </div>
+      </div>
+      <div class="sona-feats">
+        <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:4px">
+          Sona is the AI brain of PPOB.ID — a WhatsApp-native transaction agent that understands Bahasa Indonesia naturally and orchestrates real payment operations through GTD's Gerbang API gateway.
+        </p>
+        <div class="sona-feat">
+          <div class="sona-ico">🧠</div>
+          <div><h4>Bahasa Indonesia NLU</h4><p>Intent recognition trained on Indonesian UMKM conversation patterns — understands slang, abbreviations, and regional variations without structured commands</p></div>
+        </div>
+        <div class="sona-feat">
+          <div class="sona-ico">⚙️</div>
+          <div><h4>AI Tool Calling over Gerbang API</h4><p>Sona executes real transactions — balance inquiry, top-up, bill payment, receipt generation — via structured tool calls into GTD's payment gateway infrastructure</p></div>
+        </div>
+        <div class="sona-feat">
+          <div class="sona-ico">🔐</div>
+          <div><h4>Secure Session &amp; OTP Management</h4><p>Redis-backed conversation context window with FCM push OTP and WhatsApp 2FA confirmation before every transaction execution</p></div>
+        </div>
+        <div class="sona-feat">
+          <div class="sona-ico">🌏</div>
+          <div><h4>Multi-Product Transaction Coverage</h4><p>Mobile top-ups, utility bills, QRIS payments, data packages, gaming credits — entire PPOB.ID catalog accessible conversationally</p></div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- TECH STACK -->
-<section class="tech">
-  <div class="section-inner">
-    <div class="section-tag">Technology</div>
-    <h2 class="section-title">Built on Production-Grade AI Infrastructure</h2>
-    <p class="section-sub">Every component designed for scale, compliance, and sub-200ms latency across Southeast Asia.</p>
-    <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-card-icon">⚡</div>
-        <h4>Go / Gin</h4>
-        <p>High-performance backend orchestration for AI inference and payment routing</p>
-        <span class="tech-tag">Backend</span>
+<!-- ════════════ SLIDE 07 · TRACTION ════════════ -->
+<div class="slide" id="s7">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:var(--cyan)">Traction &amp; Pipeline</div>
+    <h2 class="display" style="color:white">Early Momentum <span class="grad-text">Across Both Products</span></h2>
+    <div class="traction-top">
+      <div class="trac-stat"><div class="trac-num">10K+</div><div class="trac-label">Active UMKM Resellers on PPOB.ID</div></div>
+      <div class="trac-stat"><div class="trac-num">4</div><div class="trac-label">Banking &amp; Fintech Compliance Docs Submitted</div></div>
+      <div class="trac-stat"><div class="trac-num">Dec'25</div><div class="trac-label">Company Operational Since</div></div>
+      <div class="trac-stat"><div class="trac-num">Q3'26</div><div class="trac-label">SEA Expansion Target</div></div>
+    </div>
+    <div class="traction-bottom">
+      <div class="trac-panel">
+        <h4>Vison — Banking &amp; Fintech Pipeline</h4>
+        <div class="pipeline-item"><span class="name">Bank Nobu — QRIS Merchant Aggregator</span><span class="status active">PKS Submitted</span></div>
+        <div class="pipeline-item"><span class="name">BRI — SNAP BI Integration</span><span class="status active">Due Diligence Done</span></div>
+        <div class="pipeline-item"><span class="name">Indosat IOH — Digital Partnerships</span><span class="status pipeline">Business Plan Submitted</span></div>
+        <div class="pipeline-item"><span class="name">Vison eKYC — Fintech Prospects</span><span class="status pipeline">Soft Launch May 2026</span></div>
+        <div class="pipeline-item"><span class="name">SEA Market Expansion</span><span class="status prospect">Q3 2026 Target</span></div>
       </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">🔲</div>
-        <h4>Next.js + TypeScript</h4>
-        <p>Dashboard, SDK embed, and hosted verification flows</p>
-        <span class="tech-tag">Frontend</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">☁️</div>
-        <h4>AWS Jakarta</h4>
-        <p>KYC data residency in ap-southeast-3 per UU PDP & PP 71/2019</p>
-        <span class="tech-tag">Cloud</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">🛡️</div>
-        <h4>Cloudflare WAF</h4>
-        <p>Edge security, DDoS protection, and global CDN for SDK delivery</p>
-        <span class="tech-tag">Security</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">🗄️</div>
-        <h4>PostgreSQL + Redis</h4>
-        <p>Transactional data store with session cache for real-time AI agent context</p>
-        <span class="tech-tag">Data</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">🤖</div>
-        <h4>Custom CV Models</h4>
-        <p>Fine-tuned on FaceForensics++, CASIA-SURF CeFA, FairFace datasets</p>
-        <span class="tech-tag">AI/ML</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">💬</div>
-        <h4>Meta WABA</h4>
-        <p>Official WhatsApp Business API for AI agent message orchestration</p>
-        <span class="tech-tag">Messaging</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-icon">🐳</div>
-        <h4>Docker + CI/CD</h4>
-        <p>Containerized microservices with automated deployment pipelines</p>
-        <span class="tech-tag">DevOps</span>
+      <div class="trac-panel">
+        <h4>PPOB.ID — Product Status</h4>
+        <div class="pipeline-item"><span class="name">PPOB.ID B2B Platform</span><span class="status live">Live</span></div>
+        <div class="pipeline-item"><span class="name">Digiflazz Multi-Supplier</span><span class="status live">Live</span></div>
+        <div class="pipeline-item"><span class="name">PSE / TDPSE Registration</span><span class="status live">Registered</span></div>
+        <div class="pipeline-item"><span class="name">D-U-N-S Number</span><span class="status live">Registered</span></div>
+        <div class="pipeline-item"><span class="name">Sona AI Agent (WABA)</span><span class="status pipeline">In Development</span></div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- COMPLIANCE -->
-<section class="compliance">
-  <div class="section-inner">
-    <div class="section-tag">Compliance & Standards</div>
-    <h2 class="section-title">Built to Meet the Strictest<br>Global & Indonesian Standards</h2>
-    <p class="section-sub">Vison is designed from the ground up to satisfy regulators, enterprise procurement, and international certification bodies.</p>
-    <div class="compliance-grid">
-      <div class="comp-card">
-        <div class="comp-icon">🏛️</div>
-        <h3>NIST SP 800-63B</h3>
-        <p>Digital Identity Guidelines for identity proofing and authentication — the international benchmark for biometric systems used by global financial institutions.</p>
+<!-- ════════════ SLIDE 08 · GPU / CLOUD NEEDS ════════════ -->
+<div class="slide" id="s8">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:var(--cyan)">Why Alibaba Cloud</div>
+    <h2 class="display" style="color:white">Our AI Infrastructure <span class="grad-text">Requirements</span></h2>
+    <div class="cloud-layout">
+      <div>
+        <div class="ali-badge">
+          <span style="font-size:1.2rem">☁️</span>
+          <span>Alibaba Cloud AI Catalyst Program — Applicant</span>
+        </div>
+        <div class="need-list">
+          <div class="need-item">
+            <div class="need-ico">🎮</div>
+            <div><h4>GPU Compute for Model Training</h4><p>Fine-tuning deepfake classifier, passive liveness model, and OCR engines requires sustained GPU access. Current Vast.ai setup is costly and operationally unstable — migrating to Alibaba Cloud GPU instances for production training pipeline.</p></div>
+          </div>
+          <div class="need-item">
+            <div class="need-ico">🤖</div>
+            <div><h4>Qwen LLM via Model Studio</h4><p>Sona's Bahasa Indonesia NLU layer will leverage Qwen — Alibaba's multilingual LLM with strong SEA language performance — via Model Studio API for intent classification and conversation management at scale.</p></div>
+          </div>
+          <div class="need-item">
+            <div class="need-ico">🗺️</div>
+            <div><h4>SEA Data Center Proximity</h4><p>Alibaba Cloud's Indonesia and Singapore regions provide the data residency compliance required by UU PDP and the low-latency inference access needed for sub-500ms biometric verification responses for Indonesian enterprise clients.</p></div>
+          </div>
+        </div>
+        <div class="benefit-chips">
+          <span class="chip">GPU Training Instances</span>
+          <span class="chip">Model Studio Tokens</span>
+          <span class="chip">Indonesia Region</span>
+          <span class="chip">PAI Platform</span>
+          <span class="chip">Object Storage (OSS)</span>
+        </div>
       </div>
-      <div class="comp-card">
-        <div class="comp-icon">🧪</div>
-        <h3>iBeta PAD Level 1 & 2</h3>
-        <p>Presentation Attack Detection certification targeting ISO/IEC 30107-3 compliance — required for enterprise fintech KYC procurement in Southeast Asia.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🇮🇩</div>
-        <h3>POJK eKYC</h3>
-        <p>OJK's electronic Know Your Customer regulation governing identity verification for Indonesian licensed financial institutions and digital lenders.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🔒</div>
-        <h3>UU PDP No. 27/2022</h3>
-        <p>Indonesian Personal Data Protection Law — biometric and KYC data stored exclusively in AWS ap-southeast-3 Jakarta, never leaving Indonesian territory.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">📋</div>
-        <h3>Perpres 83/2021</h3>
-        <p>Presidential Regulation on Identity Data — NIK validation and population data access governance for digital service providers in Indonesia.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🌐</div>
-        <h3>PSE / TDPSE Registered</h3>
-        <p>Registered Electronic System Provider with Kominfo — mandatory for all digital platforms operating in Indonesia under Government Regulation 71/2019.</p>
+      <div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--b300);margin-bottom:20px">Estimated Credit Utilization</div>
+        <div class="credit-table">
+          <div class="credit-row">
+            <div><div class="credit-cat">GPU Compute (ECS / PAI)</div><div class="credit-desc">Model fine-tuning — deepfake, liveness, OCR</div></div>
+            <div class="credit-amt">~$60K</div>
+          </div>
+          <div class="credit-row">
+            <div><div class="credit-cat">Model Studio Tokens</div><div class="credit-desc">Qwen LLM for Sona NLU — 2B tokens allocation</div></div>
+            <div class="credit-amt">2B tkn</div>
+          </div>
+          <div class="credit-row">
+            <div><div class="credit-cat">Inference Serving</div><div class="credit-desc">Vison eKYC API — production traffic scaling</div></div>
+            <div class="credit-amt">~$35K</div>
+          </div>
+          <div class="credit-row">
+            <div><div class="credit-cat">Storage &amp; Data Transfer</div><div class="credit-desc">OSS for KYC artifact storage + CDN</div></div>
+            <div class="credit-amt">~$25K</div>
+          </div>
+          <div class="credit-row" style="border-top:1px solid rgba(0,212,255,.2);padding-top:16px;margin-top:4px">
+            <div><div class="credit-cat" style="color:var(--cyan)">Total Program Ask</div><div class="credit-desc">Cloud credits + Model Studio</div></div>
+            <div class="credit-amt" style="font-size:1.4rem;color:var(--cyan)">$120K</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- TEAM -->
-<section class="team" id="team">
-  <div class="section-inner">
-    <div class="section-tag">Team</div>
-    <h2 class="section-title">Built by Founders Who Ship</h2>
-    <p class="section-sub">A technical founding team with deep expertise in fintech infrastructure, AI systems, and Indonesian regulatory compliance.</p>
+<!-- ════════════ SLIDE 09 · TEAM ════════════ -->
+<div class="slide" id="s9">
+  <div class="slide-bg light"></div>
+  <div class="grid-tex light"></div>
+  <div class="glow g1"></div>
+  <div class="content">
+    <div class="eyebrow dark">The Team</div>
+    <h2 class="display" style="color:var(--b900)">Founders Who <span style="background:linear-gradient(90deg,var(--b600),var(--b400));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Build &amp; Ship</span></h2>
+    <p style="font-size:.88rem;color:var(--g600);line-height:1.7;max-width:520px;margin-top:10px;margin-bottom:0">A tight technical founding team with deep expertise across AI/ML engineering, fintech infrastructure, and Indonesian regulatory compliance.</p>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-avatar">RB</div>
+        <div class="team-av">RB</div>
         <h3>Riko Budi Saputra</h3>
-        <div class="team-role">Direktur Utama (CEO)</div>
-        <p class="team-desc">Leads product strategy, AI/ML engineering, compliance, and banking partnerships. Full-stack background in Go, Next.js, and AWS infrastructure.</p>
+        <div class="team-role">Direktur Utama · CEO &amp; Co-Founder</div>
+        <p class="team-desc">Leads product strategy, AI/ML engineering, backend architecture, and banking partnership management. Personally handles compliance documentation, model fine-tuning pipelines, and infrastructure engineering.</p>
+        <div class="team-tags">
+          <span class="ttag">Go / Gin</span>
+          <span class="ttag">Next.js</span>
+          <span class="ttag">AWS</span>
+          <span class="ttag">ML Fine-Tuning</span>
+          <span class="ttag">POJK Compliance</span>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">IK</div>
+        <div class="team-av" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">IK</div>
         <h3>Indri Khafka Nafisa</h3>
-        <div class="team-role">Direktur (COO)</div>
-        <p class="team-desc">Oversees operations, business development, and partnership management across GTD's product portfolio.</p>
+        <div class="team-role">Direktur · COO &amp; Co-Founder</div>
+        <p class="team-desc">Oversees day-to-day operations, business development strategy, and strategic partnership management across GTD's product portfolio. Manages institutional relationships and enterprise sales pipeline.</p>
+        <div class="team-tags">
+          <span class="ttag">Operations</span>
+          <span class="ttag">BD Strategy</span>
+          <span class="ttag">Partnerships</span>
+          <span class="ttag">Enterprise Sales</span>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">VF</div>
+        <div class="team-av" style="background:linear-gradient(135deg,#0d9488,#14b8a6)">VF</div>
         <h3>Vicko Fadhil Zaidan</h3>
-        <div class="team-role">Chief Technology Officer</div>
-        <p class="team-desc">Leads core platform architecture, API gateway design, and infrastructure scaling across all GTD products.</p>
+        <div class="team-role">Chief Technology Officer · Co-Founder</div>
+        <p class="team-desc">Leads core platform architecture, Gerbang API gateway design, and infrastructure scaling strategy across all GTD products. Responsible for system reliability, DevOps pipelines, and technical roadmap execution.</p>
+        <div class="team-tags">
+          <span class="ttag">System Architecture</span>
+          <span class="ttag">API Gateway</span>
+          <span class="ttag">DevOps</span>
+          <span class="ttag">Docker</span>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ASK / CTA -->
-<section class="ask">
-  <div class="ask-glow"></div>
-  <div class="ask-inner">
-    <div class="section-tag" style="color:var(--accent)">Why Alibaba Cloud</div>
-    <h2>What We're Building With GPU & Cloud Resources</h2>
-    <p>We are applying to the Alibaba Cloud AI Catalyst Program to accelerate model training for Vison and scale our AI inference infrastructure across Southeast Asia.</p>
-    <div class="ask-cards">
-      <div class="ask-card">
-        <div class="ask-amount">GPU Compute</div>
-        <div class="ask-for">Fine-tuning deepfake detection, liveness, and OCR models on Alibaba Cloud GPU instances — replacing costly on-demand GPU rentals</div>
+<!-- ════════════ SLIDE 10 · ASK ════════════ -->
+<div class="slide" id="s10">
+  <div class="slide-bg"></div>
+  <div class="grid-tex"></div>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="content">
+    <div class="eyebrow" style="color:var(--cyan)">The Ask</div>
+    <h2 class="display" style="color:white">Join Us in Building <span class="grad-text">Southeast Asia's AI Identity Layer</span></h2>
+    <div class="ask-layout">
+      <div class="ask-cards">
+        <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:8px">
+          We are applying to the Alibaba Cloud AI Catalyst Program to accelerate Vison's model training infrastructure and power Sona's conversational AI at scale across Southeast Asia.
+        </p>
+        <div class="ask-card">
+          <div class="ask-ico">🎮</div>
+          <div><h4>GPU Compute Credits — Model Training</h4><p>Migrate Vison's deepfake, liveness, and OCR fine-tuning pipelines from unstable on-demand GPU rentals to Alibaba Cloud PAI — enabling reproducible, scalable training with Indonesian data compliance requirements.</p></div>
+        </div>
+        <div class="ask-card">
+          <div class="ask-ico">🤖</div>
+          <div><h4>Model Studio — Qwen LLM Tokens</h4><p>Power Sona's Bahasa Indonesia NLU engine with Qwen via Model Studio — 2 billion tokens to build, test, and scale conversational transaction understanding for 10,000+ UMKM resellers.</p></div>
+        </div>
+        <div class="ask-card">
+          <div class="ask-ico">⚡</div>
+          <div><h4>Inference Infrastructure — Production Scale</h4><p>Deploy Vison's biometric verification API on Alibaba Cloud's Indonesia-region compute with the data residency guarantees required by POJK eKYC and UU PDP No. 27/2022 for enterprise fintech clients.</p></div>
+        </div>
+        <div class="ask-card">
+          <div class="ask-ico">🌏</div>
+          <div><h4>Go-To-Market Support — SEA Expansion</h4><p>Leverage Alibaba Cloud's partner network and regional presence in Indonesia to accelerate Vison's enterprise sales pipeline and reach fintech clients across Malaysia, Singapore, and Thailand by Q3 2026.</p></div>
+        </div>
       </div>
-      <div class="ask-card">
-        <div class="ask-amount">Model Studio</div>
-        <div class="ask-for">Integrating Qwen LLM for Bahasa Indonesia NLU in PPOB.ID AI Agent — conversational transaction understanding at scale</div>
-      </div>
-      <div class="ask-card">
-        <div class="ask-amount">SEA Infra</div>
-        <div class="ask-for">Alibaba Cloud's Indonesia & SEA data centers provide the regional proximity and data residency compliance we need for enterprise KYC clients</div>
+      <div>
+        <div class="ask-summary">
+          <div class="ask-total-label">Total Program Request</div>
+          <div class="ask-total">$120,000</div>
+          <div class="ask-total-sub">Cloud Credits + 2B Model Studio Tokens</div>
+          <div class="ask-line"><span class="label">GPU / Training Compute</span><span class="val">~$60,000</span></div>
+          <div class="ask-line"><span class="label">Inference Serving</span><span class="val">~$35,000</span></div>
+          <div class="ask-line"><span class="label">Storage + CDN (OSS)</span><span class="val">~$25,000</span></div>
+          <div class="ask-line"><span class="label">Model Studio Tokens</span><span class="val">2,000,000,000</span></div>
+          <div class="ask-line"><span class="label">Benefiting Products</span><span class="val">Vison + Sona</span></div>
+          <div class="ask-line"><span class="label">Expansion Timeline</span><span class="val">Q3 2026 (SEA)</span></div>
+          <div class="contact-block">
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--b300);margin-bottom:12px">Get In Touch</div>
+            <div class="contact-row"><span>📧</span><a href="mailto:riko@gtd.co.id">riko@gtd.co.id</a></div>
+            <div class="contact-row"><span>🌐</span><a href="https://gtd.co.id" target="_blank">gtd.co.id</a></div>
+            <div class="contact-row"><span>🔬</span><a href="https://vison.id" target="_blank">vison.id</a></div>
+            <div class="contact-row"><span>📱</span><span>+62 851-6566-7472</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <a href="mailto:riko@gtd.co.id" class="btn-primary" style="font-size:1rem;padding:16px 40px">Contact Us — riko@gtd.co.id</a>
   </div>
-</section>
+</div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="logo">PT Gerbang Transaksi Digital<span>.</span></div>
-  <p>Jakarta, Indonesia · gtd.co.id · riko@gtd.co.id · +62 851-6566-7472</p>
-  <p style="margin-top:8px">© 2026 PT Gerbang Transaksi Digital. All rights reserved.</p>
-</footer>
+</div><!-- end deck -->
 
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn" id="prev">←</button>
+  <div class="nav-dots" id="dots"></div>
+  <div class="slide-counter" id="counter">1 / 10</div>
+  <button class="nav-btn" id="next">→</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('dots');
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+let current = 0;
+let prev = -1;
+
+// Build dots
+slides.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  dotsContainer.appendChild(d);
+});
+
+function goTo(n) {
+  if(n < 0 || n >= slides.length || n === current) return;
+  slides[current].classList.remove('active');
+  slides[current].classList.add('prev');
+  setTimeout(() => slides[n-1>=0?n-1:0]?.classList.remove('prev'), 500);
+  current = n;
+  slides[current].classList.add('active');
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
+  counter.textContent = `${current+1} / ${slides.length}`;
+  progress.style.width = `${((current+1)/slides.length)*100}%`;
+}
+
+document.getElementById('next').onclick = () => {
+  const next = (current+1) % slides.length;
+  slides[current].classList.remove('active');
+  slides[current].classList.add('prev');
+  current = next;
+  slides[current].classList.add('active');
+  slides[current].classList.remove('prev');
+  setTimeout(() => document.querySelectorAll('.slide.prev').forEach(s=>s.classList.remove('prev')), 500);
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
+  counter.textContent = `${current+1} / ${slides.length}`;
+  progress.style.width = `${((current+1)/slides.length)*100}%`;
+};
+
+document.getElementById('prev').onclick = () => {
+  const p = (current-1+slides.length) % slides.length;
+  slides[current].classList.remove('active');
+  current = p;
+  slides[current].classList.add('active');
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
+  counter.textContent = `${current+1} / ${slides.length}`;
+  progress.style.width = `${((current+1)/slides.length)*100}%`;
+};
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight'||e.key===' ') document.getElementById('next').click();
+  if(e.key==='ArrowLeft') document.getElementById('prev').click();
+});
+
+progress.style.width = `${(1/slides.length)*100}%`;
+</script>
 </body>
 </html>
