@@ -39,6 +39,7 @@ img{display:block;max-width:100%}a{color:inherit}
 .logo{width:76px;height:76px;padding:10px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(232,241,255,.92));border:1px solid var(--line);box-shadow:var(--shadow2)}
 .productLogo{width:108px;height:68px;padding:12px 14px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.98);object-fit:contain;box-shadow:var(--shadow2)}
 .logoSmall{width:84px;height:52px;padding:8px 10px;border-radius:16px;border:1px solid var(--line);background:#fff;object-fit:contain}
+.aliIcon{width:52px;height:52px;padding:8px;border-radius:16px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow2);object-fit:contain}
 .mini{display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:46px;padding:0 14px;border-radius:14px;background:linear-gradient(135deg,rgba(37,99,235,.16),rgba(56,189,248,.16));color:var(--blue2);font-size:.78rem;font-weight:800;letter-spacing:.08em}
 .copy h3,.card h3{font-family:"Sora",sans-serif;font-size:1.12rem;line-height:1.25;letter-spacing:-.03em}
 .copy p,.card p{margin-top:8px;font-size:.9rem;line-height:1.64;color:var(--muted)}
@@ -68,14 +69,26 @@ img{display:block;max-width:100%}a{color:inherit}
 .table .row.header{background:#f7fbff;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2)}
 .table .row div strong{color:var(--ink)}
 .contact{margin-top:8px}.contact .row{display:grid;grid-template-columns:88px 1fr;gap:12px;font-size:.9rem}.contact .row strong{color:var(--ink)}
+.founderDeck{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:28px;flex:1}
+.founderCard{height:100%;display:flex;flex-direction:column}
+.portraitWrap{position:relative;width:100%;aspect-ratio:4/5;border-radius:24px;overflow:hidden;margin-bottom:18px;border:1px solid var(--line2);background:linear-gradient(180deg,#f8fbff,#eaf2ff)}
+.portrait{width:100%;height:100%;object-fit:cover;background:#eef5ff}
+.portraitPlaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px;text-align:center;color:var(--muted2);background:linear-gradient(180deg,rgba(248,251,255,.98),rgba(232,242,255,.98))}
+.portraitPlaceholder strong{font-family:"Sora",sans-serif;font-size:.95rem;color:var(--ink2);letter-spacing:-.02em}
+.portraitPlaceholder span{font-size:.78rem;line-height:1.55}
+.founderRole{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;background:rgba(37,99,235,.10);color:var(--blue2);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.founderBody p{margin-top:10px}
+.founderPoints{display:grid;gap:10px;margin-top:16px}
+.founderPoints div{padding-top:10px;border-top:1px solid rgba(216,230,251,.9);font-size:.84rem;line-height:1.55;color:var(--muted)}
+.founderNote{margin-top:18px;font-size:.78rem;line-height:1.55;color:var(--muted2)}
 .nav{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px solid rgba(216,230,251,.92);border-radius:999px;background:rgba(255,255,255,.9);box-shadow:0 18px 40px rgba(15,23,42,.12);backdrop-filter:blur(16px)}
 .navBtn{min-width:74px;height:40px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:linear-gradient(180deg,#fff,#f5f9ff);color:var(--ink2);font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .dots{display:flex;align-items:center;gap:8px}.navDot{width:8px;height:8px;border-radius:999px;background:rgba(95,111,140,.28);transition:width .25s ease,background .25s ease;cursor:pointer}.navDot.active{width:28px;background:linear-gradient(90deg,var(--blue2),var(--sky))}
 .counter{min-width:58px;text-align:center;font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--muted2)}
 .progress{position:fixed;top:0;left:0;height:4px;width:0;z-index:40;background:linear-gradient(90deg,var(--blue2),var(--sky));box-shadow:0 8px 24px rgba(37,99,235,.28);transition:width .35s ease}
 .hint{position:fixed;right:24px;bottom:90px;z-index:25;display:flex;align-items:center;gap:8px;color:var(--muted2);font-size:.74rem;font-weight:700}.key{padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.86);box-shadow:var(--shadow2)}
-@media (max-width:1220px){.content{padding:48px 42px 68px}.grid2,.grid3,.metrics{grid-template-columns:1fr 1fr}.arch{grid-template-columns:1fr 1fr}.arch .node:after{display:none}}
-@media (max-width:980px){html,body{overflow:auto}.deck{height:auto;min-height:100vh}.slide{position:relative;opacity:1;pointer-events:auto;transform:none;display:none}.slide.active{display:block}.shell{padding:18px 18px 120px}.frame,.content{min-height:auto}.content{padding:38px 24px 54px}.grid2,.grid3,.metrics,.arch{grid-template-columns:1fr}.table .row{grid-template-columns:1fr;gap:10px}.nav{width:calc(100vw - 26px);justify-content:space-between}.dots,.hint{display:none}}
+@media (max-width:1220px){.content{padding:48px 42px 68px}.grid2,.grid3,.metrics,.founderDeck{grid-template-columns:1fr 1fr}.arch{grid-template-columns:1fr 1fr}.arch .node:after{display:none}}
+@media (max-width:980px){html,body{overflow:auto}.deck{height:auto;min-height:100vh}.slide{position:relative;opacity:1;pointer-events:auto;transform:none;display:none}.slide.active{display:block}.shell{padding:18px 18px 120px}.frame,.content{min-height:auto}.content{padding:38px 24px 54px}.grid2,.grid3,.metrics,.arch,.founderDeck{grid-template-columns:1fr}.table .row{grid-template-columns:1fr;gap:10px}.nav{width:calc(100vw - 26px);justify-content:space-between}.dots,.hint{display:none}}
 @media (max-width:640px){.content{padding:34px 20px 48px}.title{font-size:clamp(2rem,10vw,3rem)}.title.small{font-size:clamp(1.6rem,8vw,2.3rem)}.brand,.productHead,.contactHead{flex-direction:column;align-items:flex-start}.contact .row{grid-template-columns:1fr}.navBtn{min-width:64px;padding:0 12px}.counter{min-width:46px}}
 </style>
 </head>
@@ -93,18 +106,17 @@ img{display:block;max-width:100%}a{color:inherit}
             <div class="brand" style="margin-bottom:22px;">
               <img class="logo" src="logo_gtd.png" alt="PT Gerbang Transaksi Digital logo">
               <div class="copy">
-                <h3>PT Gerbang Transaksi Digital</h3>
+                <h3>PT Gerbang Transaksi Digital (GTD)</h3>
                 <p>Indonesia-based product company building applied AI infrastructure for regulated onboarding and conversational transaction workflows.</p>
               </div>
             </div>
             <h1 class="title">AI infrastructure for <span class="accent">identity verification</span> and <span class="accent">conversational commerce</span> in Indonesia.</h1>
             <p class="lead">
-              GTD operates a broader product portfolio, but this deck is intentionally limited to the company's two AI products: Vison and Sona. It explains where Alibaba Cloud can materially accelerate model development, infrastructure readiness, and pilot execution for those two products only.
+              GTD operates three products across its portfolio. This application is focused only on the two AI products in scope for Alibaba Cloud AI Catalyst: Vison and Sona on PPOB.ID.
             </p>
             <div class="chips" style="margin-top:24px;grid-auto-columns:max-content;">
               <span class="chip primary">Focus: fintech onboarding and UMKM transaction automation</span>
               <span class="chip">Jakarta, Indonesia</span>
-              <span class="chip">Formal partner application deck</span>
               <span class="chip">Primary workload: Vison</span>
               <span class="chip">Portfolio: 3 products, 2 AI in scope</span>
             </div>
@@ -144,11 +156,11 @@ img{display:block;max-width:100%}a{color:inherit}
                 <img class="productLogo" src="icon_ppob.png" alt="PPOB.ID logo">
                 <div class="copy">
                   <h3>Sona on PPOB.ID</h3>
-                  <p>Bahasa Indonesia transaction assistance layered on top of PPOB.ID workflows for reseller and commerce use cases.</p>
+                  <p>Indonesian-language transaction assistance layered on top of PPOB.ID workflows for reseller and commerce use cases.</p>
                 </div>
               </div>
               <div class="chips" style="margin-top:14px;grid-auto-columns:max-content;">
-                <span class="chip">Bahasa Indonesia</span>
+                <span class="chip">Indonesian-language</span>
                 <span class="chip">Tool calling</span>
                 <span class="chip">Confirmation flow</span>
                 <span class="chip">Catalog execution</span>
@@ -156,16 +168,16 @@ img{display:block;max-width:100%}a{color:inherit}
             </div>
             <div class="card soft">
               <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-                <div class="mini">ALI</div>
+                <img class="aliIcon" src="icon_alibaba_cloud.png" alt="Alibaba Cloud icon">
                 <div class="copy" style="margin:0;">
-                  <h3>What this application is asking for</h3>
-                  <p>A practical cloud partnership focused on compute, model access, and regional deployment design.</p>
+                  <h3>Prepared for Alibaba Cloud AI Catalyst</h3>
+                  <p>A focused application for GTD's two AI products, with Vison as the primary infrastructure workload and Sona as the secondary AI evaluation track.</p>
                 </div>
               </div>
               <div class="list">
-                <div class="bullet"><span class="dot"></span><span>GTD operates three products overall, but this application is limited to Vison and Sona as the two AI products currently in scope.</span></div>
+                <div class="bullet"><span class="dot"></span><span>The Alibaba Cloud scope in this deck is limited to Vison and Sona, not GTD's full product portfolio.</span></div>
                 <div class="bullet"><span class="dot"></span><span>GPU compute for Vison model training, evaluation, and repeatable iteration.</span></div>
-                <div class="bullet"><span class="dot"></span><span>Model Studio access to evaluate Qwen for guarded Bahasa Indonesia intent handling in Sona.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Model Studio access to evaluate Qwen for guarded Indonesian-language intent handling in Sona.</span></div>
                 <div class="bullet"><span class="dot"></span><span>Regional infrastructure planning for production inference, storage, and controlled audit paths.</span></div>
               </div>
             </div>
@@ -183,14 +195,14 @@ img{display:block;max-width:100%}a{color:inherit}
         <div class="eyebrow">Slide 02 | Company Snapshot</div>
         <h2 class="title small">A shared company foundation with <span class="accent">two AI product tracks</span>.</h2>
         <p class="lead">
-          GTD is building product infrastructure around two adjacent needs in Indonesia: trusted digital onboarding for regulated businesses, and natural-language transaction execution for everyday reseller commerce.
+          GTD is building product infrastructure around two adjacent needs in Indonesia: trusted digital onboarding for regulated businesses, and Indonesian-language transaction execution for everyday reseller commerce.
         </p>
         <div class="grid2" style="margin-top:28px;flex:1;">
           <div class="card blue">
             <div class="badge">Parent Company Narrative</div>
             <div class="list" style="margin-top:18px;">
               <div class="bullet"><span class="dot"></span><span>GTD acts as the parent operating company and shared technical base behind Vison and Sona.</span></div>
-              <div class="bullet"><span class="dot"></span><span>GTD's wider portfolio also includes Seaply, but Seaply is outside the scope of this Alibaba Cloud AI Catalyst application.</span></div>
+              <div class="bullet"><span class="dot"></span><span>GTD has three products in its wider portfolio, while this application focuses only on the two AI products.</span></div>
               <div class="bullet"><span class="dot"></span><span>Both products benefit from the same product engineering discipline: API-first design, operational controls, and local market context.</span></div>
               <div class="bullet"><span class="dot"></span><span>The immediate objective is focused product hardening for real onboarding and transaction workflows, not broad experimentation.</span></div>
             </div>
@@ -219,7 +231,7 @@ img{display:block;max-width:100%}a{color:inherit}
               </div>
               <div class="card item">
                 <h4>What Alibaba can unlock</h4>
-                <span>More stable model iteration, better LLM evaluation for Bahasa Indonesia orchestration, and a more durable infrastructure plan.</span>
+                <span>More stable model iteration, better LLM evaluation for Indonesian-language orchestration, and a more durable infrastructure plan.</span>
               </div>
               <div class="card item">
                 <h4>What success looks like</h4>
@@ -268,8 +280,8 @@ img{display:block;max-width:100%}a{color:inherit}
             <p>Reseller workflows need language-aware automation that can help complete real tasks without losing confirmation discipline or operational visibility.</p>
           </div>
           <div class="card ghost">
-            <h3>Why this matters for Alibaba Cloud</h3>
-            <p>Both product tracks translate into real workloads: training, inference, orchestration, regional deployment, and controlled data handling.</p>
+            <h3>Why this matters now</h3>
+            <p>These problems now sit at the intersection of compliance, user trust, and AI-assisted workflow design, making them timely product opportunities rather than future-looking concepts.</p>
           </div>
         </div>
       </div>
@@ -293,12 +305,9 @@ img{display:block;max-width:100%}a{color:inherit}
               </div>
             </div>
             <div class="list">
-              <div class="bullet"><span class="dot"></span><span>Developer-friendly delivery through APIs, SDK surfaces, and a hosted verification flow.</span></div>
-              <div class="bullet"><span class="dot"></span><span>Designed around real onboarding steps rather than standalone point-model demos.</span></div>
-              <div class="bullet"><span class="dot"></span><span>Useful for fintech onboarding, reseller verification, and other identity-sensitive customer journeys.</span></div>
-            </div>
-            <div class="callout">
-              Vison is the primary infrastructure workload in this application because it requires the most immediate investment in repeatable GPU training, benchmark discipline, and pilot-ready inference deployment.
+              <div class="bullet"><span class="dot"></span><span>Delivered through API integration, JS SDK surfaces, and a hosted verification flow for different implementation needs.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Designed around real onboarding steps rather than standalone model demos.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Built for fintech onboarding, reseller verification, and other identity-sensitive customer journeys.</span></div>
             </div>
           </div>
           <div class="stack">
@@ -321,13 +330,13 @@ img{display:block;max-width:100%}a{color:inherit}
               </div>
             </div>
             <div class="card">
-              <h3>Deployment model</h3>
-              <p>Vison is being shaped as a flexible delivery model: direct API integration for product teams, a JS embed surface for faster implementation, and a hosted flow for lighter deployment paths.</p>
+              <h3>Why Alibaba matters here</h3>
+              <p>Vison is the primary infrastructure workload in this application because it needs repeatable GPU training, benchmark discipline, and pilot-ready inference deployment for image-heavy verification workloads.</p>
               <div class="chips" style="margin-top:16px;grid-auto-columns:max-content;">
-                <span class="chip">REST API</span>
-                <span class="chip">JS SDK</span>
-                <span class="chip">Hosted verification flow</span>
-                <span class="chip">Controlled artifact storage</span>
+                <span class="chip">GPU training</span>
+                <span class="chip">Inference readiness</span>
+                <span class="chip">Regional deployment</span>
+                <span class="chip">Artifact storage</span>
               </div>
             </div>
           </div>
@@ -342,36 +351,27 @@ img{display:block;max-width:100%}a{color:inherit}
     <div class="frame">
       <div class="content">
         <div class="eyebrow">Slide 05 | Product 02</div>
-        <h2 class="title small">Sona adds a <span class="accent">Bahasa Indonesia transaction layer</span> on top of PPOB.ID workflows.</h2>
+        <h2 class="title small">Sona adds an <span class="accent">Indonesian-language transaction layer</span> on top of PPOB.ID workflows.</h2>
         <div class="grid2" style="margin-top:28px;flex:1;">
           <div class="card blue">
             <div class="productHead">
               <img class="productLogo" src="icon_ppob.png" alt="PPOB.ID logo">
               <div class="copy">
                 <h3>Sona on PPOB.ID</h3>
-                <p>Sona is GTD's conversational layer for transaction assistance, designed to help users complete routine commerce flows using natural Bahasa Indonesia rather than rigid commands.</p>
+                <p>Sona is GTD's conversational layer for transaction assistance, designed to help users complete routine commerce flows using natural Indonesian-language interactions rather than rigid commands.</p>
               </div>
             </div>
-            <div class="flow" style="margin-top:18px;">
-              <div class="step">
-                <div class="index">01</div>
-                <div><strong>User request arrives in natural language</strong><span>A reseller or end user describes a transaction in the phrasing they naturally use inside chat.</span></div>
-              </div>
-              <div class="step">
-                <div class="index">02</div>
-                <div><strong>Sona classifies intent and selects tools</strong><span>The system maps the request to the right transaction workflow, business rules, and confirmation requirements.</span></div>
-              </div>
-              <div class="step">
-                <div class="index">03</div>
-                <div><strong>Execution happens through controlled confirmation</strong><span>Tool calls, confirmations, and receipts stay grounded in operational rules rather than free-form chatbot behavior.</span></div>
-              </div>
+            <div class="list">
+              <div class="bullet"><span class="dot"></span><span>Designed for conversational transaction requests that feel natural inside chat-based commerce flows.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Maps user requests into existing PPOB.ID workflows instead of treating them as isolated chatbot prompts.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Keeps confirmation and execution grounded in business rules rather than unconstrained assistant behavior.</span></div>
             </div>
           </div>
           <div class="stack">
             <div class="grid2">
               <div class="card item">
                 <h4>Language-aware intent handling</h4>
-                <span>Designed around Indonesian transaction phrasing, short forms, and practical reseller communication patterns.</span>
+                <span>Designed around Indonesian-language transaction phrasing, short forms, and practical reseller communication patterns.</span>
               </div>
               <div class="card item">
                 <h4>Tool calling over GTD workflows</h4>
@@ -388,9 +388,9 @@ img{display:block;max-width:100%}a{color:inherit}
             </div>
             <div class="card">
               <h3>Why Alibaba matters here</h3>
-              <p>The highest-value Alibaba contribution for Sona is model evaluation and orchestration support through Model Studio, especially for guarded Bahasa Indonesia intent handling and conversation management.</p>
+              <p>The highest-value Alibaba contribution for Sona is model evaluation and orchestration support through Model Studio, especially for guarded Indonesian-language intent handling and conversation management.</p>
               <div class="chips" style="margin-top:16px;grid-auto-columns:max-content;">
-                <span class="chip">Bahasa Indonesia NLU</span>
+                <span class="chip">Indonesian-language NLU</span>
                 <span class="chip">Model Studio / Qwen</span>
                 <span class="chip">Session state</span>
                 <span class="chip">Safe transaction flow</span>
@@ -429,7 +429,7 @@ img{display:block;max-width:100%}a{color:inherit}
           <div class="card blue">
             <h3>Sona workload profile</h3>
             <div class="list">
-              <div class="bullet"><span class="dot"></span><span>Intent classification and conversation routing tuned for transaction-oriented Bahasa Indonesia usage.</span></div>
+              <div class="bullet"><span class="dot"></span><span>Intent classification and conversation routing tuned for transaction-oriented Indonesian-language usage.</span></div>
               <div class="bullet"><span class="dot"></span><span>Tool calling into existing product logic instead of unconstrained conversational generation.</span></div>
               <div class="bullet"><span class="dot"></span><span>Session-aware controls, confirmations, and response logging for operational safety.</span></div>
             </div>
@@ -511,7 +511,7 @@ img{display:block;max-width:100%}a{color:inherit}
         <div class="eyebrow">Slide 08 | Current Readiness</div>
         <h2 class="title small">The company is early, but there are already <span class="accent">clear execution signals behind the application</span>.</h2>
         <p class="lead">
-          GTD is not presenting mature scale claims here. Instead, this section shows the operating signals, registrations, product milestones, and market preparation that make the Alibaba Cloud request more concrete.
+          GTD is not presenting mature scale claims here. Instead, this section shows the operating signals, product milestones, and market preparation that make the Alibaba Cloud request more concrete.
         </p>
         <div class="grid2" style="margin-top:28px;flex:1;">
           <div class="stack">
@@ -529,7 +529,7 @@ img{display:block;max-width:100%}a{color:inherit}
                 <span>Company operational since December 2025 with product, infrastructure, and partnership work already underway.</span>
               </div>
               <div class="card metric">
-                <strong>May 2026</strong>
+                <strong>Late May 2026</strong>
                 <span>Current soft-launch target for Vison, with Sona's WhatsApp-based assistant layer still in active development.</span>
               </div>
             </div>
@@ -545,14 +545,14 @@ img{display:block;max-width:100%}a{color:inherit}
                 <span>The operating stack is already connected to real catalog execution flows rather than standing as a concept-only application.</span>
               </div>
               <div class="card item">
-                <div class="pill green">Credentials</div>
-                <h4 style="margin-top:14px;">PSE / TDPSE and D-U-N-S registrations completed</h4>
-                <span>These are modest but important signals that GTD is organizing itself for more formal partnership and operating requirements.</span>
-              </div>
-              <div class="card item">
                 <div class="pill">Build status</div>
                 <h4 style="margin-top:14px;">Vison and Sona are at different stages by design</h4>
                 <span>Vison is the nearer-term infrastructure priority for this program, while Sona is the secondary LLM evaluation workload on top of an existing transaction base.</span>
+              </div>
+              <div class="card item">
+                <div class="pill">Readiness focus</div>
+                <h4 style="margin-top:14px;">Product and documentation work are advancing together</h4>
+                <span>GTD is preparing both technical implementation and external review materials in parallel to shorten the path from product build-out to pilot engagement.</span>
               </div>
             </div>
             <div class="callout">
@@ -571,18 +571,13 @@ img{display:block;max-width:100%}a{color:inherit}
               <div>This gives Sona a realistic downstream use case rather than a purely hypothetical chatbot scenario.</div>
             </div>
             <div class="row">
-              <div><strong>Operating credentials</strong></div>
-              <div>PSE / TDPSE registration and D-U-N-S registration have already been completed.</div>
-              <div>These strengthen GTD's baseline credibility for program review and future infrastructure partnerships.</div>
-            </div>
-            <div class="row">
               <div><strong>Enterprise preparation</strong></div>
               <div>Four banking and fintech compliance document packages have already been prepared and submitted.</div>
               <div>This suggests GTD is already structuring product and documentation work for formal external review.</div>
             </div>
             <div class="row">
               <div><strong>Near-term milestones</strong></div>
-              <div>Vison targets a May 2026 soft launch, while the Sona WABA assistant remains in active development.</div>
+              <div>Vison targets a late May 2026 soft launch, while the Sona WABA assistant remains in active development.</div>
               <div>Alibaba Cloud support can directly compress the path from current build state to pilot-ready infrastructure.</div>
             </div>
           </div>
@@ -597,63 +592,67 @@ img{display:block;max-width:100%}a{color:inherit}
     <div class="frame">
       <div class="content">
         <div class="eyebrow">Slide 09 | Founding Team</div>
-        <h2 class="title small">A founder-led team that can <span class="accent">build, ship, and operate</span> the next phase.</h2>
+        <h2 class="title small">A founder-led team prepared to <span class="accent">build, operate, and scale</span> the next phase.</h2>
         <p class="lead">
-          GTD remains a compact founding team, but the responsibilities are clear: product and AI execution, operational and partnership management, and platform architecture.
+          GTD remains a compact founding team, with clear ownership across product direction, operations and partnerships, and platform architecture. The slide below is ready for founder portraits when the PNG assets are available.
         </p>
-        <div class="grid3" style="margin-top:28px;flex:1;">
-          <div class="card blue" style="height:100%;">
-            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-              <div class="mini" style="min-width:58px;height:58px;font-size:1rem;">RB</div>
-              <div class="copy" style="margin:0;">
-                <h3>Riko Budi Saputra</h3>
-                <p>CEO &amp; Co-Founder</p>
+        <div class="founderDeck">
+          <div class="card blue founderCard">
+            <div class="portraitWrap">
+              <img class="portrait" src="founder-riko.png" alt="Founder portrait placeholder for Riko Budi Saputra" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="portraitPlaceholder" style="display:none;">
+                <strong>Founder photo</strong>
+                <span>PNG 1200 x 1500 px<br>4:5 portrait crop</span>
               </div>
             </div>
-            <p>Leads product strategy, AI and ML experimentation, backend architecture, and enterprise documentation. Also drives compliance preparation and model development priorities for Vison.</p>
-            <div class="chips" style="margin-top:16px;">
-              <span class="chip">Go / Gin</span>
-              <span class="chip">Next.js</span>
-              <span class="chip">ML fine-tuning</span>
-              <span class="chip">Compliance docs</span>
+            <div class="founderBody">
+              <span class="founderRole">CEO &amp; Co-Founder</span>
+              <h3 style="margin-top:12px;">Riko Budi Saputra</h3>
+              <p>Leads product direction, AI execution priorities, enterprise documentation, and the commercial narrative for Vison and GTD's broader AI roadmap.</p>
+              <div class="founderPoints">
+                <div>Owns product strategy and AI workload prioritization.</div>
+                <div>Drives compliance preparation, pilot readiness, and partner-facing materials.</div>
+              </div>
             </div>
           </div>
-          <div class="card blue" style="height:100%;">
-            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-              <div class="mini" style="min-width:58px;height:58px;font-size:1rem;background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(167,139,250,.18));color:#6d28d9;">IK</div>
-              <div class="copy" style="margin:0;">
-                <h3>Indri Khafka Nafisa</h3>
-                <p>COO &amp; Co-Founder</p>
+          <div class="card blue founderCard">
+            <div class="portraitWrap">
+              <img class="portrait" src="founder-indri.png" alt="Founder portrait placeholder for Indri Khafka Nafisa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="portraitPlaceholder" style="display:none;">
+                <strong>Founder photo</strong>
+                <span>PNG 1200 x 1500 px<br>4:5 portrait crop</span>
               </div>
             </div>
-            <p>Oversees daily operations, business development, strategic partnerships, and communication with institutional stakeholders across GTD's product portfolio.</p>
-            <div class="chips" style="margin-top:16px;">
-              <span class="chip">Operations</span>
-              <span class="chip">BD strategy</span>
-              <span class="chip">Partnerships</span>
-              <span class="chip">Enterprise pipeline</span>
+            <div class="founderBody">
+              <span class="founderRole">COO &amp; Co-Founder</span>
+              <h3 style="margin-top:12px;">Indri Khafka Nafisa</h3>
+              <p>Leads day-to-day operations, external communication, partnership development, and stakeholder management across GTD's product portfolio.</p>
+              <div class="founderPoints">
+                <div>Owns operating rhythm, execution coordination, and partnership follow-through.</div>
+                <div>Supports enterprise relationship management and external program communication.</div>
+              </div>
             </div>
           </div>
-          <div class="card blue" style="height:100%;">
-            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-              <div class="mini" style="min-width:58px;height:58px;font-size:1rem;background:linear-gradient(135deg,rgba(13,148,136,.16),rgba(20,184,166,.18));color:#0f766e;">VF</div>
-              <div class="copy" style="margin:0;">
-                <h3>Vicko Fadhil Zaidan</h3>
-                <p>CTO &amp; Co-Founder</p>
+          <div class="card blue founderCard">
+            <div class="portraitWrap">
+              <img class="portrait" src="founder-vicko.png" alt="Founder portrait placeholder for Vicko Fadhil Zaidan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="portraitPlaceholder" style="display:none;">
+                <strong>Founder photo</strong>
+                <span>PNG 1200 x 1500 px<br>4:5 portrait crop</span>
               </div>
             </div>
-            <p>Leads platform architecture, API gateway design, infrastructure scaling, and reliability planning across GTD products, including the technical backbone that connects Vison and PPOB.ID workflows.</p>
-            <div class="chips" style="margin-top:16px;">
-              <span class="chip">System architecture</span>
-              <span class="chip">API gateway</span>
-              <span class="chip">DevOps</span>
-              <span class="chip">Docker</span>
+            <div class="founderBody">
+              <span class="founderRole">CTO &amp; Co-Founder</span>
+              <h3 style="margin-top:12px;">Vicko Fadhil Zaidan</h3>
+              <p>Leads platform architecture, infrastructure reliability, API design, and the technical backbone connecting Vison, PPOB.ID, and future production workloads.</p>
+              <div class="founderPoints">
+                <div>Owns platform architecture, deployment planning, and technical reliability.</div>
+                <div>Guides the shared infrastructure path behind Vison and Sona.</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="callout">
-          For Alibaba Cloud, this matters because GTD is not outsourcing the technical core. The founding team directly owns product decisions, infrastructure choices, and pilot execution.
-        </div>
+        <p class="founderNote">Recommended founder image format for final assets: PNG, 1200 x 1500 px, portrait ratio 4:5, head-and-shoulders crop, clean or transparent background.</p>
       </div>
     </div>
   </div>
@@ -674,7 +673,7 @@ img{display:block;max-width:100%}a{color:inherit}
               </div>
               <div class="card item">
                 <h4>Model Studio for Sona</h4>
-                <span>Sona needs a disciplined way to evaluate multilingual models such as Qwen for intent handling and transaction-oriented conversation control.</span>
+                <span>Sona needs a disciplined way to evaluate multilingual models such as Qwen for Indonesian-language intent handling and transaction-oriented conversation control.</span>
               </div>
               <div class="card item">
                 <h4>Regional deployment design</h4>
@@ -704,7 +703,7 @@ img{display:block;max-width:100%}a{color:inherit}
               <div class="row">
                 <div><strong>Intent evaluation</strong></div>
                 <div>Sona</div>
-                <div>Model Studio and Qwen evaluation for guarded Bahasa Indonesia orchestration.</div>
+                <div>Model Studio and Qwen evaluation for guarded Indonesian-language orchestration.</div>
               </div>
               <div class="row">
                 <div><strong>Inference deployment</strong></div>
@@ -724,7 +723,7 @@ img{display:block;max-width:100%}a{color:inherit}
               </div>
               <div class="card item">
                 <h4>Phase 2</h4>
-                <span>Evaluate Qwen and Model Studio for Sona's conversation control and intent classification workflows.</span>
+                <span>Evaluate Qwen and Model Studio for Sona's conversation control and Indonesian-language intent classification workflows.</span>
               </div>
               <div class="card item">
                 <h4>Phase 3</h4>
@@ -746,50 +745,50 @@ img{display:block;max-width:100%}a{color:inherit}
   <div class="shell">
     <div class="frame">
       <div class="content">
-        <div class="eyebrow">Slide 11 | Request and Next Step</div>
-        <h2 class="title small">GTD is seeking a practical cloud partnership to move from <span class="accent">promising product logic</span> to <span class="accent">production-ready infrastructure</span>.</h2>
+        <div class="eyebrow">Slide 11 | Support Request</div>
+        <h2 class="title small">GTD is seeking <span class="accent">Alibaba Cloud credits and Model Studio support</span> aligned with the program's limits and GTD's AI infrastructure roadmap.</h2>
         <div class="grid2" style="margin-top:30px;flex:1;">
           <div class="stack">
             <div class="card blue">
-              <div class="badge">Indicative request</div>
-              <h3 style="margin-top:16px;">Cloud enablement with Vison as the primary workload</h3>
-              <p>GTD is applying for an indicative package of cloud credits plus Model Studio access that can first harden Vison's training and inference stack, then support Sona's narrower Qwen-based evaluation path.</p>
+              <div class="badge">Preferred support scope</div>
+              <h3 style="margin-top:16px;">Practical enablement for Vison first, then Sona</h3>
+              <p>GTD is seeking program-aligned support that can first harden Vison's training and inference stack, then support Sona's narrower Indonesian-language evaluation path through Model Studio.</p>
               <div class="grid2" style="margin-top:18px;">
                 <div class="card metric">
-                  <strong>USD 120K</strong>
-                  <span>Indicative cloud-credit request across training, inference, storage, and deployment readiness.</span>
+                  <strong>Cloud credits</strong>
+                  <span>For training, inference readiness, storage, and architecture hardening around Vison.</span>
                 </div>
                 <div class="card metric">
-                  <strong>Up to 2B</strong>
-                  <span>Indicative Model Studio token envelope for Sona evaluation, prompt testing, and intent flow iteration.</span>
+                  <strong>Model Studio support</strong>
+                  <span>For controlled Qwen evaluation, prompt testing, and intent-flow iteration inside Sona.</span>
                 </div>
               </div>
             </div>
             <div class="table">
               <div class="row header">
-                <div>Request item</div>
-                <div>Indicative allocation</div>
+                <div>Support area</div>
                 <div>Primary use</div>
+                <div>Priority</div>
               </div>
               <div class="row">
-                <div><strong>GPU training compute</strong></div>
-                <div>~USD 60K</div>
+                <div><strong>Training infrastructure</strong></div>
                 <div>Vison model fine-tuning, evaluation loops, and benchmark discipline.</div>
+                <div>Primary</div>
               </div>
               <div class="row">
-                <div><strong>Inference serving</strong></div>
-                <div>~USD 35K</div>
+                <div><strong>Inference readiness</strong></div>
                 <div>Vison API deployment, pilot-grade inference, and supporting application services.</div>
+                <div>Primary</div>
               </div>
               <div class="row">
-                <div><strong>Storage and transfer</strong></div>
-                <div>~USD 25K</div>
+                <div><strong>Storage and audit</strong></div>
                 <div>Verification artifacts, media retention, and audit-oriented storage paths.</div>
+                <div>Primary</div>
               </div>
               <div class="row">
-                <div><strong>Model Studio access</strong></div>
-                <div>Up to 2B tokens</div>
+                <div><strong>Model evaluation</strong></div>
                 <div>Sona intent evaluation, guarded conversation flows, and Qwen-based orchestration tests.</div>
+                <div>Secondary</div>
               </div>
             </div>
             <div class="grid2">
@@ -799,7 +798,7 @@ img{display:block;max-width:100%}a{color:inherit}
               </div>
               <div class="card item">
                 <h4>180-day outcome</h4>
-                <span>Complete early Vison benchmarks and run structured Qwen evaluation for Sona's Bahasa Indonesia transaction intents.</span>
+                <span>Complete early Vison benchmarks and run structured Qwen evaluation for Sona's Indonesian-language transaction intents.</span>
               </div>
               <div class="card item">
                 <h4>270-day outcome</h4>
@@ -816,22 +815,20 @@ img{display:block;max-width:100%}a{color:inherit}
               <img class="logo" src="logo_gtd.png" alt="GTD logo">
               <div class="copy">
                 <h3>PT Gerbang Transaksi Digital</h3>
-                <p>Thank you for reviewing this application. GTD would welcome the chance to discuss workload design, product direction, and deployment planning with the Alibaba Cloud team.</p>
+                <p>Thank you for reviewing this application. GTD would welcome the opportunity to discuss workload design, product direction, and deployment planning with the Alibaba Cloud team.</p>
               </div>
             </div>
             <div class="list">
               <div class="bullet"><span class="dot"></span><span><strong>Primary beneficiary:</strong> Vison as the nearer-term GPU-heavy infrastructure workload for the program.</span></div>
               <div class="bullet"><span class="dot"></span><span><strong>Secondary beneficiary:</strong> Sona as the controlled Model Studio and Qwen evaluation track on top of PPOB.ID.</span></div>
-              <div class="bullet"><span class="dot"></span><span><strong>Portfolio scope:</strong> Seaply is part of GTD's broader portfolio, but it is not included in this AI Catalyst application.</span></div>
               <div class="bullet"><span class="dot"></span><span><strong>Expected outcome:</strong> stronger Vison pilot readiness, better benchmark discipline, and a clearer path to production-grade inference architecture.</span></div>
               <div class="bullet"><span class="dot"></span><span><strong>Next step:</strong> align on workload assumptions, target services, and the most practical activation sequence with the Alibaba Cloud team.</span></div>
             </div>
             <div class="contact">
-              <div class="row"><strong>Contact</strong><span>Riko Budi Saputra</span></div>
-              <div class="row"><strong>Email</strong><span><a href="mailto:riko@gtd.co.id">riko@gtd.co.id</a></span></div>
+              <div class="row"><strong>Email</strong><span><a href="mailto:partnert@gtd.co.id">partnert@gtd.co.id</a></span></div>
               <div class="row"><strong>Website</strong><span><a href="https://gtd.co.id" target="_blank" rel="noopener noreferrer">gtd.co.id</a></span></div>
               <div class="row"><strong>Products</strong><span><a href="https://vison.id" target="_blank" rel="noopener noreferrer">vison.id</a> and <a href="https://ppob.id" target="_blank" rel="noopener noreferrer">ppob.id</a></span></div>
-              <div class="row"><strong>Phone</strong><span>+62 851-6566-7472</span></div>
+              <div class="row"><strong>Phone</strong><span>+62 813-8181-630</span></div>
             </div>
             <p class="note">This document is written as a concise partner application deck. It intentionally avoids disclosing sensitive partner names or overstating certifications beyond current product maturity.</p>
           </div>
