@@ -4,10 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GTD AI Product Pitch Deck</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:"Manrope";src:url("fonts/manrope-latin-400-normal.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Manrope";src:url("fonts/manrope-latin-500-normal.woff2") format("woff2");font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:"Manrope";src:url("fonts/manrope-latin-600-normal.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Manrope";src:url("fonts/manrope-latin-700-normal.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Manrope";src:url("fonts/manrope-latin-800-normal.woff2") format("woff2");font-style:normal;font-weight:800;font-display:swap}
+@font-face{font-family:"Sora";src:url("fonts/sora-latin-500-normal.woff2") format("woff2");font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:"Sora";src:url("fonts/sora-latin-600-normal.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Sora";src:url("fonts/sora-latin-700-normal.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Sora";src:url("fonts/sora-latin-800-normal.woff2") format("woff2");font-style:normal;font-weight:800;font-display:swap}
 :root{--bg:#f3f8ff;--shell:#ffffff;--shell2:#f7fbff;--line:#d8e6fb;--line2:#bdd4f8;--ink:#0f172a;--ink2:#1d2d4d;--muted:#60708d;--muted2:#8090ac;--blue:#2563eb;--blue2:#1d4ed8;--sky:#38bdf8;--blueSoft:#e8f1ff;--shadow:0 24px 60px rgba(37,99,235,.10);--shadow2:0 14px 30px rgba(15,23,42,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at top left,rgba(56,189,248,.12),transparent 28%),radial-gradient(circle at top right,rgba(37,99,235,.12),transparent 32%),var(--bg);font-family:"Manrope",sans-serif;color:var(--ink)}
@@ -15,6 +21,14 @@ img{display:block;max-width:100%}a{color:inherit}
 .deck{position:relative;width:100vw;height:100vh}
 .slide{position:absolute;inset:0;overflow:auto;opacity:0;pointer-events:none;transform:translateX(30px);transition:opacity .45s ease,transform .45s ease}
 .slide.active{opacity:1;pointer-events:auto;transform:none}
+body.export-mode{overflow:hidden}
+body.export-mode .slide,body.export-mode .slide *{animation:none !important;transition:none !important}
+body.export-mode .slide{display:none;overflow:hidden;opacity:1;pointer-events:none;transform:none}
+body.export-mode .slide.export-active{display:flex;align-items:flex-start;justify-content:center;pointer-events:auto}
+body.export-mode .nav,body.export-mode .hint,body.export-mode .progress{display:none !important}
+body.export-mode .deck{height:100vh}
+body.export-mode .shell{padding:24px}
+body.export-mode .shell.export-scaled{margin:0 auto;transform:scale(var(--export-scale,1));transform-origin:top center}
 .shell{min-height:100vh;padding:24px 24px 116px;background:radial-gradient(circle at top left,rgba(37,99,235,.06),transparent 24%),radial-gradient(circle at bottom right,rgba(56,189,248,.08),transparent 26%),linear-gradient(180deg,#fff 0%,#f7fbff 100%)}
 .shell.tint{background:radial-gradient(circle at top right,rgba(37,99,235,.10),transparent 30%),radial-gradient(circle at bottom left,rgba(56,189,248,.08),transparent 28%),linear-gradient(180deg,#f9fbff 0%,#eef5ff 100%)}
 .frame{position:relative;max-width:1360px;min-height:calc(100vh - 48px);margin:0 auto;background:rgba(255,255,255,.86);border:1px solid rgba(216,230,251,.92);border-radius:32px;box-shadow:var(--shadow);overflow:hidden}
@@ -886,14 +900,44 @@ const counter=document.getElementById("counter");
 const progress=document.getElementById("progress");
 const prevButton=document.getElementById("prev");
 const nextButton=document.getElementById("next");
-let current=0;
-function updateUI(){slides.forEach((slide,index)=>{slide.classList.toggle("active",index===current);if(index===current){slide.scrollTop=0;}});document.querySelectorAll(".navDot").forEach((dot,index)=>{dot.classList.toggle("active",index===current);});counter.textContent=`${current+1} / ${slides.length}`;progress.style.width=`${((current+1)/slides.length)*100}%`;}
-function goTo(index){if(index<0||index>=slides.length||index===current){return;}current=index;updateUI();}
-slides.forEach((_,index)=>{const dot=document.createElement("button");dot.type="button";dot.className=index===0?"navDot active":"navDot";dot.setAttribute("aria-label",`Go to slide ${index+1}`);dot.addEventListener("click",()=>goTo(index));dotsContainer.appendChild(dot);});
+const params=new URLSearchParams(window.location.search);
+const exportMode=params.get("export")==="1";
+const requestedSlide=Number.parseInt(params.get("slide")||"1",10);
+let current=Number.isFinite(requestedSlide)?Math.min(Math.max(requestedSlide-1,0),slides.length-1):0;
+document.documentElement.dataset.deckSlides=String(slides.length);
+document.documentElement.dataset.exportReady="0";
+window.__deckExport={slideCount:slides.length,exportMode,currentSlide:current+1,ready:false};
+function updateUI(){slides.forEach((slide,index)=>{const isActive=index===current;slide.classList.toggle("active",isActive);slide.classList.toggle("export-active",exportMode&&isActive);if(isActive){slide.scrollTop=0;}});document.querySelectorAll(".navDot").forEach((dot,index)=>{dot.classList.toggle("active",index===current);});counter.textContent=`${current+1} / ${slides.length}`;progress.style.width=`${((current+1)/slides.length)*100}%`;window.__deckExport.currentSlide=current+1;}
+function applyExportLayout(){
+if(!exportMode){return;}
+slides.forEach((slide)=>{const shell=slide.querySelector(".shell");if(shell){shell.classList.remove("export-scaled");shell.style.removeProperty("--export-scale");}});
+const activeSlide=slides[current];
+const shell=activeSlide?.querySelector(".shell");
+if(!shell){return;}
+shell.classList.add("export-scaled");
+shell.style.setProperty("--export-scale","1");
+const requiredWidth=Math.max(shell.scrollWidth,activeSlide.scrollWidth,window.innerWidth);
+const requiredHeight=Math.max(shell.scrollHeight,activeSlide.scrollHeight,window.innerHeight);
+const scale=Math.min(window.innerWidth/(requiredWidth+4),window.innerHeight/(requiredHeight+4),1);
+shell.style.setProperty("--export-scale",String(scale));
+document.documentElement.dataset.exportScale=scale.toFixed(4);
+window.__deckExport.scale=scale;
+}
+function goTo(index){if(index<0||index>=slides.length||index===current){return;}current=index;updateUI();if(exportMode){applyExportLayout();}}
+function waitForImages(){return Promise.all(Array.from(document.images).map((img)=>{if(img.complete){return Promise.resolve();}return new Promise((resolve)=>{const done=()=>resolve();img.addEventListener("load",done,{once:true});img.addEventListener("error",done,{once:true});});}));}
+function waitForFonts(){if(document.fonts&&document.fonts.ready){return document.fonts.ready.catch(()=>undefined);}return Promise.resolve();}
+function nextFrame(){return new Promise((resolve)=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));}
+async function markReady(){await Promise.all([waitForFonts(),waitForImages()]);applyExportLayout();await nextFrame();document.documentElement.dataset.exportReady="1";window.__deckExport.ready=true;}
+if(exportMode){document.body.classList.add("export-mode");}
+if(!exportMode){
+slides.forEach((_,index)=>{const dot=document.createElement("button");dot.type="button";dot.className=index===current?"navDot active":"navDot";dot.setAttribute("aria-label",`Go to slide ${index+1}`);dot.addEventListener("click",()=>goTo(index));dotsContainer.appendChild(dot);});
 prevButton.addEventListener("click",()=>{current=(current-1+slides.length)%slides.length;updateUI();});
 nextButton.addEventListener("click",()=>{current=(current+1)%slides.length;updateUI();});
 document.addEventListener("keydown",(event)=>{if(event.key==="ArrowRight"||event.key===" "){event.preventDefault();nextButton.click();}if(event.key==="ArrowLeft"){event.preventDefault();prevButton.click();}});
+}
 updateUI();
+if(exportMode){applyExportLayout();}
+markReady();
 </script>
 </body>
 </html>
